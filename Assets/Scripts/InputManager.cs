@@ -4,10 +4,22 @@ using UnityEngine;
 //Class in charge of managing all the input data from the New Input System.
 public class InputManager : MonoBehaviour
 {
+    private static InputManager _instance;
+    public static InputManager Instance{ get { return _instance;}}
     private PlayerControls playerControls;
 
+    //Creates a singleton and a playerControls instance.
     private void Awake()
     {
+        if(_instance != null && _instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            _instance = this;
+        }
+
         playerControls = new PlayerControls();
     }
 
