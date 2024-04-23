@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0206e60f51b733b4abcf97d5ae42d0c2, type: 3}
+  m_Name: EMP
+  m_EditorClassIdentifier: 
+  name: EMP
+  description: 
+  artwork: {fileID: 0}
+  model: {fileID: 7777854130187012980, guid: 7cbfc3dd3679fa44fb372715f440bc9c, type: 3}
+  color: {r: 0.2647791, g: 0, b: 1, a: 0}
+  visualEffect: {fileID: 0}
+  gunshotSound: {fileID: 0}
+  hasSecondaryFire: 0
+  bulletSpeed: 20
