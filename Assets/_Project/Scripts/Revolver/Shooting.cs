@@ -13,10 +13,10 @@ public class Shooting : MonoBehaviour
     [SerializeField] private bool shotDelay;
     [SerializeField] private float timeBetweenShots;
 
-    private Bullet loadedBullet = null;
+    private BulletObject loadedBullet = null;
     private GameObject currentBullet;
     private bool canShoot;
-    private List<Bullet> secondaryFireQueue;
+    private List<BulletObject> secondaryFireQueue;
 
     void Awake()
     {

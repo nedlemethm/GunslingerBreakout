@@ -17,15 +17,18 @@ public class BulletController : MonoBehaviour
 		_bulletView.Initialize();
 	}
 	
-	public void ShootBullet()
+	public void CollectBullet() // Used for picking up bullets and dragging bullets from chamber back into inverntory
 	{
-		_bulletModel.ShootBullet();
-		_bulletView.UpdateView();
+		
 	}
 	
-	public void AddBullet(int slotIndex, Bullet bulletType)
+	public void LoadBullet() // Used for moving bullets into chamber
 	{
-		_bulletModel.addBullet(slotIndex, bulletType);
-		_bulletView.UpdateView();
+		
+	}
+	
+	public void SwapBulletOrder() // Used for swapping bullets in the chamber
+	{
+		
 	}
 }

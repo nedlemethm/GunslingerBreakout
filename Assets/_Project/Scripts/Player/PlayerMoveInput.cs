@@ -1,5 +1,6 @@
 //Coder: Brandon Retana
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 //Will not run unless a CharacterController component is added to the gameObject.
 [RequireComponent(typeof(CharacterController))]
@@ -7,48 +8,69 @@ using UnityEngine;
 //Class is in charge of making the player move, jump and rotate.
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private float playerSpeed;
-    [SerializeField] private float jumpHeight;
-    [SerializeField] private float gravityValue;
+	[SerializeField] private float playerSpeed;
+	[SerializeField] private float jumpHeight;
+	[SerializeField] private float gravityValue;
 
-    private InputManager inputManager;
-    private CharacterController controller;
-    private Transform cameraTransform;
-    private Vector3 playerVelocity;
-    private bool groundedPlayer;
+	private PlayerControls _playerInput;
+	private CharacterController controller;
+	private Transform cameraTransform;
+	private Vector3 playerVelocity;
+	private Vector3 _moveDirection;
+	private bool groundedPlayer;
 
-    //Accesses input manager and instantiates a character controller.
-    private void Start()
-    {
-        controller = GetComponent<CharacterController>();
-        inputManager = InputManager.Instance;
-        cameraTransform = Camera.main.transform;
-    }
+	private void Awake()
+	{
+		_playerInput = new();
+		_playerInput.Player.Movement.started += MovementAction;
+		_playerInput.Player.Movement.performed += MovementAction;
+		_playerInput.Player.Movement.canceled += MovementAction;
+		_playerInput.Player.Jump.started += JumpAction;
+		_playerInput.Enable();
+	}
+	
+	private void OnDestroy()
+	{
+		_playerInput.Disable();
+	}
+	
+	//Accesses input manager and instantiates a character controller.
+	private void Start()
+	{
+		controller = GetComponent<CharacterController>();
+		cameraTransform = Camera.main.transform;
+	}
 
-    //Updates the player's position and jumping conditions getting the input of the user
-    //from the inputManager.
-    void Update()
-    {
-        groundedPlayer = controller.isGrounded;
-        if (groundedPlayer && playerVelocity.y < 0)
-        {
-            playerVelocity.y = 0f;
-        }
+	//Updates the player's position and jumping conditions getting the input of the user
+	//from the inputManager.
+	void Update()
+	{
+		groundedPlayer = controller.isGrounded;
+		if (groundedPlayer && playerVelocity.y < 0)
+		{
+			playerVelocity.y = 0f;
+		}
 
-        Vector2 movement = inputManager.GetPlayerMovement();
-        Vector3 move = new Vector3(movement.x, 0f, movement.y);
-        move = cameraTransform.forward * move.z + cameraTransform.right * move.x;
-        move.y = 0f;
-        move.Normalize();
-        controller.Move(move * Time.deltaTime * playerSpeed);
+		Vector3 move = new Vector3(_moveDirection.x, 0f, _moveDirection.y);
+		move = cameraTransform.forward * move.z + cameraTransform.right * move.x;
+		move.y = 0f;
+		move.Normalize();
+		controller.Move(move * Time.deltaTime * playerSpeed);
 
-        // Changes the height position of the player..
-        if (inputManager.PlayerJumpedThisFrame() && groundedPlayer)
-        {
-            playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
-        }
-
-        playerVelocity.y += gravityValue * Time.deltaTime;
-        controller.Move(playerVelocity * Time.deltaTime);
-    }
+		playerVelocity.y += gravityValue * Time.deltaTime;
+		controller.Move(playerVelocity * Time.deltaTime);
+	}
+	
+	private void MovementAction(InputAction.CallbackContext context)
+	{
+		_moveDirection = context.ReadValue<Vector2>();
+	}
+	
+	private void JumpAction(InputAction.CallbackContext context)
+	{
+		if(groundedPlayer)
+		{
+			playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
+		}
+	}
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.VFX;
 
 [CreateAssetMenu (fileName = "New Bullet", menuName = "Bullet")]
-public class Bullet : ScriptableObject
+public class BulletObject : ScriptableObject
 {
     public new string name;
     public string description;

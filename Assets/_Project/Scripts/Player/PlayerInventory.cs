@@ -7,10 +7,10 @@ public class PlayerInventory : MonoBehaviour
     [SerializeField] private CapsuleCollider capsuleCollider;
     [SerializeField] private string pickupTag;
 
-    private Bullet currentBullet;
+    private BulletObject currentBullet;
     [SerializeField] private int bulletListMaxLength = 6;
     [SerializeField] private bool presetBullets;
-    [SerializeField] private List<Bullet> bullets;
+    [SerializeField] private List<BulletObject> bullets;
 
     // Start is called before the first frame update
     void Start()
@@ -27,18 +27,18 @@ public class PlayerInventory : MonoBehaviour
         else { currentBullet = null; }
     }
 
-    public void addBullet(Bullet bullet)
+    public void addBullet(BulletObject bullet)
     {
         bullets.Add(bullet);
     }
 
-    public Bullet getCurrentBullet()
+    public BulletObject getCurrentBullet()
     {
         if (bullets.Count > 0) { return bullets[0]; }
         else { return null; }
     }
 
-    public void ReplaceCurrentBullet(Bullet newBullet)
+    public void ReplaceCurrentBullet(BulletObject newBullet)
     {
         bullets[0] = newBullet;
     }

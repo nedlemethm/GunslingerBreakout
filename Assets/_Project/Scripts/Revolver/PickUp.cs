@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PickUp : MonoBehaviour
 {
-    [SerializeField] private Bullet bullet;
+    [SerializeField] private BulletObject bullet;
     [SerializeField] private GameObject player;
 
     // Start is called before the first frame update
@@ -21,11 +21,11 @@ public class PickUp : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag(player.tag) &&
-            (player.GetComponent<PlayerInventory>().getAmountBulletsLoaded() <= player.GetComponent<PlayerInventory>().getMaxBullets()))
-        {
-            player.GetComponent<PlayerInventory>().ReplaceCurrentBullet(bullet);
-            Debug.Log(bullet.name + "Picked Up");
-        }
+        // if (other.CompareTag(player.tag) &&
+        //     (player.GetComponent<PlayerInventory>().getAmountBulletsLoaded() <= player.GetComponent<PlayerInventory>().getMaxBullets()))
+        // {
+        //     player.GetComponent<PlayerInventory>().ReplaceCurrentBullet(bullet);
+        //     Debug.Log(bullet.name + "Picked Up");
+        // }
     }
 }
