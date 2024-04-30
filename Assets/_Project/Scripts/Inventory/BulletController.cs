@@ -17,15 +17,15 @@ public class BulletController : MonoBehaviour
 		_bulletView.Initialize();
 	}
 	
-	public void ShootBullet()
+	public void ShootBullet(Bullet bullet)
 	{
-		_bulletModel.ShootBullet();
+		_bulletModel.ShootBullet(bullet);
 		_bulletView.UpdateView();
 	}
 	
 	public void AddBullet(int slotIndex, Bullet bulletType)
 	{
-		_bulletModel.addBullet(slotIndex, bulletType);
+		_bulletModel.AddBullet(slotIndex, bulletType);
 		_bulletView.UpdateView();
 	}
 }
