@@ -64,6 +64,10 @@ public class Shooting : MonoBehaviour
 
         //add forces to bullet
         currentBullet.GetComponent<Rigidbody>().AddForce(direction.normalized * loadedBullet.bulletSpeed, ForceMode.VelocityChange);
+        if (currentBullet.GetComponent<Reflective>() != null)
+        {
+            currentBullet.GetComponent<Reflective>().SetDirection(direction.normalized);
+        }
 
         if (shotDelay)
         {
