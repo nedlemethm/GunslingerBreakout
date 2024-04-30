@@ -16,7 +16,7 @@ MonoBehaviour:
   description: 
   artwork: {fileID: 0}
   model: {fileID: 7777854130187012980, guid: d08939f55c895864a85f0887871ddd20, type: 3}
-  color: {r: 0.8679245, g: 0.8555373, b: 0.6423005, a: 0.83137256}
+  color: {r: 1, g: 0.11376842, b: 0, a: 0.83137256}
   visualEffect: {fileID: 0}
   gunshotSound: {fileID: 0}
   remoteSecondaryFire: 0
