@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 5715611390159354088}
   - component: {fileID: 5804599874982413896}
   - component: {fileID: 329929639654483635}
-  - component: {fileID: -6968870895909717885}
+  - component: {fileID: 13317851978998558}
   m_Layer: 0
-  m_Name: Temp EMP
+  m_Name: Temp Power Charge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -64,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6e8df68c6aca6e34db1b0be951d01fd3, type: 2}
+  - {fileID: 2100000, guid: 4b17a83f680143947bbf40e2b7f5e76f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -136,7 +136,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &-6968870895909717885
+--- !u!114 &13317851978998558
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -145,8 +145,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 7777854130187012980}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebe58b40cea7a4e4ca9b8dc2a0b1355c, type: 3}
+  m_Script: {fileID: 11500000, guid: a7cb5bfbc745f4f44a370d029f966976, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 329929639654483635}
   electronicTag: Electronic
-  EMPOrb: {fileID: 1777474810673194936, guid: efa59287efd7f354b9fd1a15c579314b, type: 3}
+  electricOrb: {fileID: 1777474810673194936, guid: 7c25cf987e8cebc43a716124d6225f34,
+    type: 3}

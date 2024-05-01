@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class PowerCharge : MonoBehaviour
+public class PowerCharge : BulletBase
 {
     [SerializeField] private string electronicTag;
     [SerializeField] private GameObject electricOrb;
@@ -20,7 +20,7 @@ public class PowerCharge : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter(Collision collision)
+    protected override void OnCollisionEnter(Collision collision)
     {
         //checks that what is what is hit is an electronic and if it is off
         if (collision.collider.CompareTag(electronicTag) &&
@@ -31,7 +31,7 @@ public class PowerCharge : MonoBehaviour
             collision.collider.GetComponent<Electronics>().SetOn();
             SpawnElectricOrb(contact, rotation);
         }
-        Destroy(gameObject);
+        base.OnCollisionEnter(collision);
     }
 
     public void SpawnElectricOrb(ContactPoint contact, Quaternion rotation)

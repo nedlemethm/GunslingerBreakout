@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class EMP : MonoBehaviour
+public class EMP : BulletBase
 {
     [SerializeField] private string electronicTag;
     [SerializeField] private GameObject EMPOrb;
@@ -20,7 +20,7 @@ public class EMP : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter(Collision collision)
+    protected override void OnCollisionEnter(Collision collision)
     {
         //checks that what is what is hit is an electronic and if it is off
         if (collision.collider.CompareTag(electronicTag) &&
@@ -31,7 +31,7 @@ public class EMP : MonoBehaviour
             collision.collider.GetComponent<Electronics>().SetOff();
             SpawnEMPOrb(contact, rotation);
         }
-        Destroy(gameObject);
+        base.OnCollisionEnter(collision);
     }
 
     public void SpawnEMPOrb(ContactPoint contact, Quaternion rotation)
