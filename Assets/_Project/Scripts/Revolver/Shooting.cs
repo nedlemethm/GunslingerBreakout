@@ -12,9 +12,10 @@ public class Shooting : MonoBehaviour
     [SerializeField] private Camera cam;
     [SerializeField] private bool shotDelay;
     [SerializeField] private float timeBetweenShots;
+    [SerializeField] private LineRenderer laser;
 
     private Bullet loadedBullet = null;
-    private GameObject currentBullet;
+    private BulletBase currentBullet;
     private bool canShoot;
     private List<Bullet> secondaryFireQueue;
 
@@ -26,6 +27,11 @@ public class Shooting : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //if (loadedBullet.showLaser)
+        //{
+        //    laser.SetPositions();
+        //}
+
         if (player.GetComponent<PlayerInventory>().getMaxBullets() > 0)
         {
             loadedBullet = player.GetComponent<PlayerInventory>().getCurrentBullet();
@@ -63,11 +69,7 @@ public class Shooting : MonoBehaviour
         //currentBullet.transform.forward = direction;
 
         //add forces to bullet
-        currentBullet.GetComponent<Rigidbody>().AddForce(direction.normalized * loadedBullet.bulletSpeed, ForceMode.VelocityChange);
-        if (currentBullet.GetComponent<Reflective>() != null)
-        {
-            currentBullet.GetComponent<Reflective>().SetDirection(direction.normalized);
-        }
+        currentBullet.OnShoot(direction.normalized, loadedBullet.bulletSpeed);
 
         if (shotDelay)
         {
@@ -82,8 +84,9 @@ public class Shooting : MonoBehaviour
         canShoot = true;
     }
 
-    private void SpawnBullet()
+    private BulletBase SpawnBullet()
     {
-        currentBullet = Instantiate (loadedBullet.model, revolverBarrel);
+        currentBullet = Instantiate(loadedBullet.model, revolverBarrel.position, revolverBarrel.rotation, null).GetComponent<BulletBase>();
+        return currentBullet;
     }
 }

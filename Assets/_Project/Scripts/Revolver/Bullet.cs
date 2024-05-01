@@ -19,5 +19,6 @@ public class Bullet : ScriptableObject
     public bool remoteSecondaryFire;
     public float bulletSpeed;
     public bool secondaryFireActivated;
+    public bool showLaser;
 
 }

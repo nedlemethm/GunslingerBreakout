@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class AirBurst : MonoBehaviour
+public class AirBurst : BulletBase
 {
     [SerializeField] private GameObject airBurstOrb;
     private GameObject spawnedOrb;
@@ -19,13 +19,12 @@ public class AirBurst : MonoBehaviour
     {
     }
 
-    private void OnCollisionEnter(Collision collision)
+    protected override void OnCollisionEnter(Collision collision)
     {
         ContactPoint contact = collision.contacts[0];
         Quaternion rotation = Quaternion.FromToRotation(Vector3.up, contact.normal);
         SpawnAirBurstOrb(contact, rotation);
-
-        Destroy(gameObject);
+        base.OnCollisionEnter(collision);
     }
 
     public void SpawnAirBurstOrb(ContactPoint contact, Quaternion rotation)

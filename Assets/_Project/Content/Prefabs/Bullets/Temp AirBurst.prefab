@@ -148,5 +148,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bd56554917fc6940a79d12d37ad783d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 329929639654483635}
   airBurstOrb: {fileID: 1777474810673194936, guid: c5c6051a3b9699f47b2761b37da37ec0,
     type: 3}
