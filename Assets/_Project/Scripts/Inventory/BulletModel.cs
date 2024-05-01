@@ -10,7 +10,7 @@ public class BulletModel
 	public BulletModel(int maxShots)
 	{
 		_maxShots = maxShots;
-		_equippedBullets = new(_maxShots)
+		_equippedBullets = new Bullet[_maxShots];
 	}
 	
 	public void ShootBullet(Bullet bullet)
@@ -18,11 +18,13 @@ public class BulletModel
 		// Maybe something like bullet.ShootPrefab?
 	}
 	
+	
 	public void AddBullet(int slotIndex, Bullet bulletType)
 	{
-		if(_equippedBullets[ShootBullet] == null)
+		if(_equippedBullets[slotIndex] == null)
 		{
 			_equippedBullets[slotIndex] = bulletType;
 		}
 	}
+	
 }

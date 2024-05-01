@@ -23,6 +23,8 @@ public class PlayerController : MonoBehaviour
         controller = GetComponent<CharacterController>();
         inputManager = InputManager.Instance;
         cameraTransform = Camera.main.transform;
+        Cursor.lockState = CursorLockMode.Locked;
+
     }
 
     //Updates the player's position and jumping conditions getting the input of the user
