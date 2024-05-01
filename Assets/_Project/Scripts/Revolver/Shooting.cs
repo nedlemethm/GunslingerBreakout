@@ -21,22 +21,21 @@ public class Shooting : MonoBehaviour
 
     void Awake()
     {
-       canShoot = false;
+        canShoot = false;
+        laser.startWidth = .01f;
+        laser.endWidth = .01f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        //if (loadedBullet.showLaser)
-        //{
-        //    laser.SetPositions();
-        //}
-
         if (player.GetComponent<PlayerInventory>().getMaxBullets() > 0)
         {
             loadedBullet = player.GetComponent<PlayerInventory>().getCurrentBullet();
             canShoot = true;
         }
+
+        ShowLaser();      
 
         if (Input.GetKeyDown(primaryFire) && canShoot)
         {
@@ -44,6 +43,37 @@ public class Shooting : MonoBehaviour
             PrimaryFire();
         }
 
+    }
+
+    private void ShowLaser()
+    {
+        if (loadedBullet.showLaser)
+        {
+            Ray ray = cam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+            RaycastHit hit;
+
+            //check if ray hits something
+            Vector3 targetPoint;
+            if (Physics.Raycast(ray, out hit))
+            {
+                targetPoint = hit.point;
+                List<Vector3> points = new List<Vector3> { revolverBarrel.position + .04f * revolverBarrel.transform.up };
+                points.AddRange(Reflective.GetPoints(revolverBarrel.transform.position, targetPoint - revolverBarrel.transform.position).ToArray());
+                laser.positionCount = points.Count;
+                laser.SetPositions(points.ToArray());
+            }
+            else
+            {
+                targetPoint = ray.GetPoint(50f); //player is pointing in the air
+                List<Vector3> points = new List<Vector3> { revolverBarrel.position, targetPoint };
+                laser.positionCount = points.Count;
+                laser.SetPositions(points.ToArray());
+            }
+        }
+        else
+        {
+            laser.positionCount = 0;
+        }
     }
 
     private void PrimaryFire()
