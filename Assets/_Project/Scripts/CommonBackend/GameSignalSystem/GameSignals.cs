@@ -4,5 +4,6 @@ using UnityEngine;
 
 public static class GameSignals
 {
-	public static readonly Signal Test = new("Test");
+	public static readonly Signal TOOLBAR_ENABLED = new("ToolbarEnabled");
+	public static readonly Signal TOOLBAR_DISABLED = new("ToolbarDisabled");
 }
