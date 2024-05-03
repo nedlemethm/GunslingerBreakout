@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class BulletView : MonoBehaviour
 {
-	
-	
 	private BulletObject[] _chamberBullets;
 	private BulletObject[] _inventoryBullets;
 	private BulletController _controller;

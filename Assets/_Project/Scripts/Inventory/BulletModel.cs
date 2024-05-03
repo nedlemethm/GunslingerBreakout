@@ -19,18 +19,16 @@ public class BulletModel
 	
 	public BulletObject[] ChamberBullets => _chamber;
 	public BulletObject[] InventoryBullets => _inventory;
+	public BulletObject BulletToShoot => _chamber[_shotIndex];
 	
-	public BulletModel()
+	public void AfterFireHandle()
 	{
-		
-	}
-	
-	public void FireBullet()
-	{
-		// Fire Bullet!
+		_chamber[_shotIndex] = null;
 		
 		_shotIndex++; // Need to make this loop back around
-		
+		if(_shotIndex > _maxShots - 1)
+			_shotIndex = 0;
+		Debug.Log($"Shot Index: {_shotIndex}");
 		OnChamberUpdate?.Invoke();
 	}
 	

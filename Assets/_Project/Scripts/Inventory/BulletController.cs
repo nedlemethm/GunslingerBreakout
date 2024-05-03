@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -43,7 +44,17 @@ public class BulletController : MonoBehaviour
 	
 	private void FireBullet(InputAction.CallbackContext context) // When the player Fires a Bullet
 	{
-		_bulletModel.FireBullet();
+		Debug.Log(_bulletModel.BulletToShoot);
+		if(_bulletModel.BulletToShoot != null)
+		{
+			BulletObject bulletToShoot = _bulletModel.BulletToShoot;
+			GameObject bullet = Instantiate(bulletToShoot.model, transform.position, Quaternion.identity); // Note to future self: change transform to barrel position
+			Debug.Log($"Firing {bulletToShoot.name}!");
+			Rigidbody bulletRb = bullet.GetComponent<Rigidbody>();
+			bulletRb.AddForce(transform.forward * bulletToShoot.bulletSpeed, ForceMode.VelocityChange); // Note to future self: change transform.forward into actual bullet direction
+		}
+		
+		_bulletModel.AfterFireHandle();
 	}
 	
 	private void ToggleToolbar(InputAction.CallbackContext context)
