@@ -96,11 +96,13 @@ public class BulletController : MonoBehaviour
 	
 	private void OnChamberUpdate()
 	{
+		Debug.Log("Chamber Updated");
 		_bulletView.UpdateChamberView(_bulletModel.ChamberBullets);
 	}
 	
 	private void OnInventoryUpdate()
 	{
+		Debug.Log("Inventory Updated");
 		_bulletView.UpdateInventoryView(_bulletModel.InventoryBullets);
 	}
 }

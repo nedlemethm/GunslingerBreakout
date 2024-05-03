@@ -1,10 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class BulletView : MonoBehaviour
 {
+	[SerializeField] private List<ChamberSlotView> _chamberSlots = new();
+	[SerializeField] private List<InventorySlotView> _inventorySlots = new();
+	
 	private BulletObject[] _chamberBullets;
 	private BulletObject[] _inventoryBullets;
 	private BulletController _controller;
@@ -30,22 +34,31 @@ public class BulletView : MonoBehaviour
 	{
 		_controller = controller;
 		
-		// get UI elements here and inject indexes into them
+		// Inject the controller into each slot view
+		foreach (ChamberSlotView item in _chamberSlots)
+		{
+			item.Controller = _controller;
+		}
+		
+		foreach (InventorySlotView item in _inventorySlots)
+		{
+			item.Controller = _controller;
+		}
 	}
 	
-	public void AddBulletToChamber() // Called from player interaction with UI
+	public void AddBulletToChamber(int inventoryIndex, int chamberIndex) // Called from player interaction with UI
 	{
-		_controller.AddBulletToChamber(1, 1);
+		_controller.AddBulletToChamber(inventoryIndex, chamberIndex);
 	}
 	
-	public void SwapBullets() // Called from player interaction with UI
+	public void SwapBullets(int chamberIndex1, int chamberIndex2) // Called from player interaction with UI
 	{
-		_controller.SwapBullets(1, 1);
+		_controller.SwapBullets(chamberIndex1, chamberIndex2);
 	}
 	
-	public void RemoveBulletFromChamber() // Called from player interaction with UI
+	public void RemoveBulletFromChamber(int chamberIndex) // Called from player interaction with UI
 	{
-		_controller.RemoveBulletFromChamber(1);
+		_controller.RemoveBulletFromChamber(chamberIndex);
 	}
 	
 	public void UpdateChamberView(BulletObject[] _chamberBulletsToView)
@@ -53,6 +66,11 @@ public class BulletView : MonoBehaviour
 		_chamberBullets = _chamberBulletsToView;
 		
 		// View stuff
+		for (int i = 0; i < _chamberBullets.Length; i++)
+		{
+			ChamberSlotView view = _chamberSlots.ElementAt(i);
+			view.UpdateView(_chamberBullets[i]);
+		}
 	}
 	
 	public void UpdateInventoryView(BulletObject[] _inventoryBulletsToView)
@@ -60,6 +78,12 @@ public class BulletView : MonoBehaviour
 		_inventoryBullets = _inventoryBulletsToView;
 		
 		// View stuff
+		for (int i = 0; i < _inventoryBullets.Length; i++)
+		{
+			InventorySlotView view = _inventorySlots.ElementAt(i);
+			Debug.Log(_inventoryBullets[i]);
+			view.UpdateView(_inventoryBullets[i]);
+		}
 	}
 	
 	private void OnUiEnable(ISignalParameters parameters)

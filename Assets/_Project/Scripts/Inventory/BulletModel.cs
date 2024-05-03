@@ -34,15 +34,25 @@ public class BulletModel
 	
 	public void AddBulletToInventory(BulletObject bullet)
 	{
-		for (int i = 0; i < _inventorySize; i++)
+		for (int i = 0; i < _maxShots; i++)
 		{
-			if(_inventory[i] == null) // If Slot is null, that means it is empty and it should be populated with the bullet
+			if(_chamber[i] == null) // If Slot is null, that means it is empty and it should be populated with the bullet
 			{
-				_inventory[i] = bullet;
-				OnInventoryUpdate?.Invoke();
-				return;
+				_chamber[i] = bullet;
+				OnChamberUpdate?.Invoke();
+				break;
 			}
 		}
+		
+		// for (int i = 0; i < _inventorySize; i++)
+		// {
+		// 	if(_inventory[i] == null) // If Slot is null, that means it is empty and it should be populated with the bullet
+		// 	{
+		// 		_inventory[i] = bullet;
+		// 		OnInventoryUpdate?.Invoke();
+		// 		break;
+		// 	}
+		// }
 		
 		// Inventory is full if this line is reached
 	}
@@ -75,5 +85,8 @@ public class BulletModel
 		// NOTE: Need to add if inventory is full check later
 		
 		AddBulletToInventory(bullet);
+		_chamber[chamberIndex] = null;
+		
+		OnChamberUpdate?.Invoke();
 	}
 }

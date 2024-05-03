@@ -1877,3 +1877,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f27a92f79f224a68878c9dd3bb49330, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _chamberSlots:
+  - {fileID: 18375767}
+  - {fileID: 1697046562}
+  - {fileID: 811337053}
+  - {fileID: 898627147}
+  - {fileID: 383413377}
+  - {fileID: 1634850492}
+  _inventorySlots:
+  - {fileID: 304559058}
+  - {fileID: 85507342}
+  - {fileID: 468924144}
+  - {fileID: 874221543}
+  - {fileID: 123060770}
