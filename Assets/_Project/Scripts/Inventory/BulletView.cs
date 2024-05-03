@@ -46,17 +46,17 @@ public class BulletView : MonoBehaviour
 		}
 	}
 	
-	public void AddBulletToChamber(int inventoryIndex, int chamberIndex) // Called from player interaction with UI
+	public void AddBulletToChamber(int inventoryIndex, int chamberIndex) // Called from player interaction with UI For Matthew
 	{
 		_controller.AddBulletToChamber(inventoryIndex, chamberIndex);
 	}
 	
-	public void SwapBullets(int chamberIndex1, int chamberIndex2) // Called from player interaction with UI
+	public void SwapBullets(int chamberIndex1, int chamberIndex2) // Called from player interaction with UI for Matthew
 	{
 		_controller.SwapBullets(chamberIndex1, chamberIndex2);
 	}
 	
-	public void RemoveBulletFromChamber(int chamberIndex) // Called from player interaction with UI
+	public void RemoveBulletFromChamber(int chamberIndex) // Called from player interaction with UI for Matthew
 	{
 		_controller.RemoveBulletFromChamber(chamberIndex);
 	}

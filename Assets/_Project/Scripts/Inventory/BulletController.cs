@@ -7,6 +7,8 @@ using UnityEngine.InputSystem;
 // This controller will link internal bullet selection
 public class BulletController : MonoBehaviour
 {
+	[SerializeField] private Transform _bulletPoint;
+	
 	private BulletModel _bulletModel;
 	private BulletView _bulletView;
 	private PlayerControls _playerInput;
@@ -48,7 +50,7 @@ public class BulletController : MonoBehaviour
 		if(_bulletModel.BulletToShoot != null)
 		{
 			BulletObject bulletToShoot = _bulletModel.BulletToShoot;
-			GameObject bullet = Instantiate(bulletToShoot.model, transform.position, Quaternion.identity); // Note to future self: change transform to barrel position
+			GameObject bullet = Instantiate(bulletToShoot.model, _bulletPoint.transform.position, Quaternion.identity);
 			Debug.Log($"Firing {bulletToShoot.name}!");
 			Rigidbody bulletRb = bullet.GetComponent<Rigidbody>();
 			bulletRb.AddForce(transform.forward * bulletToShoot.bulletSpeed, ForceMode.VelocityChange); // Note to future self: change transform.forward into actual bullet direction
