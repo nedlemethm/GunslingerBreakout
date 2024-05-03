@@ -5,7 +5,11 @@ using UnityEngine;
 
 public class BulletView : MonoBehaviour
 {
-	// Have a list of 6 bullet types to display
+	
+	
+	private BulletObject[] _chamberBullets;
+	private BulletObject[] _inventoryBullets;
+	private BulletController _controller;
 	
 	private void Awake()
 	{
@@ -24,19 +28,40 @@ public class BulletView : MonoBehaviour
 		LoopThroughChildElements(false);
 	}
 	
-	public void Initialize()
+	public void Initialize(BulletController controller)
 	{
+		_controller = controller;
 		
+		// get UI elements here and inject indexes into them
 	}
 	
-	public void UpdateChamber()
+	public void AddBulletToChamber() // Called from player interaction with UI
 	{
-		
+		_controller.AddBulletToChamber(1, 1);
 	}
 	
-	public void UpdateInventory()
+	public void SwapBullets() // Called from player interaction with UI
 	{
+		_controller.SwapBullets(1, 1);
+	}
+	
+	public void RemoveBulletFromChamber() // Called from player interaction with UI
+	{
+		_controller.RemoveBulletFromChamber(1);
+	}
+	
+	public void UpdateChamberView(BulletObject[] _chamberBulletsToView)
+	{
+		_chamberBullets = _chamberBulletsToView;
 		
+		// View stuff
+	}
+	
+	public void UpdateInventoryView(BulletObject[] _inventoryBulletsToView)
+	{
+		_inventoryBullets = _inventoryBulletsToView;
+		
+		// View stuff
 	}
 	
 	private void OnUiEnable(ISignalParameters parameters)

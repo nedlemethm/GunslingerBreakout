@@ -26,17 +26,17 @@ public class Shooting : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (player.GetComponent<PlayerInventory>().getMaxBullets() > 0)
-        {
-            loadedBullet = player.GetComponent<PlayerInventory>().getCurrentBullet();
-            canShoot = true;
-        }
+        // if (player.GetComponent<PlayerInventory>().getMaxBullets() > 0)
+        // {
+        //     loadedBullet = player.GetComponent<PlayerInventory>().getCurrentBullet();
+        //     canShoot = true;
+        // }
 
-        if (Input.GetKeyDown(primaryFire) && canShoot)
-        {
-            //if (loadedBullet.remoteSecondaryFire) { secondaryFireQueue.Add(loadedBullet); }
-            PrimaryFire();
-        }
+        // if (Input.GetKeyDown(primaryFire) && canShoot)
+        // {
+        //     //if (loadedBullet.remoteSecondaryFire) { secondaryFireQueue.Add(loadedBullet); }
+        //     PrimaryFire();
+        // }
 
     }
 

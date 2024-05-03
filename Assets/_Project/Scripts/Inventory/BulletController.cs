@@ -37,9 +37,8 @@ public class BulletController : MonoBehaviour
 	private IEnumerator Start()
 	{
 		yield return new WaitForEndOfFrame();
-		
 		_bulletView = FindObjectOfType<BulletView>();
-		_bulletView.Initialize();
+		_bulletView.Initialize(this);
 	}
 	
 	private void FireBullet(InputAction.CallbackContext context) // When the player Fires a Bullet
@@ -52,6 +51,10 @@ public class BulletController : MonoBehaviour
 		_toolbarEnabled = !_toolbarEnabled;
 		if(_toolbarEnabled)
 		{
+			// Update Views before enabling inventory
+			OnChamberUpdate();
+			OnInventoryUpdate();
+			
 			GameSignals.TOOLBAR_ENABLED.Dispatch();
 		}
 		else
@@ -82,11 +85,11 @@ public class BulletController : MonoBehaviour
 	
 	private void OnChamberUpdate()
 	{
-		_bulletView.UpdateChamber();
+		_bulletView.UpdateChamberView(_bulletModel.ChamberBullets);
 	}
 	
 	private void OnInventoryUpdate()
 	{
-		_bulletView.UpdateInventory();
+		_bulletView.UpdateInventoryView(_bulletModel.InventoryBullets);
 	}
 }

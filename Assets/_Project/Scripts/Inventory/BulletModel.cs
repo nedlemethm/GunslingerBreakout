@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
+[Serializable]
 public class BulletModel
 {
 	public event Action OnInventoryUpdate;
@@ -16,6 +17,9 @@ public class BulletModel
 	private static int _inventorySize = 5;
 	private int _shotIndex;
 	
+	public BulletObject[] ChamberBullets => _chamber;
+	public BulletObject[] InventoryBullets => _inventory;
+	
 	public BulletModel()
 	{
 		
@@ -24,6 +28,7 @@ public class BulletModel
 	public void FireBullet()
 	{
 		// Fire Bullet!
+		
 		_shotIndex++; // Need to make this loop back around
 		
 		OnChamberUpdate?.Invoke();
