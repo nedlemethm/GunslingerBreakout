@@ -40,9 +40,11 @@ public class PlayerController : MonoBehaviour
 
     private void PlayerJump(InputAction.CallbackContext context)
     {
+        rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+
         if (grounded)
         {
-            rb.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
+            rb.AddForce(transform.up * jumpHeight, ForceMode.Impulse);
             readyToJump = false;
             Invoke("ResetJump", jumpCooldown);
         }
@@ -65,22 +67,22 @@ public class PlayerController : MonoBehaviour
     private void PlayerMovement()
     {
         
-        Vector2 dir = playerControls.Player.Movement.ReadValue<Vector2>();
+        Vector2 dir = playerControls.Player.Movement.ReadValue<Vector2>() * playerSpeed;
         playerVelocity = new Vector3(dir.x, rb.velocity.y, dir.y);
         float temp = playerVelocity.y;
         playerVelocity = cameraTransform.forward * playerVelocity.z + cameraTransform.right * playerVelocity.x;
         playerVelocity.y = temp;
-        //rb.velocity += playerVelocity * Time.deltaTime;
-        
+
         //Leo Script
         if (grounded)
         {
-            rb.AddForce(playerVelocity * playerSpeed * 10f, ForceMode.Force);
+            rb.velocity += playerVelocity * Time.deltaTime;
         }
         else if (grounded)
         {
-            rb.AddForce(playerVelocity * playerSpeed * 10f * airMultiplier, ForceMode.Force);
+            rb.velocity += playerVelocity * airMultiplier * Time.deltaTime;
         }
+        
     }
 
     private void SpeedControl()
@@ -97,6 +99,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        PlayerMovement();
         grounded = Physics.Raycast(rb.position, Vector3.down, playerHeight);
 
         if (grounded)
@@ -108,9 +111,6 @@ public class PlayerController : MonoBehaviour
     //Updates the player's position and jumping 
     void FixedUpdate()
     {
-        PlayerMovement();
         SpeedControl();
     }
-
-
 }

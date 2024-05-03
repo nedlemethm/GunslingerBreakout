@@ -12,6 +12,7 @@ public class MovingPlatform : MonoBehaviour
     private bool moving;
     private int currentPosIndex;
     private int nextPosIndex;
+    private Vector3 lastPos;
 
     // Start is called before the first frame update
     void Start()
@@ -35,6 +36,7 @@ public class MovingPlatform : MonoBehaviour
     {
         if (moving)
         {
+            lastPos = gameObject.transform.position;
             gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position,
                 points[nextPosIndex].transform.position, moveSpeed * Time.deltaTime);
             //moving = true;
@@ -61,14 +63,8 @@ public class MovingPlatform : MonoBehaviour
         }
     }
 
-    
-    void OnTriggerExit(Collider other)
+    private void OnTriggerStay(Collider other)
     {
-        other.transform.SetParent(null);
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        other.transform.SetParent(transform, true);
+        other.transform.position += transform.position - lastPos;
     }
 }
