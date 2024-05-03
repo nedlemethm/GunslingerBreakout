@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 //Class is in charge of making the player move, jump and rotate.
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private float playerSpeed, jumpHeight, playerHeigth;
+    [SerializeField] private float playerSpeed, jumpHeight, playerHeight;
     [SerializeField] private LayerMask layer;
 
     private PlayerControls playerControls;
@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
 
     private void PlayerJump(InputAction.CallbackContext context)
     {
-        if (Physics.Raycast(rb.position, Vector3.down, playerHeigth, layer))
+        if (Physics.Raycast(rb.position, Vector3.down, playerHeight))
         {
             rb.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
         }
