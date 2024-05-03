@@ -823,6 +823,7 @@ MonoBehaviour:
   cam: {fileID: 1557759490}
   shotDelay: 1
   timeBetweenShots: 2
+  laser: {fileID: 6595233311761396613, guid: 63726f7655608dc42822aaa9f1998af6, type: 3}
 --- !u!1 &740923216
 GameObject:
   m_ObjectHideFlags: 0
