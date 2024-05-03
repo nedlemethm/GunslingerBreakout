@@ -54,7 +54,7 @@ public class Reflective : BulletBase
                 break;
             }
         }
-        Debug.Log(points.Count);
+        //Debug.Log(points.Count);
         return points;
     }
 
