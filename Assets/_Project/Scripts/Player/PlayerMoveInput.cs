@@ -40,10 +40,9 @@ public class PlayerController : MonoBehaviour
 
     private void PlayerJump(InputAction.CallbackContext context)
     {
-        rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
-
         if (grounded)
         {
+            rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
             rb.AddForce(transform.up * jumpHeight, ForceMode.Impulse);
             readyToJump = false;
             Invoke("ResetJump", jumpCooldown);
@@ -78,7 +77,7 @@ public class PlayerController : MonoBehaviour
         {
             rb.velocity += playerVelocity * Time.deltaTime;
         }
-        else if (grounded)
+        else if (!grounded)
         {
             rb.velocity += playerVelocity * airMultiplier * Time.deltaTime;
         }
