@@ -8,6 +8,7 @@ using UnityEngine.InputSystem;
 public class BulletController : MonoBehaviour
 {
 	[SerializeField] private Transform _bulletPoint;
+	[SerializeField] private Camera _revolverCam;
 	
 	private BulletModel _bulletModel;
 	private BulletView _bulletView;
@@ -53,10 +54,30 @@ public class BulletController : MonoBehaviour
 			GameObject bullet = Instantiate(bulletToShoot.model, _bulletPoint.transform.position, Quaternion.identity);
 			Debug.Log($"Firing {bulletToShoot.name}!");
 			Rigidbody bulletRb = bullet.GetComponent<Rigidbody>();
-			bulletRb.AddForce(transform.forward * bulletToShoot.bulletSpeed, ForceMode.VelocityChange); // Note to future self: change transform.forward into actual bullet direction
+			bulletRb.AddForce(CalcDirection() * bulletToShoot.bulletSpeed, ForceMode.VelocityChange); // Note to future self: change transform.forward into actual bullet direction
 		}
 		
 		_bulletModel.AfterFireHandle();
+	}
+	
+	private Vector3 CalcDirection()
+	{
+		Ray ray = _revolverCam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+		RaycastHit hit;
+		Vector3 targetPoint;
+		
+		if (Physics.Raycast(ray, out hit))
+		{
+			targetPoint = hit.point;
+		}
+		else
+		{
+			targetPoint = ray.GetPoint(float.MaxValue); //player is pointing in the air
+		}
+		
+		Vector3 direction = targetPoint - _bulletPoint.position;
+		
+		return direction.normalized;
 	}
 	
 	private void ToggleToolbar(InputAction.CallbackContext context)
