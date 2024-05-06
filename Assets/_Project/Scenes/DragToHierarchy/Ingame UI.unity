@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 18375766}
   - component: {fileID: 18375765}
   - component: {fileID: 18375767}
+  - component: {fileID: 18375768}
   m_Layer: 5
   m_Name: ChamberSlotView (0)
   m_TagString: Untagged
@@ -213,6 +214,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _slotIndex: 0
+--- !u!114 &18375768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 18375763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 4
+  m_StartCorner: 0
+  m_StartAxis: 0
+  m_CellSize: {x: 50, y: 50}
+  m_Spacing: {x: 0, y: 0}
+  m_Constraint: 0
+  m_ConstraintCount: 2
 --- !u!1 &77854048
 GameObject:
   m_ObjectHideFlags: 0
@@ -249,7 +274,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -50, y: 50}
+  m_AnchoredPosition: {x: -50, y: 0}
   m_SizeDelta: {x: 500, y: 500}
   m_Pivot: {x: 1, y: 0}
 --- !u!222 &77854051
@@ -272,6 +297,7 @@ GameObject:
   - component: {fileID: 85507341}
   - component: {fileID: 85507340}
   - component: {fileID: 85507342}
+  - component: {fileID: 85507343}
   m_Layer: 5
   m_Name: InventorySlotView (1)
   m_TagString: Untagged
@@ -350,6 +376,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _slotIndex: 1
+  bulletDragPrefab: {fileID: 6440761084703564258, guid: c03c88ffd2280944b809345d123c57a9,
+    type: 3}
+  bulletView: {fileID: 0}
+--- !u!114 &85507343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 85507338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 4
+  m_StartCorner: 0
+  m_StartAxis: 0
+  m_CellSize: {x: 50, y: 50}
+  m_Spacing: {x: 0, y: 0}
+  m_Constraint: 0
+  m_ConstraintCount: 2
 --- !u!1 &123060766
 GameObject:
   m_ObjectHideFlags: 0
@@ -362,6 +415,7 @@ GameObject:
   - component: {fileID: 123060769}
   - component: {fileID: 123060768}
   - component: {fileID: 123060770}
+  - component: {fileID: 123060771}
   m_Layer: 5
   m_Name: InventorySlotView (4)
   m_TagString: Untagged
@@ -440,6 +494,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _slotIndex: 4
+  bulletDragPrefab: {fileID: 6440761084703564258, guid: c03c88ffd2280944b809345d123c57a9,
+    type: 3}
+  bulletView: {fileID: 0}
+--- !u!114 &123060771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 123060766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 4
+  m_StartCorner: 0
+  m_StartAxis: 0
+  m_CellSize: {x: 50, y: 50}
+  m_Spacing: {x: 0, y: 0}
+  m_Constraint: 0
+  m_ConstraintCount: 2
 --- !u!1 &221656150
 GameObject:
   m_ObjectHideFlags: 0
@@ -528,6 +609,7 @@ GameObject:
   - component: {fileID: 304559057}
   - component: {fileID: 304559056}
   - component: {fileID: 304559058}
+  - component: {fileID: 304559059}
   m_Layer: 5
   m_Name: InventorySlotView (0)
   m_TagString: Untagged
@@ -606,6 +688,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _slotIndex: 0
+  bulletDragPrefab: {fileID: 6440761084703564258, guid: c03c88ffd2280944b809345d123c57a9,
+    type: 3}
+  bulletView: {fileID: 0}
+--- !u!114 &304559059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 304559054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 4
+  m_StartCorner: 0
+  m_StartAxis: 0
+  m_CellSize: {x: 50, y: 50}
+  m_Spacing: {x: 0, y: 0}
+  m_Constraint: 0
+  m_ConstraintCount: 2
 --- !u!1 &368123788
 GameObject:
   m_ObjectHideFlags: 0
@@ -684,6 +793,7 @@ GameObject:
   - component: {fileID: 383413379}
   - component: {fileID: 383413378}
   - component: {fileID: 383413377}
+  - component: {fileID: 383413380}
   m_Layer: 5
   m_Name: ChamberSlotView (4)
   m_TagString: Untagged
@@ -762,6 +872,30 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 383413375}
   m_CullTransparentMesh: 1
+--- !u!114 &383413380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 383413375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 4
+  m_StartCorner: 0
+  m_StartAxis: 0
+  m_CellSize: {x: 50, y: 50}
+  m_Spacing: {x: 0, y: 0}
+  m_Constraint: 0
+  m_ConstraintCount: 2
 --- !u!1 &468924140
 GameObject:
   m_ObjectHideFlags: 0
@@ -774,6 +908,7 @@ GameObject:
   - component: {fileID: 468924143}
   - component: {fileID: 468924142}
   - component: {fileID: 468924144}
+  - component: {fileID: 468924145}
   m_Layer: 5
   m_Name: InventorySlotView (2)
   m_TagString: Untagged
@@ -852,6 +987,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _slotIndex: 2
+  bulletDragPrefab: {fileID: 6440761084703564258, guid: c03c88ffd2280944b809345d123c57a9,
+    type: 3}
+  bulletView: {fileID: 0}
+--- !u!114 &468924145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 468924140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 4
+  m_StartCorner: 0
+  m_StartAxis: 0
+  m_CellSize: {x: 50, y: 50}
+  m_Spacing: {x: 0, y: 0}
+  m_Constraint: 0
+  m_ConstraintCount: 2
 --- !u!1 &707720592
 GameObject:
   m_ObjectHideFlags: 0
@@ -967,6 +1129,7 @@ GameObject:
   - component: {fileID: 811337055}
   - component: {fileID: 811337054}
   - component: {fileID: 811337053}
+  - component: {fileID: 811337056}
   m_Layer: 5
   m_Name: ChamberSlotView (2)
   m_TagString: Untagged
@@ -1045,6 +1208,30 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 811337051}
   m_CullTransparentMesh: 1
+--- !u!114 &811337056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 811337051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 4
+  m_StartCorner: 0
+  m_StartAxis: 0
+  m_CellSize: {x: 50, y: 50}
+  m_Spacing: {x: 0, y: 0}
+  m_Constraint: 0
+  m_ConstraintCount: 2
 --- !u!1 &835958450
 GameObject:
   m_ObjectHideFlags: 0
@@ -1099,6 +1286,7 @@ GameObject:
   - component: {fileID: 874221542}
   - component: {fileID: 874221541}
   - component: {fileID: 874221543}
+  - component: {fileID: 874221544}
   m_Layer: 5
   m_Name: InventorySlotView (3)
   m_TagString: Untagged
@@ -1177,6 +1365,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _slotIndex: 3
+  bulletDragPrefab: {fileID: 6440761084703564258, guid: c03c88ffd2280944b809345d123c57a9,
+    type: 3}
+  bulletView: {fileID: 0}
+--- !u!114 &874221544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 874221539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 4
+  m_StartCorner: 0
+  m_StartAxis: 0
+  m_CellSize: {x: 50, y: 50}
+  m_Spacing: {x: 0, y: 0}
+  m_Constraint: 0
+  m_ConstraintCount: 2
 --- !u!1 &898627145
 GameObject:
   m_ObjectHideFlags: 0
@@ -1189,6 +1404,7 @@ GameObject:
   - component: {fileID: 898627149}
   - component: {fileID: 898627148}
   - component: {fileID: 898627147}
+  - component: {fileID: 898627150}
   m_Layer: 5
   m_Name: ChamberSlotView (3)
   m_TagString: Untagged
@@ -1267,6 +1483,30 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 898627145}
   m_CullTransparentMesh: 1
+--- !u!114 &898627150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 898627145}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 4
+  m_StartCorner: 0
+  m_StartAxis: 0
+  m_CellSize: {x: 50, y: 50}
+  m_Spacing: {x: 0, y: 0}
+  m_Constraint: 0
+  m_ConstraintCount: 2
 --- !u!1 &990723542
 GameObject:
   m_ObjectHideFlags: 0
@@ -1581,6 +1821,7 @@ GameObject:
   - component: {fileID: 1634850494}
   - component: {fileID: 1634850493}
   - component: {fileID: 1634850492}
+  - component: {fileID: 1634850495}
   m_Layer: 5
   m_Name: ChamberSlotView (5)
   m_TagString: Untagged
@@ -1659,6 +1900,30 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1634850490}
   m_CullTransparentMesh: 1
+--- !u!114 &1634850495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1634850490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 4
+  m_StartCorner: 0
+  m_StartAxis: 0
+  m_CellSize: {x: 50, y: 50}
+  m_Spacing: {x: 0, y: 0}
+  m_Constraint: 0
+  m_ConstraintCount: 2
 --- !u!1 &1697046560
 GameObject:
   m_ObjectHideFlags: 0
@@ -1671,6 +1936,7 @@ GameObject:
   - component: {fileID: 1697046564}
   - component: {fileID: 1697046563}
   - component: {fileID: 1697046562}
+  - component: {fileID: 1697046565}
   m_Layer: 5
   m_Name: ChamberSlotView (1)
   m_TagString: Untagged
@@ -1749,6 +2015,30 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1697046560}
   m_CullTransparentMesh: 1
+--- !u!114 &1697046565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1697046560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 4
+  m_StartCorner: 0
+  m_StartAxis: 0
+  m_CellSize: {x: 50, y: 50}
+  m_Spacing: {x: 0, y: 0}
+  m_Constraint: 0
+  m_ConstraintCount: 2
 --- !u!1 &1714985277
 GameObject:
   m_ObjectHideFlags: 0
