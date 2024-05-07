@@ -1,12 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using Unity.VisualScripting.Dependencies.Sqlite;
 using UnityEngine;
 
 public class Reflective : BulletBase
 {
+    [SerializeField] private Material overchargeMat;
+    [SerializeField] private Material empMat;
     private RaycastHit nextWallHit;
     private bool hitSet = false;
+    private bool hasOvercharge;
+    private bool hasEmp;
 
     void Start()
     {
@@ -67,6 +72,7 @@ public class Reflective : BulletBase
 
     private void OnTriggerEnter(Collider other)
     {
+        OverchargeOrb orb;
         if (other.gameObject.layer == LayerMask.NameToLayer("Reflective"))
         {
             if (!hitSet)
@@ -76,6 +82,42 @@ public class Reflective : BulletBase
             }
             rb.velocity = ReflectOnPlane(rb.velocity, nextWallHit.normal, nextWallHit.transform.up);
             SetDirection(rb.velocity);
+            TryElectronicsStuff(other.gameObject);
+        }
+        else if ((orb = other.gameObject.GetComponent<OverchargeOrb>()) != null)
+        {
+            if (orb.IsOverchargeMode())
+            {
+                hasOvercharge = orb.IsOverchargeMode();
+                GetComponent<MeshRenderer>().material = overchargeMat;
+            }
+            else
+            {
+                hasEmp = !orb.IsOverchargeMode();
+                GetComponent<MeshRenderer>().material = empMat;
+            }
+        }
+    }
+
+    protected override void OnCollisionEnter(Collision collision)
+    {
+        TryElectronicsStuff(collision.gameObject);
+        base.OnCollisionEnter(collision);
+    }
+
+    private void TryElectronicsStuff(GameObject go)
+    {
+        Electronics electro;
+        if ((hasOvercharge || hasEmp) && (electro = go.GetComponent<Electronics>()) != null)
+        {
+            if (hasOvercharge)
+            {
+                electro.SetOn();
+            }
+            if (hasEmp)
+            {
+                electro.SetOff();
+            }
         }
     }
 
