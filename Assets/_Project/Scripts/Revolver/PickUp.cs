@@ -4,28 +4,14 @@ using UnityEngine;
 
 public class PickUp : MonoBehaviour
 {
-    [SerializeField] private Bullet bullet;
-    [SerializeField] private GameObject player;
+	[SerializeField] private BulletObject _bullet;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag(player.tag) &&
-            (player.GetComponent<PlayerInventory>().getAmountBulletsLoaded() <= player.GetComponent<PlayerInventory>().getMaxBullets()))
-        {
-            player.GetComponent<PlayerInventory>().ReplaceCurrentBullet(bullet);
-            Debug.Log(bullet.name + "Picked Up");
-        }
-    }
+	private void OnTriggerEnter(Collider other)
+	{
+		if(other.TryGetComponent(out BulletController bc))
+		{
+			bc.AddBulletToInventory(_bullet);
+			Destroy(gameObject);
+		}
+	}
 }

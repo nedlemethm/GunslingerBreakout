@@ -1,5 +1,9 @@
 fileFormatVersion: 2
-guid: 523dfd097b47b1046b14416f70c4a1a8
+<<<<<<< HEAD:Assets/_Project/Scripts/Inventory/ChamberSlotView.cs.meta
+guid: d02ae6e04c093485c9f795bea9d8e1f4
+=======
+guid: b330d4151e7317247bdb2cb760fe90d0
+>>>>>>> main:Assets/OverchargeOrb.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
