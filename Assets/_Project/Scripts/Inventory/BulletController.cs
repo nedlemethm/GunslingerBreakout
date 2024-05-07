@@ -90,11 +90,13 @@ public class BulletController : MonoBehaviour
 			OnInventoryUpdate();
 			
 			GameSignals.TOOLBAR_ENABLED.Dispatch();
-		}
+            Cursor.lockState = CursorLockMode.Confined;
+        }
 		else
 		{
 			GameSignals.TOOLBAR_DISABLED.Dispatch();
-		}
+            Cursor.lockState = CursorLockMode.Locked;
+        }
 	}
 	
 	public void AddBulletToInventory(BulletObject bullet) // Used for picking up bullets and dragging bullets from chamber back into inverntory

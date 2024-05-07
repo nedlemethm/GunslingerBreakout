@@ -14,10 +14,10 @@ public class Shooting : MonoBehaviour
     [SerializeField] private float timeBetweenShots;
     [SerializeField] private LineRenderer laser;
 
-    private Bullet loadedBullet = null;
+    private BulletObject loadedBullet = null;
     private BulletBase currentBullet;
     private bool canShoot;
-    private List<Bullet> secondaryFireQueue;
+    private List<BulletObject> secondaryFireQueue;
 
     void Awake()
     {
@@ -29,6 +29,7 @@ public class Shooting : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*
         if (player.GetComponent<PlayerInventory>().getMaxBullets() > 0)
         {
             loadedBullet = player.GetComponent<PlayerInventory>().getCurrentBullet();
@@ -42,6 +43,7 @@ public class Shooting : MonoBehaviour
             //if (loadedBullet.remoteSecondaryFire) { secondaryFireQueue.Add(loadedBullet); }
             PrimaryFire();
         }
+        */
 
     }
 
