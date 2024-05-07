@@ -118,7 +118,7 @@ public class Shooting : MonoBehaviour
 
     private BulletBase SpawnBullet()
     {
-        currentBullet = Instantiate(loadedBullet.model, revolverBarrel.position, revolverBarrel.rotation, null).GetComponent<BulletBase>();
+        currentBullet = Instantiate(loadedBullet.model, revolverBarrel.position, revolverBarrel.rotation * loadedBullet.model.transform.rotation, null).GetComponent<BulletBase>();
         return currentBullet;
     }
 }

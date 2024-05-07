@@ -677,7 +677,7 @@ GameObject:
   - component: {fileID: 960644515}
   - component: {fileID: 960644514}
   - component: {fileID: 960644518}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PickObjectTestingCube
   m_TagString: CanPickUp
   m_Icon: {fileID: 0}
@@ -1589,7 +1589,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8533eb778d8899a4693c51fd13350b38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bullet: {fileID: 11400000, guid: 4241ae4f26407ae41a1b6919ced88b88, type: 2}
+  _bullet: {fileID: 11400000, guid: 92f1ee1c949804731ade6e9835fde378, type: 2}
 --- !u!135 &1761952780
 SphereCollider:
   m_ObjectHideFlags: 0
