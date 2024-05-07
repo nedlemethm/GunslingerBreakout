@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0206e60f51b733b4abcf97d5ae42d0c2, type: 3}
+  m_Name: Persist
+  m_EditorClassIdentifier: 
+  name: Perist
+  description: It should freeze objects that it collides with
+  artwork: {fileID: 0}
+  model: {fileID: 3958535200533589531, guid: 5f777e3bbc2cd47f484d73df85832235, type: 3}
+  color: {r: 0.4339623, g: 0.4339623, b: 0.4339623, a: 1}
+  visualEffect: {fileID: 0}
+  gunshotSound: {fileID: 0}
+  remoteSecondaryFire: 0
+  bulletSpeed: 20
+  secondaryFireActivated: 0
+  showLaser: 0
