@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 
 
 //Class is in charge of making the player move, jump and rotate.
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IGravityTunnelable
 {
     [Header("Movement")]
     [SerializeField] private float playerSpeed;
@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float groundDrag;
     [SerializeField] private LayerMask layer;
     private bool readyToJump;
-    private bool inGravTunnel;
+    private int tunnelsIn = 0;
     private Vector3 gravTunnelDir;
 
     [Header("Groud Check")]
@@ -74,7 +74,7 @@ public class PlayerController : MonoBehaviour
         playerVelocity = cameraTransform.forward * playerVelocity.z + cameraTransform.right * playerVelocity.x;
         playerVelocity.y = temp;
 
-        if (inGravTunnel)
+        if (tunnelsIn > 0)
         {
             rb.velocity = gravTunnelDir;
             playerVelocity.y = 0;
@@ -98,13 +98,19 @@ public class PlayerController : MonoBehaviour
 
     public void OnTunnelEnter(Vector3 dir)
     {
-        inGravTunnel = true;
-        gravTunnelDir = dir;
+        tunnelsIn++;
+        gravTunnelDir += dir;
+        rb.useGravity = false;
     }
 
-    public void OnTunnelExit()
+    public void OnTunnelExit(Vector3 dir)
     {
-        inGravTunnel = false;
+        tunnelsIn--;
+        gravTunnelDir -= dir;
+        if (tunnelsIn <= 0)
+        {
+            rb.useGravity = true;
+        }
     }
 
     private void SpeedControl()

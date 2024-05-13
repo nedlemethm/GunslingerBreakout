@@ -9,11 +9,9 @@ public class GravityTunnel : MonoBehaviour
         Rigidbody rb = other.GetComponent<Rigidbody>();
         if (rb != null)
         {
-            rb.velocity = transform.up;
-            rb.useGravity = false;
-            if (rb.gameObject.GetComponent<PlayerController>() != null)
+            if (rb.gameObject.GetComponent<IGravityTunnelable>() != null)
             {
-                rb.gameObject.GetComponent<PlayerController>().OnTunnelEnter(transform.up);
+                rb.gameObject.GetComponent<IGravityTunnelable>().OnTunnelEnter(transform.up);
             }
         }
     }
@@ -23,10 +21,9 @@ public class GravityTunnel : MonoBehaviour
         Rigidbody rb = other.GetComponent<Rigidbody>();
         if (rb != null)
         {
-            rb.useGravity = true;
-            if (rb.gameObject.GetComponent<PlayerController>() != null)
+            if (rb.gameObject.GetComponent<IGravityTunnelable>() != null)
             {
-                rb.gameObject.GetComponent<PlayerController>().OnTunnelExit();
+                rb.gameObject.GetComponent<IGravityTunnelable>().OnTunnelExit(transform.up);
             }
         }
     }
