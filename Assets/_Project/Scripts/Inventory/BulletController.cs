@@ -90,7 +90,8 @@ public class BulletController : MonoBehaviour
 		if(_bulletModel.BulletToShoot != null)
 		{
 			BulletObject bulletToShoot = _bulletModel.BulletToShoot;
-			BulletBase bullet = Instantiate(bulletToShoot.model, _bulletPoint.transform.position, Quaternion.identity).GetComponent<BulletBase>();
+			//Quaternion bulletSpawnPoint = Quaternion.Euler(_bulletPoint.rotation.x + 90, _bulletPoint.rotation.y, _bulletPoint.rotation.z);
+			BulletBase bullet = Instantiate(bulletToShoot.model, _bulletPoint.transform.position, _bulletPoint.transform.rotation).GetComponent<BulletBase>();
 			bullet.OnShoot(CalcDirection(), bulletToShoot.bulletSpeed);
 			Debug.Log($"Firing {bulletToShoot.name}!");
 		}
