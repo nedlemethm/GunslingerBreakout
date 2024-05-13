@@ -2,14 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MovingPlatform : MonoBehaviour
+public class MovingPlatform : MovingGeometry
 {
     [SerializeField] private GameObject[] points;
     [SerializeField] private float moveSpeed;
     [SerializeField] private bool startMoving;
     [SerializeField] private int startingIndex;
 
-    private bool moving;
     private int currentPosIndex;
     private int nextPosIndex;
     private Vector3 lastPos;
@@ -17,7 +16,10 @@ public class MovingPlatform : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        moving = startMoving;
+        if (startMoving)
+        {
+            SetMoving();
+        }
         gameObject.transform.position = points[startingIndex].transform.position;
         currentPosIndex = startingIndex;
 
@@ -34,12 +36,11 @@ public class MovingPlatform : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (moving)
+        if (GetMoving())
         {
             lastPos = gameObject.transform.position;
             gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position,
                 points[nextPosIndex].transform.position, moveSpeed * Time.deltaTime);
-            //moving = true;
         }
         CheckNextPos();
     }
@@ -65,6 +66,9 @@ public class MovingPlatform : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        other.transform.position += transform.position - lastPos;
+        if (GetMoving())
+        {
+            other.transform.position += transform.position - lastPos;
+        }
     }
 }

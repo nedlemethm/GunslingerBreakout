@@ -149,4 +149,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 4724679821906601402}
-  persistTag: Persist
+  persistLayer: Persist
+  movingTag: Moving
