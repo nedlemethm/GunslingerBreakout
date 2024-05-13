@@ -12,6 +12,24 @@ public class BulletView : MonoBehaviour
 	private BulletObject[] _chamberBullets;
 	private BulletObject[] _inventoryBullets;
 	private BulletController _controller;
+
+	[Header("Animation Variables")]
+
+	[Header("Inventory Animation")]
+    [SerializeField] private GameObject inventory;
+    [SerializeField] private float inventoryEnableTime;
+	[SerializeField] private Vector3 inventoryStartLocation;
+	[SerializeField] private Vector3 inventoryEndLocation;
+	[SerializeField] private Vector3 inventoryStartRotation;
+	[SerializeField] private Vector3 inventoryEndRotation;
+	private Coroutine inventoryRoutine;
+
+	[Header("Chamber Animation")]
+	[SerializeField] private GameObject chamber;
+	[SerializeField] private float chamberEnableTime;
+	[SerializeField] private Vector3 chamberStartRotation;
+	[SerializeField] private Vector3 chamberEndRotation;
+	private Coroutine chamberRoutine;
 	
 	private void Awake()
 	{
@@ -88,13 +106,27 @@ public class BulletView : MonoBehaviour
 	
 	private void OnUiEnable(ISignalParameters parameters)
 	{
-		LoopThroughChildElements(true);
+		if (inventoryRoutine != null)
+			StopCoroutine(inventoryRoutine);
+
+		if (chamberRoutine != null)
+			StopCoroutine(chamberRoutine);
+
+		inventoryRoutine = StartCoroutine(InventoryEnableAnimation());
+		chamberRoutine = StartCoroutine(ChamberEnableAnimation());
 	}
 	
 	private void OnUiDisable(ISignalParameters parameters)
 	{
-		LoopThroughChildElements(false);
-	}
+        if (inventoryRoutine != null)
+            StopCoroutine(inventoryRoutine);
+
+        if (chamberRoutine != null)
+            StopCoroutine(chamberRoutine);
+
+        inventoryRoutine = StartCoroutine(InventoryDisableAnimation());
+        chamberRoutine = StartCoroutine(ChamberDisableAnimation());
+    }
 	
 	private void LoopThroughChildElements(bool enabled)
 	{
@@ -104,4 +136,68 @@ public class BulletView : MonoBehaviour
 			childTransform.gameObject.SetActive(enabled);
 		}
 	}
+
+	//Animation Stuff
+	private IEnumerator InventoryEnableAnimation()
+	{
+		inventory.transform.localPosition = inventoryStartLocation;
+		inventory.transform.localEulerAngles = inventoryStartRotation;
+
+		//These should ideally be handled via a wrapper coroutine but no time to do that
+        LoopThroughChildElements(true);
+
+        float currentTime = 0f;
+
+		while (currentTime < inventoryEnableTime)
+		{
+			yield return null;
+			currentTime += Time.deltaTime;
+
+			inventory.transform.localPosition = Vector3.Lerp(inventoryStartLocation, inventoryEndLocation, currentTime / inventoryEnableTime);
+			inventory.transform.localEulerAngles = Vector3.Lerp(inventoryStartRotation, inventoryEndRotation, currentTime / inventoryEnableTime);
+		}
+	}
+
+	private IEnumerator InventoryDisableAnimation()
+	{
+        float currentTime = 0f;
+
+        while (currentTime < inventoryEnableTime)
+        {
+            yield return null;
+            currentTime += Time.deltaTime;
+
+            inventory.transform.localPosition = Vector3.Lerp(inventoryEndLocation, inventoryStartLocation, currentTime / inventoryEnableTime);
+            inventory.transform.localEulerAngles = Vector3.Lerp(inventoryEndRotation, inventoryStartRotation, currentTime / inventoryEnableTime);
+        }
+
+        //These should ideally be handled via a wrapper coroutine but no time to do that
+        LoopThroughChildElements(false);
+    }
+
+	private IEnumerator ChamberEnableAnimation()
+	{
+		float currentTime = 0f;
+
+		while (currentTime < chamberEnableTime)
+		{
+			yield return null;
+            currentTime += Time.deltaTime;
+
+			chamber.transform.localEulerAngles = Vector3.Lerp(chamberStartRotation, chamberEndRotation, currentTime / inventoryEnableTime);
+        }
+	}
+
+    private IEnumerator ChamberDisableAnimation()
+    {
+        float currentTime = 0f;
+
+        while (currentTime < chamberEnableTime)
+        {
+            yield return null;
+            currentTime += Time.deltaTime;
+
+            chamber.transform.localEulerAngles = Vector3.Lerp(chamberEndRotation, chamberStartRotation, currentTime / inventoryEnableTime);
+        }
+    }
 }

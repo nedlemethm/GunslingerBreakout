@@ -275,9 +275,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -50, y: 100}
+  m_AnchoredPosition: {x: -300, y: 350}
   m_SizeDelta: {x: 500, y: 500}
-  m_Pivot: {x: 1, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &77854051
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1734,11 +1734,11 @@ RectTransform:
   m_Father: {fileID: 2049102178}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0, y: 0.5}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 960, y: 540}
+  m_SizeDelta: {x: 1920, y: 1080}
+  m_Pivot: {x: 1, y: 1}
 --- !u!222 &1312239975
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2313,3 +2313,13 @@ MonoBehaviour:
   - {fileID: 871949872}
   - {fileID: 1077268818}
   - {fileID: 1618279753}
+  inventory: {fileID: 1312239972}
+  inventoryEnableTime: 0.15
+  inventoryStartLocation: {x: -960, y: 540, z: 0}
+  inventoryEndLocation: {x: 960, y: 540, z: 0}
+  inventoryStartRotation: {x: 0, y: 0, z: -45}
+  inventoryEndRotation: {x: 0, y: 0, z: 0}
+  chamber: {fileID: 77854048}
+  chamberEnableTime: 0.15
+  chamberStartRotation: {x: 0, y: 0, z: -360}
+  chamberEndRotation: {x: 0, y: 0, z: 0}
