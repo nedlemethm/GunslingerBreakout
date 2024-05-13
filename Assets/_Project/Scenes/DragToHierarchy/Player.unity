@@ -192,7 +192,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 535
+    m_Bits: 3607
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -528,6 +528,7 @@ GameObject:
   - component: {fileID: 1133428110}
   - component: {fileID: 1133428109}
   - component: {fileID: 1133428113}
+  - component: {fileID: 1133428117}
   - component: {fileID: 1133428114}
   - component: {fileID: 1133428115}
   - component: {fileID: 1133428116}
@@ -617,6 +618,7 @@ MonoBehaviour:
   _bulletPoint: {fileID: 1858263370}
   _revolverCam: {fileID: 1557759490}
   _laser: {fileID: 1133428116}
+  _activationLayer: Activation
 --- !u!54 &1133428114
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -771,6 +773,22 @@ LineRenderer:
   m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
+--- !u!114 &1133428117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1133428108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7f594ed923324180832842ec7c06002, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 330585545}
+  activatePersist: 324
+  movingGeoTag: Moving
+  persistLayer: Persist
 --- !u!1 &1225613412
 GameObject:
   m_ObjectHideFlags: 3

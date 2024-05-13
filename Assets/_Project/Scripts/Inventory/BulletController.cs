@@ -10,19 +10,24 @@ public class BulletController : MonoBehaviour
 	[SerializeField] private Transform _bulletPoint;
 	[SerializeField] private Camera _revolverCam;
 	[SerializeField] private LineRenderer _laser;
+	[SerializeField] private string _activationLayer;
 
     private BulletModel _bulletModel;
 	private BulletView _bulletView;
 	private PlayerControls _playerInput;
 	private bool _toolbarEnabled;
+	private int _activationLayerNum;
 
 	private void Awake()
 	{
 		_playerInput = new();
 		_playerInput.Player.Fire.started += FireBullet;
 		_playerInput.Player.Toolbar.started += ToggleToolbar;
-		
+		_playerInput.Player.Activation.started += Activation;
+
+
 		_bulletModel = new();
+		_activationLayerNum = LayerMask.NameToLayer(_activationLayer);
 	}
 	
 	private void OnEnable()
@@ -98,7 +103,20 @@ public class BulletController : MonoBehaviour
 		
 		_bulletModel.AfterFireHandle();
 	}
-	
+
+	private void Activation(InputAction.CallbackContext context) // When the player actiavtes an activatable bullet
+    {
+		Ray ray = _revolverCam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
+		RaycastHit hit;
+		Debug.Log("right click");
+		if (Physics.Raycast(ray, out hit) && hit.collider.gameObject.layer == _activationLayerNum)
+		{
+			Debug.Log(hit.collider.gameObject);
+			Activation activate = hit.collider.gameObject.GetComponent<Activation>();
+			activate.ToggleActivation();
+		}
+	}
+
 	private Vector3 CalcDirection()
 	{
 		Ray ray = _revolverCam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));

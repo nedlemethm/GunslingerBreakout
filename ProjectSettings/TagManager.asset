@@ -8,6 +8,7 @@ TagManager:
   - CanPickUp
   - Persist
   - Moving
+  - PowerChargeEMP
   layers:
   - Default
   - TransparentFX
@@ -20,7 +21,7 @@ TagManager:
   - HoldObjects
   - Reflective
   - Persist
-  - 
+  - Activation
   - 
   - 
   - 
