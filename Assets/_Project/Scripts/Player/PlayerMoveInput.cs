@@ -16,6 +16,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float groundDrag;
     [SerializeField] private LayerMask layer;
     private bool readyToJump;
+    private bool inGravTunnel;
+    private Vector3 gravTunnelDir;
 
     [Header("Groud Check")]
     [SerializeField] private float playerHeight;
@@ -72,16 +74,37 @@ public class PlayerController : MonoBehaviour
         playerVelocity = cameraTransform.forward * playerVelocity.z + cameraTransform.right * playerVelocity.x;
         playerVelocity.y = temp;
 
-        //Leo Script
-        if (grounded)
+        if (inGravTunnel)
         {
-            rb.velocity += playerVelocity * Time.deltaTime;
+            rb.velocity = gravTunnelDir;
+            playerVelocity.y = 0;
+            rb.velocity += playerVelocity * .08f;
         }
-        else if (!grounded)
+        else
         {
-            rb.velocity += playerVelocity * airMultiplier * Time.deltaTime;
+            //Leo Script
+            if (grounded)
+            {
+                rb.velocity += playerVelocity * Time.deltaTime;
+            }
+            else if (!grounded)
+            {
+                rb.velocity += playerVelocity * airMultiplier * Time.deltaTime;
+            }
         }
+        
 
+    }
+
+    public void OnTunnelEnter(Vector3 dir)
+    {
+        inGravTunnel = true;
+        gravTunnelDir = dir;
+    }
+
+    public void OnTunnelExit()
+    {
+        inGravTunnel = false;
     }
 
     private void SpeedControl()
