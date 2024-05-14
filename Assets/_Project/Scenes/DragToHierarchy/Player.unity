@@ -551,6 +551,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfb6abbd3564a448da9308cfe804829e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _cip: {fileID: 740923219}
   playerSpeed: 15
   jumpHeight: 7
   jumpCooldown: 0
