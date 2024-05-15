@@ -38,7 +38,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _Main_noise_texture:
-        m_Texture: {fileID: 2800000, guid: 7e248873d9847844baea748a4d8f76f2, type: 3}
+        m_Texture: {fileID: 10300, guid: 0000000000000000f000000000000000, type: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -57,9 +57,9 @@ Material:
     m_Floats:
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Scroll_Speed: 0.49
-    - _THRESHOLD: 0.186
+    - _Scroll_Speed: 1.03
+    - _THRESHOLD: 0
     m_Colors:
     - _Base_Color: {r: 0.46226418, g: 0.46226418, b: 0.46226418, a: 0}
-    - _Effect_Color: {r: 1, g: 1, b: 1, a: 0}
+    - _Effect_Color: {r: 0.754717, g: 0.754717, b: 0.754717, a: 0}
   m_BuildTextureStacks: []
