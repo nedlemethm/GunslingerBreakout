@@ -21,9 +21,10 @@ public class Reflective : BulletBase
     public void SetDirection(Vector3 dir)
     {
         RaycastHit hit;
-        bool didHit = Physics.Raycast(transform.position, dir, out hit, Mathf.Infinity, LayerMask.GetMask("Reflective"), QueryTriggerInteraction.Collide);
+        bool didHit = Physics.Raycast(transform.position + .1f * dir.normalized, dir, out hit, Mathf.Infinity, LayerMask.GetMask("Reflective"), QueryTriggerInteraction.Collide);
         if (didHit)
         {
+            Debug.Log("hit a wall " + hit.normal + " " + hit.collider.gameObject.name);
             nextWallHit = hit;
         }
         hitSet = didHit;
@@ -82,6 +83,8 @@ public class Reflective : BulletBase
             }
             rb.velocity = ReflectOnPlane(rb.velocity, nextWallHit.normal, nextWallHit.transform.up);
             SetDirection(rb.velocity);
+            transform.rotation = Quaternion.LookRotation(rb.velocity);
+            transform.Rotate(Vector3.right, 90f);
             TryElectronicsStuff(other.gameObject);
         }
         else if ((orb = other.gameObject.GetComponent<OverchargeOrb>()) != null)
