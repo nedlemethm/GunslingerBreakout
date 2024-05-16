@@ -20,15 +20,14 @@ public class BulletView : MonoBehaviour
     [SerializeField] private float inventoryEnableTime;
 	[SerializeField] private Vector3 inventoryStartLocation;
 	[SerializeField] private Vector3 inventoryEndLocation;
-	[SerializeField] private Vector3 inventoryStartRotation;
-	[SerializeField] private Vector3 inventoryEndRotation;
+	[SerializeField] private AnimationCurve inventoryLocationCurve;
+	[SerializeField] private AnimationCurve inventoryRotationCurve;
 	private Coroutine inventoryRoutine;
 
 	[Header("Chamber Animation")]
 	[SerializeField] private GameObject chamber;
 	[SerializeField] private float chamberEnableTime;
-	[SerializeField] private Vector3 chamberStartRotation;
-	[SerializeField] private Vector3 chamberEndRotation;
+	[SerializeField] private AnimationCurve chamberRotationCurve;
 	private Coroutine chamberRoutine;
 	
 	private void Awake()
@@ -141,7 +140,7 @@ public class BulletView : MonoBehaviour
 	private IEnumerator InventoryEnableAnimation()
 	{
 		inventory.transform.localPosition = inventoryStartLocation;
-		inventory.transform.localEulerAngles = inventoryStartRotation;
+		inventory.transform.localEulerAngles = new Vector3(inventory.transform.localEulerAngles.x, inventory.transform.localEulerAngles.y, inventoryRotationCurve.Evaluate(1f));
 
 		//These should ideally be handled via a wrapper coroutine but no time to do that
         LoopThroughChildElements(true);
@@ -153,9 +152,9 @@ public class BulletView : MonoBehaviour
 			yield return null;
 			currentTime += Time.deltaTime;
 
-			inventory.transform.localPosition = Vector3.Lerp(inventoryStartLocation, inventoryEndLocation, currentTime / inventoryEnableTime);
-			inventory.transform.localEulerAngles = Vector3.Lerp(inventoryStartRotation, inventoryEndRotation, currentTime / inventoryEnableTime);
-		}
+			inventory.transform.localPosition = Vector3.Lerp(inventoryStartLocation, inventoryEndLocation, inventoryLocationCurve.Evaluate(currentTime / inventoryEnableTime));
+            inventory.transform.localEulerAngles = new Vector3(inventory.transform.localEulerAngles.x, inventory.transform.localEulerAngles.y, inventoryRotationCurve.Evaluate(currentTime / inventoryEnableTime));
+        }
 	}
 
 	private IEnumerator InventoryDisableAnimation()
@@ -167,8 +166,8 @@ public class BulletView : MonoBehaviour
             yield return null;
             currentTime += Time.deltaTime;
 
-            inventory.transform.localPosition = Vector3.Lerp(inventoryEndLocation, inventoryStartLocation, currentTime / inventoryEnableTime);
-            inventory.transform.localEulerAngles = Vector3.Lerp(inventoryEndRotation, inventoryStartRotation, currentTime / inventoryEnableTime);
+            inventory.transform.localPosition = Vector3.Lerp(inventoryEndLocation, inventoryStartLocation, inventoryLocationCurve.Evaluate(1 - currentTime / inventoryEnableTime));
+            inventory.transform.localEulerAngles = new Vector3(inventory.transform.localEulerAngles.x, inventory.transform.localEulerAngles.y, inventoryRotationCurve.Evaluate(1 - currentTime / inventoryEnableTime));
         }
 
         //These should ideally be handled via a wrapper coroutine but no time to do that
@@ -184,7 +183,7 @@ public class BulletView : MonoBehaviour
 			yield return null;
             currentTime += Time.deltaTime;
 
-			chamber.transform.localEulerAngles = Vector3.Lerp(chamberStartRotation, chamberEndRotation, currentTime / inventoryEnableTime);
+            chamber.transform.localEulerAngles = new Vector3(chamber.transform.localEulerAngles.x, chamber.transform.localEulerAngles.y, chamberRotationCurve.Evaluate(currentTime / chamberEnableTime));
         }
 	}
 
@@ -197,7 +196,7 @@ public class BulletView : MonoBehaviour
             yield return null;
             currentTime += Time.deltaTime;
 
-            chamber.transform.localEulerAngles = Vector3.Lerp(chamberEndRotation, chamberStartRotation, currentTime / inventoryEnableTime);
+            chamber.transform.localEulerAngles = new Vector3(chamber.transform.localEulerAngles.x, chamber.transform.localEulerAngles.y, chamberRotationCurve.Evaluate(1 - currentTime / chamberEnableTime));
         }
     }
 }

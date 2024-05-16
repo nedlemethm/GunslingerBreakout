@@ -2317,9 +2317,77 @@ MonoBehaviour:
   inventoryEnableTime: 0.15
   inventoryStartLocation: {x: -960, y: 540, z: 0}
   inventoryEndLocation: {x: 960, y: 540, z: 0}
-  inventoryStartRotation: {x: 0, y: 0, z: -45}
-  inventoryEndRotation: {x: 0, y: 0, z: 0}
+  inventoryLocationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  inventoryRotationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: -45
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   chamber: {fileID: 77854048}
   chamberEnableTime: 0.15
-  chamberStartRotation: {x: 0, y: 0, z: -360}
-  chamberEndRotation: {x: 0, y: 0, z: 0}
+  chamberRotationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: -540
+      inSlope: 1297.7164
+      outSlope: 1297.7164
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.034993272
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
