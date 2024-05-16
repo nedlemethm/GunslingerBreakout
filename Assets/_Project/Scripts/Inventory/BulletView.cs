@@ -29,7 +29,9 @@ public class BulletView : MonoBehaviour
 	[SerializeField] private float chamberEnableTime;
 	[SerializeField] private AnimationCurve chamberRotationCurve;
 	private Coroutine chamberRoutine;
-	
+
+	private Coroutine toggleRoutine;
+
 	private void Awake()
 	{
 		GameSignals.TOOLBAR_ENABLED.AddListener(OnUiEnable);
@@ -105,26 +107,18 @@ public class BulletView : MonoBehaviour
 	
 	private void OnUiEnable(ISignalParameters parameters)
 	{
-		if (inventoryRoutine != null)
-			StopCoroutine(inventoryRoutine);
+        if (toggleRoutine != null)
+            StopCoroutine(toggleRoutine);
 
-		if (chamberRoutine != null)
-			StopCoroutine(chamberRoutine);
-
-		inventoryRoutine = StartCoroutine(InventoryEnableAnimation());
-		chamberRoutine = StartCoroutine(ChamberEnableAnimation());
-	}
+        toggleRoutine = StartCoroutine(ToggleUIAnimation(true));
+    }
 	
 	private void OnUiDisable(ISignalParameters parameters)
 	{
-        if (inventoryRoutine != null)
-            StopCoroutine(inventoryRoutine);
+		if (toggleRoutine != null)
+			StopCoroutine(toggleRoutine);
 
-        if (chamberRoutine != null)
-            StopCoroutine(chamberRoutine);
-
-        inventoryRoutine = StartCoroutine(InventoryDisableAnimation());
-        chamberRoutine = StartCoroutine(ChamberDisableAnimation());
+		toggleRoutine = StartCoroutine(ToggleUIAnimation(false));
     }
 	
 	private void LoopThroughChildElements(bool enabled)
@@ -136,14 +130,37 @@ public class BulletView : MonoBehaviour
 		}
 	}
 
+	private IEnumerator ToggleUIAnimation(bool flag)
+	{
+        if (inventoryRoutine != null)
+            StopCoroutine(inventoryRoutine);
+
+        if (chamberRoutine != null)
+            StopCoroutine(chamberRoutine);
+
+		if (flag)
+		{
+            LoopThroughChildElements(true);
+            inventoryRoutine = StartCoroutine(InventoryEnableAnimation());
+            chamberRoutine = StartCoroutine(ChamberEnableAnimation());
+
+			yield return inventoryRoutine;
+        }
+		else
+		{
+            inventoryRoutine = StartCoroutine(InventoryDisableAnimation());
+            chamberRoutine = StartCoroutine(ChamberDisableAnimation());
+			yield return inventoryRoutine;
+
+            LoopThroughChildElements(false);
+        }
+    }
+
 	//Animation Stuff
 	private IEnumerator InventoryEnableAnimation()
 	{
 		inventory.transform.localPosition = inventoryStartLocation;
 		inventory.transform.localEulerAngles = new Vector3(inventory.transform.localEulerAngles.x, inventory.transform.localEulerAngles.y, inventoryRotationCurve.Evaluate(1f));
-
-		//These should ideally be handled via a wrapper coroutine but no time to do that
-        LoopThroughChildElements(true);
 
         float currentTime = 0f;
 
@@ -169,9 +186,6 @@ public class BulletView : MonoBehaviour
             inventory.transform.localPosition = Vector3.Lerp(inventoryEndLocation, inventoryStartLocation, inventoryLocationCurve.Evaluate(1 - currentTime / inventoryEnableTime));
             inventory.transform.localEulerAngles = new Vector3(inventory.transform.localEulerAngles.x, inventory.transform.localEulerAngles.y, inventoryRotationCurve.Evaluate(1 - currentTime / inventoryEnableTime));
         }
-
-        //These should ideally be handled via a wrapper coroutine but no time to do that
-        LoopThroughChildElements(false);
     }
 
 	private IEnumerator ChamberEnableAnimation()
