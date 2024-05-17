@@ -17,6 +17,7 @@ public class BulletDragUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     [SerializeField] private Sprite draggedSprite;
     [SerializeField] private Vector2 draggedDimensions;
 
+    [HideInInspector] public int inventorySlotIndex;
     [HideInInspector] public int currentSlotIndex;
 
     [HideInInspector] public bool draggable;
@@ -67,6 +68,7 @@ public class BulletDragUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
 
         bulletObject = bulletObj;
         currentSlotIndex = index;
+        inventorySlotIndex = index;
 
         image.color = bulletObject.color;
     }

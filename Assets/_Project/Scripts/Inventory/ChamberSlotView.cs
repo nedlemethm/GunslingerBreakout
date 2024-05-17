@@ -38,7 +38,9 @@ public class ChamberSlotView : MonoBehaviour, IDropHandler
 
         if (transform.childCount == 0) // Add Bullet
         {
-            bulletView.AddBulletToChamber(draggedItem.currentSlotIndex, ChamberIndex);
+            Debug.LogError(draggedItem.inventorySlotIndex + ", " + ChamberIndex);
+
+            bulletView.AddBulletToChamber(draggedItem.inventorySlotIndex, ChamberIndex);
 
             SetCurrentDragUI(draggedItem);
             bulletDragUI.parentAfterDrag = this.transform;
@@ -46,19 +48,36 @@ public class ChamberSlotView : MonoBehaviour, IDropHandler
         }
         else // Swap bullet
         {
-            bulletView.SwapBullets(draggedItem.currentSlotIndex, ChamberIndex);
+            if (bulletDragUI != null && !bulletDragUI.draggable) // Block swapping with a fired bullet
+                return;
 
-            if (bulletDragUI != null) //Moving Old Bullet
+            if (draggedItem.currentChamber == null) // Swapping with bullet from inventory
             {
-                bulletDragUI.transform.SetParent(draggedItem.parentAfterDrag, false);
-                bulletDragUI.currentSlotIndex = draggedItem.currentSlotIndex;
-                draggedItem.currentChamber.SetCurrentDragUI(bulletDragUI);
-            }
+                // Destroy the old BulletUI
+                Destroy(bulletDragUI.gameObject);
 
-            //Adding New Bullet
-            SetCurrentDragUI(draggedItem);
-            bulletDragUI.parentAfterDrag = this.transform;
-            bulletDragUI.AddedToChamber(this);
+                // Adding the new bullet
+                bulletView.AddBulletToChamber(draggedItem.inventorySlotIndex, ChamberIndex);
+
+                SetCurrentDragUI(draggedItem);
+                bulletDragUI.parentAfterDrag = this.transform;
+                bulletDragUI.AddedToChamber(this);
+            }
+            else // Swapping with bullet from chamber
+            {
+                bulletView.SwapBullets(draggedItem.currentSlotIndex, ChamberIndex);
+
+                if (bulletDragUI != null) //Moving Old Bullet
+                {
+                    bulletDragUI.transform.SetParent(draggedItem.parentAfterDrag, false);
+                    draggedItem.currentChamber.SetCurrentDragUI(bulletDragUI);
+                }
+
+                //Adding New Bullet
+                SetCurrentDragUI(draggedItem);
+                bulletDragUI.parentAfterDrag = this.transform;
+                bulletDragUI.AddedToChamber(this);
+            }
         }
     }
 
@@ -66,5 +85,6 @@ public class ChamberSlotView : MonoBehaviour, IDropHandler
     {
         bulletDragUI = dragUI;
         bulletDragUI.AddedToChamber(this);
+        bulletDragUI.currentSlotIndex = ChamberIndex;
     }
 }
