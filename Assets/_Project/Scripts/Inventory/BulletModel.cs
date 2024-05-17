@@ -65,6 +65,7 @@ public class BulletModel
 		_chamber[chamberIndex] = bullet;
 		
 		OnChamberUpdate?.Invoke();
+		OnInventoryUpdate?.Invoke();
 	}
 	
 	public void SwapBullets(int chamberIndex1, int chamberIndex2)

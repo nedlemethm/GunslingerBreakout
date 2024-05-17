@@ -12,7 +12,26 @@ public class BulletView : MonoBehaviour
 	private BulletObject[] _chamberBullets;
 	private BulletObject[] _inventoryBullets;
 	private BulletController _controller;
-	
+
+	[Header("Animation Variables")]
+
+	[Header("Inventory Animation")]
+    [SerializeField] private GameObject inventory;
+    [SerializeField] private float inventoryEnableTime;
+	[SerializeField] private Vector3 inventoryStartLocation;
+	[SerializeField] private Vector3 inventoryEndLocation;
+	[SerializeField] private AnimationCurve inventoryLocationCurve;
+	[SerializeField] private AnimationCurve inventoryRotationCurve;
+	private Coroutine inventoryRoutine;
+
+	[Header("Chamber Animation")]
+	[SerializeField] private GameObject chamber;
+	[SerializeField] private float chamberEnableTime;
+	[SerializeField] private AnimationCurve chamberRotationCurve;
+	private Coroutine chamberRoutine;
+
+	private Coroutine toggleRoutine;
+
 	private void Awake()
 	{
 		GameSignals.TOOLBAR_ENABLED.AddListener(OnUiEnable);
@@ -88,13 +107,19 @@ public class BulletView : MonoBehaviour
 	
 	private void OnUiEnable(ISignalParameters parameters)
 	{
-		LoopThroughChildElements(true);
-	}
+        if (toggleRoutine != null)
+            StopCoroutine(toggleRoutine);
+
+        toggleRoutine = StartCoroutine(ToggleUIAnimation(true));
+    }
 	
 	private void OnUiDisable(ISignalParameters parameters)
 	{
-		LoopThroughChildElements(false);
-	}
+		if (toggleRoutine != null)
+			StopCoroutine(toggleRoutine);
+
+		toggleRoutine = StartCoroutine(ToggleUIAnimation(false));
+    }
 	
 	private void LoopThroughChildElements(bool enabled)
 	{
@@ -104,4 +129,88 @@ public class BulletView : MonoBehaviour
 			childTransform.gameObject.SetActive(enabled);
 		}
 	}
+
+	private IEnumerator ToggleUIAnimation(bool flag)
+	{
+        if (inventoryRoutine != null)
+            StopCoroutine(inventoryRoutine);
+
+        if (chamberRoutine != null)
+            StopCoroutine(chamberRoutine);
+
+		if (flag)
+		{
+            LoopThroughChildElements(true);
+            inventoryRoutine = StartCoroutine(InventoryEnableAnimation());
+            chamberRoutine = StartCoroutine(ChamberEnableAnimation());
+
+			yield return inventoryRoutine;
+        }
+		else
+		{
+            inventoryRoutine = StartCoroutine(InventoryDisableAnimation());
+            chamberRoutine = StartCoroutine(ChamberDisableAnimation());
+			yield return inventoryRoutine;
+
+            LoopThroughChildElements(false);
+        }
+    }
+
+	//Animation Stuff
+	private IEnumerator InventoryEnableAnimation()
+	{
+		inventory.transform.localPosition = inventoryStartLocation;
+		inventory.transform.localEulerAngles = new Vector3(inventory.transform.localEulerAngles.x, inventory.transform.localEulerAngles.y, inventoryRotationCurve.Evaluate(1f));
+
+        float currentTime = 0f;
+
+		while (currentTime < inventoryEnableTime)
+		{
+			yield return null;
+			currentTime += Time.deltaTime;
+
+			inventory.transform.localPosition = Vector3.Lerp(inventoryStartLocation, inventoryEndLocation, inventoryLocationCurve.Evaluate(currentTime / inventoryEnableTime));
+            inventory.transform.localEulerAngles = new Vector3(inventory.transform.localEulerAngles.x, inventory.transform.localEulerAngles.y, inventoryRotationCurve.Evaluate(currentTime / inventoryEnableTime));
+        }
+	}
+
+	private IEnumerator InventoryDisableAnimation()
+	{
+        float currentTime = 0f;
+
+        while (currentTime < inventoryEnableTime)
+        {
+            yield return null;
+            currentTime += Time.deltaTime;
+
+            inventory.transform.localPosition = Vector3.Lerp(inventoryEndLocation, inventoryStartLocation, inventoryLocationCurve.Evaluate(1 - currentTime / inventoryEnableTime));
+            inventory.transform.localEulerAngles = new Vector3(inventory.transform.localEulerAngles.x, inventory.transform.localEulerAngles.y, inventoryRotationCurve.Evaluate(1 - currentTime / inventoryEnableTime));
+        }
+    }
+
+	private IEnumerator ChamberEnableAnimation()
+	{
+		float currentTime = 0f;
+
+		while (currentTime < chamberEnableTime)
+		{
+			yield return null;
+            currentTime += Time.deltaTime;
+
+            chamber.transform.localEulerAngles = new Vector3(chamber.transform.localEulerAngles.x, chamber.transform.localEulerAngles.y, chamberRotationCurve.Evaluate(currentTime / chamberEnableTime));
+        }
+	}
+
+    private IEnumerator ChamberDisableAnimation()
+    {
+        float currentTime = 0f;
+
+        while (currentTime < chamberEnableTime)
+        {
+            yield return null;
+            currentTime += Time.deltaTime;
+
+            chamber.transform.localEulerAngles = new Vector3(chamber.transform.localEulerAngles.x, chamber.transform.localEulerAngles.y, chamberRotationCurve.Evaluate(1 - currentTime / chamberEnableTime));
+        }
+    }
 }
