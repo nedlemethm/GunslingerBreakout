@@ -75,7 +75,6 @@ public class BulletDragUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
 
     public void AddedToChamber(ChamberSlotView chamber)
     {
-        Debug.Log("Added to Chamber");
         image.sprite = draggedSprite;
         rectTransform.localEulerAngles = Vector3.zero;
         loaded = true;
