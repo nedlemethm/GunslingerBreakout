@@ -8,6 +8,7 @@ public class BulletDragUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
 {
     [HideInInspector] public Transform parentAfterDrag;
     [HideInInspector] public BulletObject bulletObject;
+    [HideInInspector] public ChamberSlotView currentChamber;
 
     [SerializeField] private RectTransform rectTransform;
     [SerializeField] private Image image;
@@ -16,12 +17,17 @@ public class BulletDragUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     [SerializeField] private Sprite draggedSprite;
     [SerializeField] private Vector2 draggedDimensions;
 
-    [HideInInspector] public SlotTypes currentSlot;
-    [HideInInspector] public int parentBeforeDragIndex;
+    [HideInInspector] public int currentSlotIndex;
+
+    [HideInInspector] public bool draggable;
+    private bool loaded;
 
     //Drag Related Events
     public void OnBeginDrag(PointerEventData eventData)
     {
+        if (!draggable)
+            return;
+
         parentAfterDrag = transform.parent;
         transform.SetParent(transform.root);
         transform.SetAsLastSibling();
@@ -35,31 +41,42 @@ public class BulletDragUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
 
     public void OnDrag(PointerEventData eventData)
     {
+        if (!draggable)
+            return;
+
         transform.position = Input.mousePosition;
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        if (!draggable)
+            return;
+
         transform.SetParent(parentAfterDrag);
-        image.sprite = null;
         image.raycastTarget = true;
+
+        if (!loaded)
+            image.sprite = null;
     }
 
-    public void MovedSlot(SlotTypes slot, int newParentIndex)
+    //Visual Functions
+    public void Setup(BulletObject bulletObj, int index)
     {
-        parentBeforeDragIndex = newParentIndex;
-        currentSlot = slot;
+        draggable = true;
+        loaded = false;
+
+        bulletObject = bulletObj;
+        currentSlotIndex = index;
+
+        image.color = bulletObject.color;
     }
 
-    public void UpdateChamberVisuals()
+    public void AddedToChamber(ChamberSlotView chamber)
     {
+        Debug.Log("Added to Chamber");
         image.sprite = draggedSprite;
         rectTransform.localEulerAngles = Vector3.zero;
-    }
-
-    public enum SlotTypes
-    {
-        Inventory,
-        Chamber
+        loaded = true;
+        currentChamber = chamber;
     }
 }

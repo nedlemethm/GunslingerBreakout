@@ -85,6 +85,7 @@ MonoBehaviour:
   bulletObject: {fileID: 0}
   rectTransform: {fileID: 5410904904671075909}
   image: {fileID: 2600798675962787521}
+  normalSprite: {fileID: 0}
   draggedSprite: {fileID: 21300000, guid: 4e01f56560be761469831f26446e56ac, type: 3}
   draggedDimensions: {x: 75, y: 75}
   currentSlot: 0

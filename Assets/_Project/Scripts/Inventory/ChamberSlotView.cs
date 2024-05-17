@@ -8,9 +8,10 @@ using UnityEngine.EventSystems;
 public class ChamberSlotView : MonoBehaviour, IDropHandler
 {
 	[SerializeField] private int _slotIndex;
-	
-	private BulletObject _bulletToDisplay;
-	private Image _bulletImage;
+    [SerializeField] private GameObject bulletDragPrefab;
+
+    private BulletObject _bulletToDisplay;
+    private BulletDragUI bulletDragUI;
 	private BulletController _controller;
 
     [SerializeField] private BulletView bulletView;
@@ -23,26 +24,47 @@ public class ChamberSlotView : MonoBehaviour, IDropHandler
         //_bulletImage = GetComponent<Image>();
         //_bulletImage.color = _bulletToDisplay != null ? _bulletToDisplay.color : Color.white;
         _bulletToDisplay = bulletToDisplay;
-	}
+
+        if (_bulletToDisplay == null && bulletDragUI != null) //This chamber slot has been fired
+        {
+            bulletDragUI.draggable = false;
+        }
+    }
 
     public void OnDrop(PointerEventData eventData)
     {
-        if (transform.childCount == 0)
+        GameObject dropped = eventData.pointerDrag;
+        BulletDragUI draggedItem = dropped.GetComponent<BulletDragUI>();
+
+        if (transform.childCount == 0) // Add Bullet
         {
-            GameObject dropped = eventData.pointerDrag;
-            BulletDragUI draggedItem = dropped.GetComponent<BulletDragUI>();
-            draggedItem.parentAfterDrag = transform;
+            bulletView.AddBulletToChamber(draggedItem.currentSlotIndex, ChamberIndex);
 
-            UpdateView(draggedItem.bulletObject);
-
-            if (draggedItem.currentSlot == BulletDragUI.SlotTypes.Inventory)
-            {
-                bulletView.AddBulletToChamber(draggedItem.parentBeforeDragIndex, ChamberIndex);
-            }
-            else if (draggedItem.currentSlot == BulletDragUI.SlotTypes.Chamber)
-            {
-                bulletView.SwapBullets(draggedItem.parentBeforeDragIndex, ChamberIndex);
-            }
+            SetCurrentDragUI(draggedItem);
+            bulletDragUI.parentAfterDrag = this.transform;
+            bulletDragUI.AddedToChamber(this);
         }
+        else // Swap bullet
+        {
+            bulletView.SwapBullets(draggedItem.currentSlotIndex, ChamberIndex);
+
+            if (bulletDragUI != null) //Moving Old Bullet
+            {
+                bulletDragUI.transform.SetParent(draggedItem.parentAfterDrag, false);
+                bulletDragUI.currentSlotIndex = draggedItem.currentSlotIndex;
+                draggedItem.currentChamber.SetCurrentDragUI(bulletDragUI);
+            }
+
+            //Adding New Bullet
+            SetCurrentDragUI(draggedItem);
+            bulletDragUI.parentAfterDrag = this.transform;
+            bulletDragUI.AddedToChamber(this);
+        }
+    }
+
+    public void SetCurrentDragUI(BulletDragUI dragUI)
+    {
+        bulletDragUI = dragUI;
+        bulletDragUI.AddedToChamber(this);
     }
 }
