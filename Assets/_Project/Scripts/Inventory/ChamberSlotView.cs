@@ -38,8 +38,6 @@ public class ChamberSlotView : MonoBehaviour, IDropHandler
 
         if (transform.childCount == 0) // Add Bullet
         {
-            Debug.LogError(draggedItem.inventorySlotIndex + ", " + ChamberIndex);
-
             bulletView.AddBulletToChamber(draggedItem.inventorySlotIndex, ChamberIndex);
 
             SetCurrentDragUI(draggedItem);
