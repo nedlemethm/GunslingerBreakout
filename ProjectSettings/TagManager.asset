@@ -9,6 +9,8 @@ TagManager:
   - Persist
   - Moving
   - PowerChargeEMP
+  - PlayerEyes
+  - CanPush
   layers:
   - Default
   - TransparentFX
