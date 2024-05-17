@@ -32,6 +32,8 @@ public class InventorySlotView : MonoBehaviour, IDropHandler
 
             BulletDragUI bulletDrag = bulletUI.GetComponent<BulletDragUI>();
             bulletDrag.parentBeforeDragIndex = InventoryIndex;
+
+            bulletDrag.UpdateChamberVisuals();
         }
 	}
 
@@ -42,13 +44,12 @@ public class InventorySlotView : MonoBehaviour, IDropHandler
             GameObject dropped = eventData.pointerDrag;
             BulletDragUI draggedItem = dropped.GetComponent<BulletDragUI>();
 
-            //If the previous slot was an Inventory slot, do nothing
-            if (draggedItem.currentSlot == BulletDragUI.SlotTypes.Inventory)
-                return;
-
-            draggedItem.parentAfterDrag = transform;
             UpdateView(draggedItem.bulletObject);
+            
 
+            /*
+             * No longer needed I think? This was for dragging bullets from Chamber->Inventory
+             * 
             if (draggedItem.currentSlot == BulletDragUI.SlotTypes.Chamber)
             {
                 //Destroy draggedItem bc the BulletView loop should handle creating a new UI element
@@ -57,6 +58,7 @@ public class InventorySlotView : MonoBehaviour, IDropHandler
 
                 bulletView.RemoveBulletFromChamber(bulletIndex);
             }
+            */
         }
     }
 }
