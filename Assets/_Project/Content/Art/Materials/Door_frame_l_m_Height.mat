@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-2975832601568276271
+--- !u!114 &-3484144060681621055
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Breaker_m
+  m_Name: Door_frame_l_m_Height
   m_Shader: {fileID: 4800000, guid: 313fcf3aebc04cf4ab4f8c5f2850be7f, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -37,7 +37,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseMap:
-        m_Texture: {fileID: 2800000, guid: 7bcc5aeae7ab7594dbbd27cabf7dbab0, type: 3}
+        m_Texture: {fileID: 2800000, guid: 9175b25b512eabb449a6872fef0d4cd1, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
@@ -61,7 +61,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 7bcc5aeae7ab7594dbbd27cabf7dbab0, type: 3}
+        m_Texture: {fileID: 2800000, guid: 9175b25b512eabb449a6872fef0d4cd1, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -113,7 +113,7 @@ Material:
     - _GlossyReflections: 0
     - _Metallic: 0
     - _OcclusionStrength: 1
-    - _OutlineWidth: 0.358
+    - _OutlineWidth: 0.15
     - _Parallax: 0.005
     - _QueueOffset: 0
     - _ReceiveShadows: 1
