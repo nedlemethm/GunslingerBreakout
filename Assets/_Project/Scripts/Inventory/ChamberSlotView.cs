@@ -63,16 +63,22 @@ public class ChamberSlotView : MonoBehaviour, IDropHandler
             }
             else // Swapping with bullet from chamber
             {
-                bulletView.SwapBullets(draggedItem.currentSlotIndex, ChamberIndex);
+                int index = draggedItem.currentSlotIndex;
 
                 if (bulletDragUI != null) //Moving Old Bullet
                 {
                     bulletDragUI.transform.SetParent(draggedItem.parentAfterDrag, false);
                     draggedItem.currentChamber.SetBulletUI(bulletDragUI);
                 }
+                else
+                {
+                    draggedItem.currentChamber.SetBulletUI(null);
+                }
 
                 //Adding New Bullet
                 AddBulletUI(draggedItem);
+
+                bulletView.SwapBullets(index, ChamberIndex);
             }
         }
     }
@@ -80,6 +86,10 @@ public class ChamberSlotView : MonoBehaviour, IDropHandler
     public void SetBulletUI(BulletDragUI dragUI)
     {
         bulletDragUI = dragUI;
+
+        if (bulletDragUI == null)
+            return;
+
         bulletDragUI.AddedToChamber(this);
         bulletDragUI.currentSlotIndex = ChamberIndex;
     }
