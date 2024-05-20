@@ -10,7 +10,8 @@ public class ExitLevelTransition : MonoBehaviour
     [Header("Animation Variables")]
     [SerializeField] private float animTime;
     [SerializeField] private GameObject rightDoor;
-    [SerializeField] private AnimationCurve rightDoorCurve;
+    [SerializeField] private GameObject leftDoor;
+    [SerializeField] private AnimationCurve doorAnimCurve;
 
     void Start()
     {
@@ -33,7 +34,8 @@ public class ExitLevelTransition : MonoBehaviour
             yield return null;
             currentTime += Time.deltaTime;
 
-            rightDoor.transform.localEulerAngles = new Vector3(rightDoor.transform.localEulerAngles.x, rightDoorCurve.Evaluate(currentTime / animTime), rightDoor.transform.localEulerAngles.z);
+            rightDoor.transform.localEulerAngles = new Vector3(rightDoor.transform.localEulerAngles.x, doorAnimCurve.Evaluate(currentTime / animTime), rightDoor.transform.localEulerAngles.z);
+            leftDoor.transform.localEulerAngles = new Vector3(leftDoor.transform.localEulerAngles.x, doorAnimCurve.Evaluate(currentTime / animTime), leftDoor.transform.localEulerAngles.z);
         }
     }
 }
