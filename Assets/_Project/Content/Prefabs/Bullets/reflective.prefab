@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5804599874982413896}
   - component: {fileID: 329929639654483635}
   - component: {fileID: 623496030384555620}
+  - component: {fileID: 4966567409836259592}
   m_Layer: 0
   m_Name: reflective
   m_TagString: Untagged
@@ -151,3 +152,34 @@ MonoBehaviour:
   rb: {fileID: 329929639654483635}
   overchargeMat: {fileID: 2100000, guid: 4b17a83f680143947bbf40e2b7f5e76f, type: 2}
   empMat: {fileID: 2100000, guid: 6e8df68c6aca6e34db1b0be951d01fd3, type: 2}
+--- !u!114 &4966567409836259592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7777854130187012980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 486167584
+      Data2: 1130394559
+      Data3: 962022809
+      Data4: 1639013160
+    Path: event:/basicGunShot
+  Event: 
+  PlayEvent: 11
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
