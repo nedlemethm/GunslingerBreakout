@@ -20,7 +20,8 @@ public class BulletModel
 	public BulletObject[] ChamberBullets => _chamber;
 	public BulletObject[] InventoryBullets => _inventory;
 	public BulletObject BulletToShoot => _chamber[_shotIndex];
-	
+	public int CurrentShotIndex => _shotIndex;
+
 	public void AfterFireHandle()
 	{
 		_chamber[_shotIndex] = null;

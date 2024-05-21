@@ -180,6 +180,7 @@ public class BulletController : MonoBehaviour
 	{
 		Debug.Log("Chamber Updated");
 		_bulletView.UpdateChamberView(_bulletModel.ChamberBullets);
+		_bulletView.RotateChamber(_bulletModel.CurrentShotIndex);
 	}
 	
 	private void OnInventoryUpdate()

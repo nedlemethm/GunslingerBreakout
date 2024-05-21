@@ -15,7 +15,7 @@ public class BulletView : MonoBehaviour
 
 	[Header("Animation Variables")]
 
-	[Header("Inventory Animation")]
+	[Header("Inventory Entry Animation")]
     [SerializeField] private GameObject inventory;
     [SerializeField] private float inventoryEnableTime;
 	[SerializeField] private Vector3 inventoryStartLocation;
@@ -24,12 +24,17 @@ public class BulletView : MonoBehaviour
 	[SerializeField] private AnimationCurve inventoryRotationCurve;
 	private Coroutine inventoryRoutine;
 
-	[Header("Chamber Animation")]
+	[Header("Chamber Entry Animation")]
 	[SerializeField] private GameObject chamber;
 	[SerializeField] private float chamberEnableTime;
 	[SerializeField] private AnimationCurve chamberRotationCurve;
-	private Coroutine chamberRoutine;
+	[SerializeField] private float chamberOffset;
 
+	[Header("Chamber Fired Animation")]
+	[SerializeField] private float chamberFireTime;
+	[SerializeField] private AnimationCurve chamberFireCurve;
+
+	private Coroutine chamberRoutine;
 	private Coroutine toggleRoutine;
 
 	private void Awake()
@@ -130,6 +135,37 @@ public class BulletView : MonoBehaviour
 		}
 	}
 
+	public void RotateChamber(int chamberIndex)
+	{
+        if (chamberRoutine != null)
+            StopCoroutine(chamberRoutine);
+
+		chamberRoutine = StartCoroutine(ChamberFireAnimation(chamberIndex));
+    }
+
+    //Animations
+
+    private IEnumerator ChamberFireAnimation(int chamberIndex)
+	{
+		float currentTime = 0f;
+
+		float currentRotation = chamber.transform.localEulerAngles.z;
+		float targetRotation = chamberIndex * 60f;
+
+		if (chamberIndex == 0)
+		{
+			currentRotation = -60f;
+		}
+
+		while (currentTime < chamberFireTime)
+		{
+			yield return null;
+			currentTime += Time.deltaTime;
+
+			chamber.transform.localEulerAngles = new Vector3(chamber.transform.localEulerAngles.x, chamber.transform.localEulerAngles.y, Mathf.Lerp(currentRotation, targetRotation, chamberFireCurve.Evaluate(currentTime / chamberFireTime)));
+		}
+	}
+	
 	private IEnumerator ToggleUIAnimation(bool flag)
 	{
         if (inventoryRoutine != null)
@@ -191,26 +227,30 @@ public class BulletView : MonoBehaviour
 	private IEnumerator ChamberEnableAnimation()
 	{
 		float currentTime = 0f;
+		float currentRotation = chamber.transform.eulerAngles.z;
+		float offset = currentRotation + chamberOffset;
 
 		while (currentTime < chamberEnableTime)
 		{
 			yield return null;
             currentTime += Time.deltaTime;
 
-            chamber.transform.localEulerAngles = new Vector3(chamber.transform.localEulerAngles.x, chamber.transform.localEulerAngles.y, chamberRotationCurve.Evaluate(currentTime / chamberEnableTime));
+            chamber.transform.localEulerAngles = new Vector3(chamber.transform.localEulerAngles.x, chamber.transform.localEulerAngles.y, Mathf.Lerp(offset, currentRotation, chamberRotationCurve.Evaluate(currentTime / chamberEnableTime)));
         }
 	}
 
     private IEnumerator ChamberDisableAnimation()
     {
         float currentTime = 0f;
+        float currentRotation = chamber.transform.eulerAngles.z;
+        float offset = currentRotation + chamberOffset;
 
         while (currentTime < chamberEnableTime)
         {
             yield return null;
             currentTime += Time.deltaTime;
 
-            chamber.transform.localEulerAngles = new Vector3(chamber.transform.localEulerAngles.x, chamber.transform.localEulerAngles.y, chamberRotationCurve.Evaluate(1 - currentTime / chamberEnableTime));
+            chamber.transform.localEulerAngles = new Vector3(chamber.transform.localEulerAngles.x, chamber.transform.localEulerAngles.y, Mathf.Lerp(currentRotation, offset, chamberRotationCurve.Evaluate(1 - currentTime / chamberEnableTime)));
         }
     }
 }
