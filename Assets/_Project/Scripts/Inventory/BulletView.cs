@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BulletView : MonoBehaviour
 {
@@ -13,30 +14,10 @@ public class BulletView : MonoBehaviour
 	private BulletObject[] _inventoryBullets;
 	private BulletController _controller;
 
-	[Header("Animation Variables")]
+	[SerializeField] private BulletViewAnimation bulletViewAnimation;
+	[SerializeField] private Image waifuImage;
 
-	[Header("Inventory Entry Animation")]
-    [SerializeField] private GameObject inventory;
-    [SerializeField] private float inventoryEnableTime;
-	[SerializeField] private Vector3 inventoryStartLocation;
-	[SerializeField] private Vector3 inventoryEndLocation;
-	[SerializeField] private AnimationCurve inventoryLocationCurve;
-	[SerializeField] private AnimationCurve inventoryRotationCurve;
-	private Coroutine inventoryRoutine;
-
-	[Header("Chamber Entry Animation")]
-	[SerializeField] private GameObject chamber;
-	[SerializeField] private float chamberEnableTime;
-	[SerializeField] private AnimationCurve chamberRotationCurve;
-	[SerializeField] private float chamberOffset;
-
-	[Header("Chamber Fired Animation")]
-	[SerializeField] private float chamberFireTime;
-	[SerializeField] private AnimationCurve chamberFireCurve;
-
-	private Coroutine chamberRoutine;
-	private Coroutine toggleRoutine;
-
+	
 	private void Awake()
 	{
 		GameSignals.TOOLBAR_ENABLED.AddListener(OnUiEnable);
@@ -112,18 +93,12 @@ public class BulletView : MonoBehaviour
 	
 	private void OnUiEnable(ISignalParameters parameters)
 	{
-        if (toggleRoutine != null)
-            StopCoroutine(toggleRoutine);
-
-        toggleRoutine = StartCoroutine(ToggleUIAnimation(true));
+		bulletViewAnimation.OnUiEnable();
     }
 	
 	private void OnUiDisable(ISignalParameters parameters)
 	{
-		if (toggleRoutine != null)
-			StopCoroutine(toggleRoutine);
-
-		toggleRoutine = StartCoroutine(ToggleUIAnimation(false));
+        bulletViewAnimation.OnUiDisable();
     }
 	
 	private void LoopThroughChildElements(bool enabled)
@@ -137,120 +112,23 @@ public class BulletView : MonoBehaviour
 
 	public void RotateChamber(int chamberIndex)
 	{
-        if (chamberRoutine != null)
-            StopCoroutine(chamberRoutine);
-
-		chamberRoutine = StartCoroutine(ChamberFireAnimation(chamberIndex));
+		bulletViewAnimation.RotateChamber(chamberIndex);
     }
 
-    //Animations
-
-    private IEnumerator ChamberFireAnimation(int chamberIndex)
+	public void UpdateWaifu(int chamberIndex)
 	{
-		float currentTime = 0f;
-
-		float currentRotation = chamber.transform.localEulerAngles.z;
-		float targetRotation = chamberIndex * 60f;
-
-		if (chamberIndex == 0)
+		if (_chamberBullets[chamberIndex] != null)
 		{
-			currentRotation = -60f;
+			waifuImage.sprite = _chamberBullets[chamberIndex].artwork;
+			waifuImage.color = Color.white;
 		}
-
-		while (currentTime < chamberFireTime)
-		{
-			yield return null;
-			currentTime += Time.deltaTime;
-
-			chamber.transform.localEulerAngles = new Vector3(chamber.transform.localEulerAngles.x, chamber.transform.localEulerAngles.y, Mathf.Lerp(currentRotation, targetRotation, chamberFireCurve.Evaluate(currentTime / chamberFireTime)));
-		}
-	}
-	
-	private IEnumerator ToggleUIAnimation(bool flag)
-	{
-        if (inventoryRoutine != null)
-            StopCoroutine(inventoryRoutine);
-
-        if (chamberRoutine != null)
-            StopCoroutine(chamberRoutine);
-
-		if (flag)
-		{
-            LoopThroughChildElements(true);
-            inventoryRoutine = StartCoroutine(InventoryEnableAnimation());
-            chamberRoutine = StartCoroutine(ChamberEnableAnimation());
-
-			yield return inventoryRoutine;
-        }
 		else
 		{
-            inventoryRoutine = StartCoroutine(InventoryDisableAnimation());
-            chamberRoutine = StartCoroutine(ChamberDisableAnimation());
-			yield return inventoryRoutine;
-
-            LoopThroughChildElements(false);
-        }
-    }
-
-	//Animation Stuff
-	private IEnumerator InventoryEnableAnimation()
-	{
-		inventory.transform.localPosition = inventoryStartLocation;
-		inventory.transform.localEulerAngles = new Vector3(inventory.transform.localEulerAngles.x, inventory.transform.localEulerAngles.y, inventoryRotationCurve.Evaluate(1f));
-
-        float currentTime = 0f;
-
-		while (currentTime < inventoryEnableTime)
-		{
-			yield return null;
-			currentTime += Time.deltaTime;
-
-			inventory.transform.localPosition = Vector3.Lerp(inventoryStartLocation, inventoryEndLocation, inventoryLocationCurve.Evaluate(currentTime / inventoryEnableTime));
-            inventory.transform.localEulerAngles = new Vector3(inventory.transform.localEulerAngles.x, inventory.transform.localEulerAngles.y, inventoryRotationCurve.Evaluate(currentTime / inventoryEnableTime));
+			waifuImage.sprite = null;
+            waifuImage.color = Color.clear;
         }
 	}
 
-	private IEnumerator InventoryDisableAnimation()
-	{
-        float currentTime = 0f;
-
-        while (currentTime < inventoryEnableTime)
-        {
-            yield return null;
-            currentTime += Time.deltaTime;
-
-            inventory.transform.localPosition = Vector3.Lerp(inventoryEndLocation, inventoryStartLocation, inventoryLocationCurve.Evaluate(1 - currentTime / inventoryEnableTime));
-            inventory.transform.localEulerAngles = new Vector3(inventory.transform.localEulerAngles.x, inventory.transform.localEulerAngles.y, inventoryRotationCurve.Evaluate(1 - currentTime / inventoryEnableTime));
-        }
-    }
-
-	private IEnumerator ChamberEnableAnimation()
-	{
-		float currentTime = 0f;
-		float currentRotation = chamber.transform.eulerAngles.z;
-		float offset = currentRotation + chamberOffset;
-
-		while (currentTime < chamberEnableTime)
-		{
-			yield return null;
-            currentTime += Time.deltaTime;
-
-            chamber.transform.localEulerAngles = new Vector3(chamber.transform.localEulerAngles.x, chamber.transform.localEulerAngles.y, Mathf.Lerp(offset, currentRotation, chamberRotationCurve.Evaluate(currentTime / chamberEnableTime)));
-        }
-	}
-
-    private IEnumerator ChamberDisableAnimation()
-    {
-        float currentTime = 0f;
-        float currentRotation = chamber.transform.eulerAngles.z;
-        float offset = currentRotation + chamberOffset;
-
-        while (currentTime < chamberEnableTime)
-        {
-            yield return null;
-            currentTime += Time.deltaTime;
-
-            chamber.transform.localEulerAngles = new Vector3(chamber.transform.localEulerAngles.x, chamber.transform.localEulerAngles.y, Mathf.Lerp(currentRotation, offset, chamberRotationCurve.Evaluate(1 - currentTime / chamberEnableTime)));
-        }
-    }
+    //Animations
+    
 }
