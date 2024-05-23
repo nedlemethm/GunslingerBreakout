@@ -14,6 +14,7 @@ public class BulletViewAnimation : MonoBehaviour
     [SerializeField] private Vector3 inventoryEndLocation;
     [SerializeField] private AnimationCurve inventoryLocationCurve;
     [SerializeField] private AnimationCurve inventoryRotationCurve;
+    [SerializeField] private float playerSlowdown = 0.1f;
     private Coroutine inventoryRoutine;
 
     [Header("Chamber Entry Animation")]
@@ -157,11 +158,13 @@ public class BulletViewAnimation : MonoBehaviour
             chamberRoutine = StartCoroutine(ChamberEnableAnimation());
 
             yield return inventoryRoutine;
+            Time.timeScale = playerSlowdown;
         }
         else
         {
             inventoryRoutine = StartCoroutine(InventoryDisableAnimation());
             chamberRoutine = StartCoroutine(ChamberDisableAnimation());
+            Time.timeScale = 1f;
             yield return inventoryRoutine;
 
             LoopThroughChildElements(false);

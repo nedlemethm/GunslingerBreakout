@@ -17,6 +17,7 @@ public class BulletController : MonoBehaviour
 	private PlayerControls _playerInput;
 	private bool _toolbarEnabled;
 	private int _activationLayerNum;
+	private bool _controlsEnabled;
 
 	private void Awake()
 	{
@@ -25,9 +26,11 @@ public class BulletController : MonoBehaviour
 		_playerInput.Player.Toolbar.started += ToggleToolbar;
 		_playerInput.Player.Activation.started += Activation;
 
-
 		_bulletModel = new();
 		_activationLayerNum = LayerMask.NameToLayer(_activationLayer);
+
+		GameSignals.TOOLBAR_ENABLED.AddListener(DisableControls);
+		GameSignals.TOOLBAR_DISABLED.AddListener(EnableControls);
 	}
 	
 	private void OnEnable()
@@ -43,7 +46,25 @@ public class BulletController : MonoBehaviour
 		_bulletModel.OnInventoryUpdate -= OnInventoryUpdate;
 		_playerInput.Disable();
 	}
-	
+
+	private void OnDestroy()
+	{
+		GameSignals.TOOLBAR_ENABLED.RemoveListener(DisableControls);
+		GameSignals.TOOLBAR_DISABLED.RemoveListener(EnableControls);
+	}
+
+	private void EnableControls(ISignalParameters parameters)
+	{
+		_playerInput.Player.Fire.Enable();
+		_controlsEnabled = true;
+	}
+
+	private void DisableControls(ISignalParameters parameters)
+	{
+		_playerInput.Player.Fire.Disable();
+		_controlsEnabled = false;
+	}
+
 	private IEnumerator Start()
 	{
 		yield return new WaitForEndOfFrame();
@@ -92,16 +113,16 @@ public class BulletController : MonoBehaviour
     private void FireBullet(InputAction.CallbackContext context) // When the player Fires a Bullet
 	{
 		Debug.Log(_bulletModel.BulletToShoot);
-		if(_bulletModel.BulletToShoot != null)
+		if(_bulletModel.BulletToShoot != null && _controlsEnabled)
 		{
 			BulletObject bulletToShoot = _bulletModel.BulletToShoot;
 			//Quaternion bulletSpawnPoint = Quaternion.Euler(_bulletPoint.rotation.x + 90, _bulletPoint.rotation.y, _bulletPoint.rotation.z);
 			BulletBase bullet = Instantiate(bulletToShoot.model, _bulletPoint.transform.position, _bulletPoint.transform.rotation).GetComponent<BulletBase>();
 			bullet.OnShoot(CalcDirection(), bulletToShoot.bulletSpeed);
 			Debug.Log($"Firing {bulletToShoot.name}!");
+
+			_bulletModel.AfterFireHandle();
 		}
-		
-		_bulletModel.AfterFireHandle();
 	}
 
 	private void Activation(InputAction.CallbackContext context) // When the player actiavtes an activatable bullet

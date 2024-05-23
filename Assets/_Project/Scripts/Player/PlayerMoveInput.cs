@@ -55,14 +55,14 @@ public class PlayerController : MonoBehaviour, IGravityTunnelable
 	{
 		playerControls.Enable();
 		_cip.enabled = true;
-		Time.timeScale = 1f;
+		//Time.timeScale = 1f;
 	}
 	
 	private void DisableControls(ISignalParameters parameters)
 	{
 		playerControls.Disable();
 		_cip.enabled = false;
-		Time.timeScale = 0.95f;
+		//Time.timeScale = playerSlowdown;
 	}
 
 	private void PlayerJump(InputAction.CallbackContext context)
