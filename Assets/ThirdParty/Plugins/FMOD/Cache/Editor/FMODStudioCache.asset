@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-9173301116165792519
+--- !u!114 &-5304177395314459578
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
   m_Name: bank:/Master.strings.bank
   m_EditorClassIdentifier: 
-  Path: Assets/ThirdParty/FMOD Assets/Desktop/Master.strings.bank
+  Path: Assets/FMOD Assets/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638505133814640467
+  lastModified: 638518961314758506
   FileSizes:
   - Name: 
-    Value: 758
+    Value: 860
   Exists: 1
---- !u!114 &-4874591053481406516
+--- !u!114 &-4310833960058689222
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -29,15 +29,78 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Desktop/Master.bank
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/ElectricShot
   m_EditorClassIdentifier: 
-  Path: Assets/ThirdParty/FMOD Assets/Desktop/Master.bank
-  Name: Desktop/Master
-  StudioPath: bank:/Master
-  lastModified: 638505133814630541
-  FileSizes: []
-  Exists: 1
+  Path: event:/ElectricShot
+  Guid:
+    Data1: -269264547
+    Data2: 1245077023
+    Data3: 198715287
+    Data4: -101311306
+  Banks:
+  - {fileID: 3670383384570645487}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1253
+--- !u!114 &-2392959728346072871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/basicGunShot
+  m_EditorClassIdentifier: 
+  Path: event:/basicGunShot
+  Guid:
+    Data1: 486167584
+    Data2: 1130394559
+    Data3: 962022809
+    Data4: 1639013160
+  Banks:
+  - {fileID: 3670383384570645487}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1000
+--- !u!114 &-214670608065639607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/AirBurstShot
+  m_EditorClassIdentifier: 
+  Path: event:/AirBurstShot
+  Guid:
+    Data1: 1997696476
+    Data2: 1272482391
+    Data3: -1924640339
+    Data4: 1352867873
+  Banks:
+  - {fileID: 3670383384570645487}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1000
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -51,18 +114,20 @@ MonoBehaviour:
   m_Name: FMODStudioCache
   m_EditorClassIdentifier: 
   EditorBanks:
-  - {fileID: -9173301116165792519}
-  - {fileID: -4874591053481406516}
+  - {fileID: -5304177395314459578}
+  - {fileID: 3670383384570645487}
   EditorEvents:
-  - {fileID: 6343699539494764362}
+  - {fileID: -2392959728346072871}
+  - {fileID: -4310833960058689222}
+  - {fileID: -214670608065639607}
   EditorParameters: []
   MasterBanks:
-  - {fileID: -4874591053481406516}
+  - {fileID: 3670383384570645487}
   StringsBanks:
-  - {fileID: -9173301116165792519}
-  cacheTime: 638505133814640467
+  - {fileID: -5304177395314459578}
+  cacheTime: 638518961314758506
   cacheVersion: 131617
---- !u!114 &6343699539494764362
+--- !u!114 &3670383384570645487
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -71,21 +136,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/New Event
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
   m_EditorClassIdentifier: 
-  Path: event:/New Event
-  Guid:
-    Data1: 486167584
-    Data2: 1130394559
-    Data3: 962022809
-    Data4: 1639013160
-  Banks:
-  - {fileID: -4874591053481406516}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
+  Path: Assets/FMOD Assets/Desktop/Master.bank
+  Name: Master
+  StudioPath: bank:/Master
+  lastModified: 638518961314733462
+  FileSizes: []
+  Exists: 1

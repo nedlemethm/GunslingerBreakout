@@ -10,22 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0206e60f51b733b4abcf97d5ae42d0c2, type: 3}
-  m_Name: PowerCharge
+  m_Name: Cryo
   m_EditorClassIdentifier: 
-  name: Power Charge
+  name: Cryo
   description: 
   artwork: {fileID: 0}
-  model: {fileID: 7777854130187012980, guid: b4c34d5d60037b145b4f5e1d6f52d65c, type: 3}
-  color: {r: 1, g: 0.94415843, b: 0, a: 1}
+  model: {fileID: 3958535200533589531, guid: 5908cf28327e745b99d5965efd6e7e9e, type: 3}
+  color: {r: 0.098039225, g: 0.8470589, b: 0.85098046, a: 1}
   visualEffect: {fileID: 0}
   gunshotSound: {fileID: 0}
   gunshotSoundFMOD:
     Guid:
-      Data1: -269264547
-      Data2: 1245077023
-      Data3: 198715287
-      Data4: -101311306
-    Path: event:/ElectricShot
+      Data1: 486167584
+      Data2: 1130394559
+      Data3: 962022809
+      Data4: 1639013160
+    Path: event:/basicGunShot
   remoteSecondaryFire: 0
   bulletSpeed: 20
   secondaryFireActivated: 0
