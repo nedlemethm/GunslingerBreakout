@@ -216,7 +216,6 @@ MonoBehaviour:
   _slotIndex: 0
   bulletDragPrefab: {fileID: 6440761084703564258, guid: c03c88ffd2280944b809345d123c57a9,
     type: 3}
-  image: {fileID: 18375765}
   bulletView: {fileID: 2049102179}
 --- !u!114 &18375768
 MonoBehaviour:
@@ -762,7 +761,6 @@ MonoBehaviour:
   _slotIndex: 4
   bulletDragPrefab: {fileID: 6440761084703564258, guid: c03c88ffd2280944b809345d123c57a9,
     type: 3}
-  image: {fileID: 383413378}
   bulletView: {fileID: 2049102179}
 --- !u!114 &383413378
 MonoBehaviour:
@@ -1073,7 +1071,6 @@ MonoBehaviour:
   _slotIndex: 2
   bulletDragPrefab: {fileID: 6440761084703564258, guid: c03c88ffd2280944b809345d123c57a9,
     type: 3}
-  image: {fileID: 811337054}
   bulletView: {fileID: 2049102179}
 --- !u!114 &811337054
 MonoBehaviour:
@@ -1321,7 +1318,6 @@ MonoBehaviour:
   _slotIndex: 3
   bulletDragPrefab: {fileID: 6440761084703564258, guid: c03c88ffd2280944b809345d123c57a9,
     type: 3}
-  image: {fileID: 898627148}
   bulletView: {fileID: 2049102179}
 --- !u!114 &898627148
 MonoBehaviour:
@@ -1818,7 +1814,6 @@ MonoBehaviour:
   _slotIndex: 5
   bulletDragPrefab: {fileID: 6440761084703564258, guid: c03c88ffd2280944b809345d123c57a9,
     type: 3}
-  image: {fileID: 1634850493}
   bulletView: {fileID: 2049102179}
 --- !u!114 &1634850493
 MonoBehaviour:
@@ -1937,7 +1932,6 @@ MonoBehaviour:
   _slotIndex: 1
   bulletDragPrefab: {fileID: 6440761084703564258, guid: c03c88ffd2280944b809345d123c57a9,
     type: 3}
-  image: {fileID: 1697046563}
   bulletView: {fileID: 2049102179}
 --- !u!114 &1697046563
 MonoBehaviour:
