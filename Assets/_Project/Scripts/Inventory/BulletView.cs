@@ -119,6 +119,9 @@ public class BulletView : MonoBehaviour
 	{
 		if (_chamberBullets[chamberIndex] != null)
 		{
+			if (_chamberBullets[chamberIndex].artwork == null)
+				return;
+
             waifuImage.sprite = _chamberBullets[chamberIndex].artwork;
             bulletViewAnimation.ToggleWaifu(true);
 		}
