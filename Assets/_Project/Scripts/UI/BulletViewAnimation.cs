@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BulletViewAnimation : MonoBehaviour
 {
@@ -35,8 +36,14 @@ public class BulletViewAnimation : MonoBehaviour
     [SerializeField] private float chamberFireTime;
     [SerializeField] private AnimationCurve chamberFireCurve;
 
+    [Header("Waifu Animation")]
+    [SerializeField] private Image waifuImage;
+    [SerializeField] private float waifuAnimTime;
+    [SerializeField] private AnimationCurve waifuCurve;
+
     private Coroutine chamberRoutine;
     private Coroutine toggleRoutine;
+    private Coroutine waifuRoutine;
 
     private void LoopThroughChildElements(bool enabled)
     {
@@ -69,6 +76,49 @@ public class BulletViewAnimation : MonoBehaviour
             StopCoroutine(chamberRoutine);
 
         chamberRoutine = StartCoroutine(ChamberFireAnimation(chamberIndex));
+    }
+
+    public void ToggleWaifu(bool flag)
+    {
+        if (waifuRoutine != null)
+            StopCoroutine(waifuRoutine);
+
+        if (flag)
+        {
+            waifuRoutine = StartCoroutine(EnableWaifu());
+        }
+        else
+        {
+            waifuRoutine = StartCoroutine(DisableWaifu());
+        }
+    }
+
+    private IEnumerator EnableWaifu()
+    {
+        float currentTime = 0f;
+        Color currentColor = waifuImage.color;
+
+        while (currentTime < waifuAnimTime)
+        {
+            yield return null;
+            currentTime += Time.deltaTime;
+
+            waifuImage.color = Color.Lerp(currentColor, Color.white, waifuCurve.Evaluate(currentTime / waifuAnimTime));
+        }
+    }
+
+    private IEnumerator DisableWaifu()
+    {
+        float currentTime = 0f;
+        Color currentColor = waifuImage.color;
+
+        while (currentTime < waifuAnimTime)
+        {
+            yield return null;
+            currentTime += Time.deltaTime;
+
+            waifuImage.color = Color.Lerp(currentColor, Color.clear, waifuCurve.Evaluate(currentTime / waifuAnimTime));
+        }
     }
 
     private IEnumerator ChamberFireAnimation(int chamberIndex)
@@ -144,7 +194,7 @@ public class BulletViewAnimation : MonoBehaviour
             yield return null;
             currentTime += Time.deltaTime;
 
-            inventory.transform.localPosition = Vector3.Lerp(inventoryEndLocation, inventoryStartLocation, inventoryLocationCurve.Evaluate(1 - currentTime / inventoryEnableTime));
+            inventory.transform.localPosition = Vector3.Lerp(inventoryEndLocation, inventoryStartLocation, inventoryLocationCurve.Evaluate(currentTime / inventoryEnableTime));
             inventory.transform.localEulerAngles = new Vector3(inventory.transform.localEulerAngles.x, inventory.transform.localEulerAngles.y, inventoryRotationCurve.Evaluate(1 - currentTime / inventoryEnableTime));
         }
     }

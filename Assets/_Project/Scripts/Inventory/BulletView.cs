@@ -119,16 +119,13 @@ public class BulletView : MonoBehaviour
 	{
 		if (_chamberBullets[chamberIndex] != null)
 		{
-			waifuImage.sprite = _chamberBullets[chamberIndex].artwork;
-			waifuImage.color = Color.white;
+            waifuImage.sprite = _chamberBullets[chamberIndex].artwork;
+            bulletViewAnimation.ToggleWaifu(true);
 		}
 		else
 		{
-			waifuImage.sprite = null;
-            waifuImage.color = Color.clear;
+            bulletViewAnimation.ToggleWaifu(false);
+            //waifuImage.sprite = null;
         }
 	}
-
-    //Animations
-    
 }

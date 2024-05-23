@@ -216,6 +216,7 @@ MonoBehaviour:
   _slotIndex: 0
   bulletDragPrefab: {fileID: 6440761084703564258, guid: c03c88ffd2280944b809345d123c57a9,
     type: 3}
+  image: {fileID: 0}
   bulletView: {fileID: 2049102179}
 --- !u!114 &18375768
 MonoBehaviour:
@@ -761,6 +762,7 @@ MonoBehaviour:
   _slotIndex: 4
   bulletDragPrefab: {fileID: 6440761084703564258, guid: c03c88ffd2280944b809345d123c57a9,
     type: 3}
+  image: {fileID: 0}
   bulletView: {fileID: 2049102179}
 --- !u!114 &383413378
 MonoBehaviour:
@@ -1071,6 +1073,7 @@ MonoBehaviour:
   _slotIndex: 2
   bulletDragPrefab: {fileID: 6440761084703564258, guid: c03c88ffd2280944b809345d123c57a9,
     type: 3}
+  image: {fileID: 0}
   bulletView: {fileID: 2049102179}
 --- !u!114 &811337054
 MonoBehaviour:
@@ -1318,6 +1321,7 @@ MonoBehaviour:
   _slotIndex: 3
   bulletDragPrefab: {fileID: 6440761084703564258, guid: c03c88ffd2280944b809345d123c57a9,
     type: 3}
+  image: {fileID: 0}
   bulletView: {fileID: 2049102179}
 --- !u!114 &898627148
 MonoBehaviour:
@@ -1734,14 +1738,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 564aba598307c6049bfb0bbf83b37f35, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1814,6 +1818,7 @@ MonoBehaviour:
   _slotIndex: 5
   bulletDragPrefab: {fileID: 6440761084703564258, guid: c03c88ffd2280944b809345d123c57a9,
     type: 3}
+  image: {fileID: 0}
   bulletView: {fileID: 2049102179}
 --- !u!114 &1634850493
 MonoBehaviour:
@@ -1932,6 +1937,7 @@ MonoBehaviour:
   _slotIndex: 1
   bulletDragPrefab: {fileID: 6440761084703564258, guid: c03c88ffd2280944b809345d123c57a9,
     type: 3}
+  image: {fileID: 0}
   bulletView: {fileID: 2049102179}
 --- !u!114 &1697046563
 MonoBehaviour:
@@ -2152,8 +2158,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inventory: {fileID: 1312239972}
   inventoryEnableTime: 0.25
-  inventoryStartLocation: {x: -960, y: 0, z: 0}
-  inventoryEndLocation: {x: 0, y: 0, z: 0}
+  inventoryStartLocation: {x: -960, y: 1620, z: 0}
+  inventoryEndLocation: {x: 960, y: 540, z: 0}
   inventoryLocationCurve:
     serializedVersion: 2
     m_Curve:
@@ -2183,7 +2189,33 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 270
+      value: -90
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  chamber: {fileID: 77854048}
+  chamberEnableTime: 0.25
+  chamberRotationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
       inSlope: 2
       outSlope: 2
       tangentMode: 0
@@ -2202,34 +2234,80 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  chamber: {fileID: 77854048}
-  chamberEnableTime: 0
-  chamberRotationCurve:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  chamberOffset: 0
-  chamberInactiveLocation: {x: 0, y: 0, z: 0}
-  chamberActiveLocation: {x: 0, y: 0, z: 0}
+  chamberOffset: -360
+  chamberInactiveLocation: {x: 810, y: -390, z: 0}
+  chamberActiveLocation: {x: 675, y: -175, z: 0}
   chamberMoveCurve:
     serializedVersion: 2
-    m_Curve: []
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  chamberActiveScale: {x: 0, y: 0, z: 0}
+  chamberActiveScale: {x: 2, y: 2, z: 2}
   chamberScaleCurve:
     serializedVersion: 2
-    m_Curve: []
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  chamberFireTime: 0
+  chamberFireTime: 0.15
   chamberFireCurve:
     serializedVersion: 2
-    m_Curve: []
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
