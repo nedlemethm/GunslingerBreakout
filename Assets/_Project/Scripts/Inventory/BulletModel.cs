@@ -14,7 +14,7 @@ public class BulletModel
 	private BulletObject[] _chamber= new BulletObject[_maxShots];
 	private BulletObject[] _inventory = new BulletObject[_inventorySize];
 	private static int _maxShots = 6;
-	private static int _inventorySize = 5;
+	private static int _inventorySize = 6;
 	private int _shotIndex;
 	
 	public BulletObject[] ChamberBullets => _chamber;

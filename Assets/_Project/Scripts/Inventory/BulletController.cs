@@ -78,6 +78,7 @@ public class BulletController : MonoBehaviour
 		{
             if (_bulletModel.BulletToShoot.showLaser)
             {
+				Debug.Log("i love life");
                 Ray ray = _revolverCam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
                 RaycastHit hit;
 
