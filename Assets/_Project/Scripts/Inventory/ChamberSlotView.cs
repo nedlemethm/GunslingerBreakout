@@ -9,6 +9,7 @@ public class ChamberSlotView : MonoBehaviour, IDropHandler
 {
 	[SerializeField] private int _slotIndex;
     [SerializeField] private GameObject bulletDragPrefab;
+    [SerializeField] private Image image;
 
     private BulletObject _bulletToDisplay;
     private BulletDragUI bulletDragUI;
@@ -27,11 +28,10 @@ public class ChamberSlotView : MonoBehaviour, IDropHandler
         //_bulletImage.color = _bulletToDisplay != null ? _bulletToDisplay.color : Color.white;
         _bulletToDisplay = bulletToDisplay;
 
-
-        // This is causing the empty swap issue
         if (_bulletToDisplay == null && bulletDragUI != null) //This chamber slot has been fired
         {
             bulletDragUI.draggable = false;
+            image.color = Color.gray;
         }
     }
 
