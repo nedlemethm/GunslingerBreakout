@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: EMP Orb
+  m_Name: Orb Purple
   m_Shader: {fileID: -6465566751694194690, guid: 0db6537471e0c4b0b9f0ca6be3008701,
     type: 3}
   m_Parent: {fileID: 0}
@@ -42,7 +42,7 @@ Material:
     - _QueueOffset: 0
     m_Colors:
     - _Color: {r: 0.5019608, g: 0, b: 0.5019608, a: 0}
-    - _Emission: {r: 2.996078, g: 0, b: 2.996078, a: 0}
+    - _Emission: {r: 8, g: 0, b: 8, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &6049452165011661821
 MonoBehaviour:
