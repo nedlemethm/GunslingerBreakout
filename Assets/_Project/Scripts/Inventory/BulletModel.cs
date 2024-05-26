@@ -74,7 +74,7 @@ public class BulletModel
 		BulletObject bullet1 = _chamber[chamberIndex1];
 		BulletObject bullet2 = _chamber[chamberIndex2];
 		BulletObject temp = bullet1;
-		
+
 		_chamber[chamberIndex1] = bullet2;
 		_chamber[chamberIndex2] = temp;
 		
