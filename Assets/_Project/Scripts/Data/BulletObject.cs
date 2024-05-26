@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.VFX;
-using FMODUnity;
 
 [CreateAssetMenu (fileName = "New Bullet", menuName = "Bullet")]
 public class BulletObject : ScriptableObject
@@ -16,12 +15,10 @@ public class BulletObject : ScriptableObject
     public Color color;
     public VisualEffect visualEffect;
     public AudioClip gunshotSound;
- 
 
     public bool remoteSecondaryFire;
     public float bulletSpeed;
     public bool secondaryFireActivated;
     public bool showLaser;
 
-   
 }

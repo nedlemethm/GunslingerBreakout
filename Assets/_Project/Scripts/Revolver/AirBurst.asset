@@ -22,4 +22,3 @@ MonoBehaviour:
   remoteSecondaryFire: 0
   bulletSpeed: 20
   secondaryFireActivated: 0
-  showLaser: 0

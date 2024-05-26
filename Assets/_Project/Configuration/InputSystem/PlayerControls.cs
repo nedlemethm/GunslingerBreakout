@@ -89,24 +89,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""PickUp"",
-                    ""type"": ""Button"",
-                    ""id"": ""4f7f4ac2-9d44-4c08-8d66-89669de211b7"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""DropItem"",
-                    ""type"": ""Button"",
-                    ""id"": ""6230bd1b-9b7e-4975-addf-3c9ba84aa21e"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -230,28 +212,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""Toolbar"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""6b4d403b-9991-420b-beb4-b323d1041dac"",
-                    ""path"": ""<Keyboard>/e"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""PickUp"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""57fe5e8e-ee5b-4180-aebc-7f057c1ac33b"",
-                    ""path"": ""<Keyboard>/t"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""DropItem"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -267,8 +227,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
         m_Player_Activation = m_Player.FindAction("Activation", throwIfNotFound: true);
         m_Player_Toolbar = m_Player.FindAction("Toolbar", throwIfNotFound: true);
-        m_Player_PickUp = m_Player.FindAction("PickUp", throwIfNotFound: true);
-        m_Player_DropItem = m_Player.FindAction("DropItem", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -337,8 +295,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Fire;
     private readonly InputAction m_Player_Activation;
     private readonly InputAction m_Player_Toolbar;
-    private readonly InputAction m_Player_PickUp;
-    private readonly InputAction m_Player_DropItem;
     public struct PlayerActions
     {
         private @PlayerControls m_Wrapper;
@@ -350,8 +306,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @Fire => m_Wrapper.m_Player_Fire;
         public InputAction @Activation => m_Wrapper.m_Player_Activation;
         public InputAction @Toolbar => m_Wrapper.m_Player_Toolbar;
-        public InputAction @PickUp => m_Wrapper.m_Player_PickUp;
-        public InputAction @DropItem => m_Wrapper.m_Player_DropItem;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -382,12 +336,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Toolbar.started += instance.OnToolbar;
             @Toolbar.performed += instance.OnToolbar;
             @Toolbar.canceled += instance.OnToolbar;
-            @PickUp.started += instance.OnPickUp;
-            @PickUp.performed += instance.OnPickUp;
-            @PickUp.canceled += instance.OnPickUp;
-            @DropItem.started += instance.OnDropItem;
-            @DropItem.performed += instance.OnDropItem;
-            @DropItem.canceled += instance.OnDropItem;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -413,12 +361,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Toolbar.started -= instance.OnToolbar;
             @Toolbar.performed -= instance.OnToolbar;
             @Toolbar.canceled -= instance.OnToolbar;
-            @PickUp.started -= instance.OnPickUp;
-            @PickUp.performed -= instance.OnPickUp;
-            @PickUp.canceled -= instance.OnPickUp;
-            @DropItem.started -= instance.OnDropItem;
-            @DropItem.performed -= instance.OnDropItem;
-            @DropItem.canceled -= instance.OnDropItem;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -445,7 +387,5 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnFire(InputAction.CallbackContext context);
         void OnActivation(InputAction.CallbackContext context);
         void OnToolbar(InputAction.CallbackContext context);
-        void OnPickUp(InputAction.CallbackContext context);
-        void OnDropItem(InputAction.CallbackContext context);
     }
 }

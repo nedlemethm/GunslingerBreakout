@@ -19,14 +19,6 @@ MonoBehaviour:
   color: {r: 1, g: 0.94415843, b: 0, a: 1}
   visualEffect: {fileID: 0}
   gunshotSound: {fileID: 0}
-  gunshotSoundFMOD:
-    Guid:
-      Data1: -269264547
-      Data2: 1245077023
-      Data3: 198715287
-      Data4: -101311306
-    Path: event:/ElectricShot
   remoteSecondaryFire: 0
   bulletSpeed: 20
   secondaryFireActivated: 0
-  showLaser: 0

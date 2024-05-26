@@ -1,5 +1,6 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class LeftHandPickUp : MonoBehaviour
 {
@@ -7,47 +8,23 @@ public class LeftHandPickUp : MonoBehaviour
     [SerializeField] private Transform holdingPosition;
     [SerializeField] private float throwForce, pickUpRange, rotationSensitivity;
     [SerializeField] private string objectTag, layerName;
+    [SerializeField] private KeyCode pickKey = KeyCode.E, throwKey = KeyCode.T;
 
     private GameObject heldObject; //object which we pick up
     private Rigidbody heldObjectRb; //rigidbody of object we pick up
     private bool canDrop = true; //this is needed so we don't throw/drop object when rotating the object
     private int LayerNumber; //layer index
-    private PlayerControls playerInput;
 
     private void Start()
     {
         LayerNumber = LayerMask.NameToLayer(layerName);
     }
-
-    private void Awake() {
-        playerInput = new();
-        playerInput.Player.PickUp.performed += PickUpObject;
-        playerInput.Player.DropItem.performed += DropItemObject;
-        OnEnable();
-    }
-
-    private void OnEnable()
+    void Update()
     {
-        playerInput.Player.PickUp.Enable();
-        playerInput.Player.DropItem.Enable();
-    }
-
-    private void OnDisable(){
-        playerInput.Player.PickUp.Disable();
-        playerInput.Player.DropItem.Disable();
-    }
-
-    private void DropItemObject(InputAction.CallbackContext context)
-    {
-        if (canDrop){
-            StopClipping();
-            ThrowObject();
-        }
-    }
-
-    private void PickUpObject(InputAction.CallbackContext context)
-    {
-        if (heldObject == null){
+        if (Input.GetKeyDown(pickKey))
+        {
+            if (heldObject == null)
+            {
                 RaycastHit hit;
                 if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, pickUpRange))
                 {
@@ -65,14 +42,17 @@ public class LeftHandPickUp : MonoBehaviour
                     DropObject();
                 }
             }
-    }
-
-    void Update()
-    {
+        }
         if (heldObject != null)
         {
             MoveObject();
             //RotateObject();
+            if (Input.GetKeyDown(throwKey) && canDrop)
+            {
+                StopClipping();
+                ThrowObject();
+            }
+
         }
     }
 
