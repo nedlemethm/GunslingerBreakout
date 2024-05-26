@@ -14,13 +14,14 @@ public class BulletModel
 	private BulletObject[] _chamber= new BulletObject[_maxShots];
 	private BulletObject[] _inventory = new BulletObject[_inventorySize];
 	private static int _maxShots = 6;
-	private static int _inventorySize = 5;
+	private static int _inventorySize = 6;
 	private int _shotIndex;
 	
 	public BulletObject[] ChamberBullets => _chamber;
 	public BulletObject[] InventoryBullets => _inventory;
 	public BulletObject BulletToShoot => _chamber[_shotIndex];
-	
+	public int CurrentShotIndex => _shotIndex;
+
 	public void AfterFireHandle()
 	{
 		_chamber[_shotIndex] = null;
@@ -73,7 +74,7 @@ public class BulletModel
 		BulletObject bullet1 = _chamber[chamberIndex1];
 		BulletObject bullet2 = _chamber[chamberIndex2];
 		BulletObject temp = bullet1;
-		
+
 		_chamber[chamberIndex1] = bullet2;
 		_chamber[chamberIndex2] = temp;
 		

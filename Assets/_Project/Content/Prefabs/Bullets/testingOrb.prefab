@@ -63,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 7c63ede690e4662459423afedfc3587e, type: 2}
+  - {fileID: 2100000, guid: 496b2b5b1cd904190ada90600c3d2553, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -118,5 +118,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a64801f7764cdb4d89ea0ec33f1c197, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  powerChargeMat: {fileID: 2100000, guid: 7c63ede690e4662459423afedfc3587e, type: 2}
-  empMat: {fileID: 2100000, guid: 5545fe355721c9144b0c40575c722f85, type: 2}
+  powerChargeColor: {r: 0.78431374, g: 0.78431374, b: 0, a: 0}
+  powerChargeEmission: {r: 1, g: 1, b: 0, a: 0}
+  empColor: {r: 0.5019608, g: 0, b: 0.5019608, a: 0}
+  empEmission: {r: 0.7490196, g: 0, b: 0.7490196, a: 0}
+  intensity: 3

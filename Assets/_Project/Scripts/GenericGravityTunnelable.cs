@@ -6,7 +6,7 @@ using UnityEngine;
 public class GenericGravityTunnelable : MonoBehaviour, IGravityTunnelable
 {
     private Rigidbody rb;
-    private int tunnelsIn = 0;
+    private bool tunnelsIn = false;
     private Vector3 gravTunnelDir;
 
     // Start is called before the first frame update
@@ -18,7 +18,8 @@ public class GenericGravityTunnelable : MonoBehaviour, IGravityTunnelable
 
     void IGravityTunnelable.OnTunnelEnter(Vector3 dir)
     {
-        tunnelsIn++;
+        tunnelsIn = true;
+        gravTunnelDir = Vector3.zero;
         gravTunnelDir += dir;
         rb.useGravity = false;
         rb.velocity = gravTunnelDir;
@@ -26,12 +27,9 @@ public class GenericGravityTunnelable : MonoBehaviour, IGravityTunnelable
 
     void IGravityTunnelable.OnTunnelExit(Vector3 dir)
     {
-        tunnelsIn--;
+        tunnelsIn = false;
         gravTunnelDir -= dir;
-        if (tunnelsIn <= 0)
-        {
-            rb.useGravity = true;
-        }
+        rb.useGravity = true;
         rb.velocity = gravTunnelDir;
     }
 }

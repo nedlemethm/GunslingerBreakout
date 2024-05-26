@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731704, g: 0.1341472, b: 0.121078566, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -347,12 +347,10 @@ MonoBehaviour:
   player: {fileID: 1133428108}
   holdingPosition: {fileID: 1619560956}
   throwForce: 20
-  pickUpRange: 5
+  pickUpRange: 10
   rotationSensitivity: 1
   objectTag: CanPickUp
-  layerName: HoldObject
-  pickKey: 101
-  throwKey: 116
+  layerName: HoldObjects
 --- !u!4 &654939432 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: d43d4a94c727e954995358d6877d3807,
@@ -532,7 +530,8 @@ GameObject:
   - component: {fileID: 1133428114}
   - component: {fileID: 1133428115}
   - component: {fileID: 1133428116}
-  m_Layer: 0
+  - component: {fileID: 1133428118}
+  m_Layer: 2
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -559,7 +558,7 @@ MonoBehaviour:
   groundDrag: 1
   layer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1
   playerHeight: 1.25
 --- !u!143 &1133428110
 CharacterController:
@@ -790,6 +789,22 @@ MonoBehaviour:
   activatePersist: 324
   movingGeoTag: Moving
   persistLayer: Persist
+--- !u!114 &1133428118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1133428108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b7c1c2adc33a416c9788b00a4bdd93f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  reachRange: 4
+  pushTag: CanPush
+  material: Icy (Instance)
+  cam: {fileID: 330585545}
 --- !u!1 &1225613412
 GameObject:
   m_ObjectHideFlags: 3
@@ -923,7 +938,7 @@ GameObject:
   - component: {fileID: 1324896600}
   - component: {fileID: 1324896599}
   - component: {fileID: 1324896598}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1027,7 +1042,7 @@ GameObject:
   - component: {fileID: 1355681339}
   - component: {fileID: 1355681342}
   - component: {fileID: 1355681341}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Body
   m_TagString: Player
   m_Icon: {fileID: 0}

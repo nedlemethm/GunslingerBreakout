@@ -19,6 +19,13 @@ MonoBehaviour:
   color: {r: 0.4339623, g: 0.4339623, b: 0.4339623, a: 1}
   visualEffect: {fileID: 0}
   gunshotSound: {fileID: 0}
+  gunshotSoundFMOD:
+    Guid:
+      Data1: 1997696476
+      Data2: 1272482391
+      Data3: -1924640339
+      Data4: 1352867873
+    Path: event:/AirBurstShot
   remoteSecondaryFire: 0
   bulletSpeed: 20
   secondaryFireActivated: 0

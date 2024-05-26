@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour, IGravityTunnelable
 	[SerializeField] private float groundDrag;
 	[SerializeField] private LayerMask layer;
 	private bool readyToJump;
-	private int tunnelsIn = 0;
+	private bool tunnelsIn = false;
 	private Vector3 gravTunnelDir;
 
 	[Header("Groud Check")]
@@ -55,14 +55,14 @@ public class PlayerController : MonoBehaviour, IGravityTunnelable
 	{
 		playerControls.Enable();
 		_cip.enabled = true;
-		Time.timeScale = 1f;
+		//Time.timeScale = 1f;
 	}
 	
 	private void DisableControls(ISignalParameters parameters)
 	{
 		playerControls.Disable();
 		_cip.enabled = false;
-		Time.timeScale = 0.95f;
+		//Time.timeScale = playerSlowdown;
 	}
 
 	private void PlayerJump(InputAction.CallbackContext context)
@@ -99,7 +99,7 @@ public class PlayerController : MonoBehaviour, IGravityTunnelable
 		playerVelocity = cameraTransform.forward * playerVelocity.z + cameraTransform.right * playerVelocity.x;
 		playerVelocity.y = temp;
 
-		if (tunnelsIn > 0)
+		if (tunnelsIn)
 		{
 			rb.velocity = gravTunnelDir;
 			playerVelocity.y = 0;
@@ -123,19 +123,17 @@ public class PlayerController : MonoBehaviour, IGravityTunnelable
 
 	public void OnTunnelEnter(Vector3 dir)
 	{
-		tunnelsIn++;
-		gravTunnelDir += dir;
+		tunnelsIn = true;
+        gravTunnelDir = Vector3.zero;
+        gravTunnelDir += dir;
 		rb.useGravity = false;
 	}
 
 	public void OnTunnelExit(Vector3 dir)
 	{
-		tunnelsIn--;
+		tunnelsIn = false;
 		gravTunnelDir -= dir;
-		if (tunnelsIn <= 0)
-		{
-			rb.useGravity = true;
-		}
+		rb.useGravity = true;
 	}
 
 	private void SpeedControl()

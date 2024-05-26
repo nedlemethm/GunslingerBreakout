@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5804599874982413896}
   - component: {fileID: 329929639654483635}
   - component: {fileID: 13317851978998558}
+  - component: {fileID: -4997928597011425626}
   m_Layer: 0
   m_Name: Temp Power Charge
   m_TagString: Untagged
@@ -149,6 +150,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 329929639654483635}
-  electronicTag: Electronic
   electricOrb: {fileID: 1777474810673194936, guid: 76b112003b091754eb303d1880cb934d,
     type: 3}
+--- !u!114 &-4997928597011425626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7777854130187012980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -269264547
+      Data2: 1245077023
+      Data3: 198715287
+      Data4: -101311306
+    Path: event:/ElectricShot
+  Event: 
+  PlayEvent: 11
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
