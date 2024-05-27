@@ -560,6 +560,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   playerHeight: 1.25
+  heightMultiplier: 0.5
+  speedMultiplier: 0.5
 --- !u!143 &1133428110
 CharacterController:
   m_ObjectHideFlags: 0

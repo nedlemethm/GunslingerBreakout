@@ -32,6 +32,10 @@ public class PlayerController : MonoBehaviour, IGravityTunnelable
 	private Transform cameraTransform;
 	private Vector3 playerVelocity;
 
+	[Header("Crouch")]
+	[SerializeField] private float heightMultiplier;
+	[SerializeField] private float speedMultiplier;
+
 	private void Awake()
 	{
 		playerControls = new();
@@ -39,13 +43,31 @@ public class PlayerController : MonoBehaviour, IGravityTunnelable
 		playerControls.Player.Movement.performed += HandleMove;
 		playerControls.Player.Movement.started += HandleMove;
 		playerControls.Player.Movement.canceled += HandleMove;
+		playerControls.Player.Crouch.started += EnableCrouch;
+		playerControls.Player.Crouch.canceled += DisableCrouch;
 		playerControls.Enable();
 		
 		GameSignals.TOOLBAR_ENABLED.AddListener(DisableControls);
 		GameSignals.TOOLBAR_DISABLED.AddListener(EnableControls);
 	}
-	
-	private void OnDestroy()
+
+    private void DisableCrouch(InputAction.CallbackContext context)
+    {
+		playerHeight /= heightMultiplier;
+		playerSpeed /= speedMultiplier;
+        transform.localScale = Vector3.one;
+		rb.position = new Vector3(transform.position.x, transform.position.y + (1 - heightMultiplier), transform.position.z);
+    }
+
+    private void EnableCrouch(InputAction.CallbackContext context)
+    {
+		playerHeight *= heightMultiplier;
+		playerSpeed *= speedMultiplier;
+		transform.localScale = new Vector3(1f, heightMultiplier, 1f);
+		rb.position = new Vector3(transform.position.x, transform.position.y - (1-heightMultiplier), transform.position.z);
+    }
+
+    private void OnDestroy()
 	{
 		GameSignals.TOOLBAR_ENABLED.RemoveListener(DisableControls);
 		GameSignals.TOOLBAR_DISABLED.RemoveListener(EnableControls);
