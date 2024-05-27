@@ -6,7 +6,6 @@ public class MovingPlatform : MovingGeometry
 {
     [SerializeField] private GameObject[] points;
     [SerializeField] private float moveSpeed;
-    [SerializeField] private bool startMoving;
     [SerializeField] private int startingIndex;
 
     private int currentPosIndex;

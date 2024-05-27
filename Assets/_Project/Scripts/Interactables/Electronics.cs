@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Electronics : MonoBehaviour
+public class Electronics : OnOff
 {
     [SerializeField] private bool isOn;
 
@@ -18,19 +18,5 @@ public class Electronics : MonoBehaviour
         
     }
 
-    public void SetOn() 
-    {
-        isOn = true;
-        Debug.Log("Turned On");
-    }
-
-    public void SetOff()
-    {
-        isOn = false;
-    }
-
-    public bool GetStatus()
-    {
-        return isOn;
-    }
+    
 }

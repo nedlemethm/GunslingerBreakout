@@ -23,11 +23,11 @@ public class OverchargeOrb : Activation
     {
         if (collision.gameObject.GetComponent<Electronics>() != null)
         {
-            if (collision.gameObject.GetComponent<Electronics>().GetStatus())
+            if (!collision.gameObject.GetComponent<Electronics>().GetStatus() && overchargeMode)
             {
-                collision.gameObject.GetComponent<Electronics>().SetOff();
+                collision.gameObject.GetComponent<Electronics>().SetOn();
             }
-            else
+            else if (collision.gameObject.GetComponent<Electronics>().GetStatus() && !overchargeMode)
             {
                 collision.gameObject.GetComponent<Electronics>().SetOff();
             }
