@@ -24,6 +24,8 @@ public class PlayerController : MonoBehaviour, IGravityTunnelable
 	[Header("Groud Check")]
 	[SerializeField] private float playerHeight;
 	private bool grounded;
+	private bool _moving;
+	private Vector2 _moveDirection;
 
 	private PlayerControls playerControls;
 	private Rigidbody rb;
@@ -34,6 +36,9 @@ public class PlayerController : MonoBehaviour, IGravityTunnelable
 	{
 		playerControls = new();
 		playerControls.Player.Jump.started += PlayerJump;
+		playerControls.Player.Movement.performed += HandleMove;
+		playerControls.Player.Movement.started += HandleMove;
+		playerControls.Player.Movement.canceled += HandleMove;
 		playerControls.Enable();
 		
 		GameSignals.TOOLBAR_ENABLED.AddListener(DisableControls);
@@ -64,6 +69,12 @@ public class PlayerController : MonoBehaviour, IGravityTunnelable
 		_cip.enabled = false;
 		//Time.timeScale = playerSlowdown;
 	}
+	
+	private void HandleMove(InputAction.CallbackContext context)
+	{
+		_moveDirection = context.ReadValue<Vector2>();
+		_moving = _moveDirection.magnitude > 0;
+	}
 
 	private void PlayerJump(InputAction.CallbackContext context)
 	{
@@ -92,8 +103,8 @@ public class PlayerController : MonoBehaviour, IGravityTunnelable
 
 	private void PlayerMovement()
 	{
-
-		Vector2 dir = playerControls.Player.Movement.ReadValue<Vector2>() * playerSpeed;
+		Vector2 dir = _moveDirection * playerSpeed;
+		// Vector3 horizontalVelocity = (transform.right * _horizontalInput.x + transform.forward * _horizontalInput.y) * playerSpeed;
 		playerVelocity = new Vector3(dir.x, rb.velocity.y, dir.y);
 		float temp = playerVelocity.y;
 		playerVelocity = cameraTransform.forward * playerVelocity.z + cameraTransform.right * playerVelocity.x;
@@ -110,7 +121,16 @@ public class PlayerController : MonoBehaviour, IGravityTunnelable
 			//Leo Script
 			if (grounded)
 			{
-				rb.velocity += playerVelocity * Time.deltaTime;
+				if(!_moving)
+				{
+					rb.velocity = playerVelocity * Time.deltaTime * playerSpeed;
+				}
+				else
+				{
+					rb.velocity = playerVelocity * Time.deltaTime * playerSpeed;
+				}
+				
+				// rb.MovePosition(playerVelocity * Time.deltaTime);
 			}
 			else if (!grounded)
 			{
@@ -124,8 +144,8 @@ public class PlayerController : MonoBehaviour, IGravityTunnelable
 	public void OnTunnelEnter(Vector3 dir)
 	{
 		tunnelsIn = true;
-        gravTunnelDir = Vector3.zero;
-        gravTunnelDir += dir;
+		gravTunnelDir = Vector3.zero;
+		gravTunnelDir += dir;
 		rb.useGravity = false;
 	}
 
