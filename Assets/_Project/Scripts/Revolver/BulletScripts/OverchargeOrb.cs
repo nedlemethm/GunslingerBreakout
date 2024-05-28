@@ -9,6 +9,8 @@ public class OverchargeOrb : Activation
     [SerializeField] private Color empColor;
     [SerializeField] private Color empEmission;
     [SerializeField] private float intensity;
+    [SerializeField] private string _overchargeTag;
+    [SerializeField] private string _empTag;
     // currently kinda useless, just using to set up something for reflective bullets
     private bool overchargeMode;
 
@@ -17,24 +19,9 @@ public class OverchargeOrb : Activation
         overchargeMode = true;
         gameObject.GetComponent<MeshRenderer>().material.SetColor("_Color", powerChargeColor);
         gameObject.GetComponent<MeshRenderer>().material.SetColor("_Emission", powerChargeEmission * intensity);
+        gameObject.tag = _overchargeTag;
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.GetComponent<Electronics>() != null)
-        {
-            if (collision.gameObject.GetComponent<Electronics>().GetStatus())
-            {
-                collision.gameObject.GetComponent<Electronics>().SetOff();
-            }
-            else
-            {
-                collision.gameObject.GetComponent<Electronics>().SetOff();
-            }
-        }
-    }
-
-    
     public override void ToggleActivation()
     {
         if (overchargeMode)
@@ -42,12 +29,14 @@ public class OverchargeOrb : Activation
             overchargeMode = false;
             gameObject.GetComponent<MeshRenderer>().material.SetColor("_Color", empColor);
             gameObject.GetComponent<MeshRenderer>().material.SetColor("_Emission", empEmission * intensity);
+            gameObject.tag = _empTag;
         }
         else
         {
             overchargeMode = true;
             gameObject.GetComponent<MeshRenderer>().material.SetColor("_Color", powerChargeColor);
             gameObject.GetComponent<MeshRenderer>().material.SetColor("_Emission", powerChargeEmission * intensity);
+            gameObject.tag = _overchargeTag;
         }
         base.ToggleActivation();
     }

@@ -152,6 +152,8 @@ MonoBehaviour:
   rb: {fileID: 329929639654483635}
   overchargeMat: {fileID: 2100000, guid: 4b17a83f680143947bbf40e2b7f5e76f, type: 2}
   empMat: {fileID: 2100000, guid: 6e8df68c6aca6e34db1b0be951d01fd3, type: 2}
+  _overchargeTag: PowerCharge
+  _empTag: EMP
 --- !u!114 &4966567409836259592
 MonoBehaviour:
   m_ObjectHideFlags: 0

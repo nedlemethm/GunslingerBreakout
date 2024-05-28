@@ -18,9 +18,7 @@ public class BulletObject : ScriptableObject
     public AudioClip gunshotSound;
  
 
-    public bool remoteSecondaryFire;
     public float bulletSpeed;
-    public bool secondaryFireActivated;
     public bool showLaser;
 
    

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3518675187703225241}
   m_Layer: 11
   m_Name: testingOrb
-  m_TagString: PowerChargeEMP
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -100,7 +100,7 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -123,3 +123,5 @@ MonoBehaviour:
   empColor: {r: 0.5019608, g: 0, b: 0.5019608, a: 0}
   empEmission: {r: 0.7490196, g: 0, b: 0.7490196, a: 0}
   intensity: 3
+  _overchargeTag: PowerCharge
+  _empTag: EMP
