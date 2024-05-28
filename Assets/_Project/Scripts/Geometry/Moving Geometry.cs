@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class MovingGeometry : MonoBehaviour
+public abstract class MovingGeometry : OnOff
 {
+    [SerializeField] protected bool startMoving;
+    [SerializeField] private bool _powerSources;
     private bool moving;
 
     public void SetMoving()

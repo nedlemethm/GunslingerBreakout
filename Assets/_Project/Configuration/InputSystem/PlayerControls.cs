@@ -107,6 +107,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ResetScene"",
+                    ""type"": ""Button"",
+                    ""id"": ""bf0960a6-814d-4885-b935-9858255797ef"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -252,6 +261,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""DropItem"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""523d1861-0156-443e-b11c-1a1de682a94a"",
+                    ""path"": ""<Keyboard>/0"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ResetScene"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -269,6 +289,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Player_Toolbar = m_Player.FindAction("Toolbar", throwIfNotFound: true);
         m_Player_PickUp = m_Player.FindAction("PickUp", throwIfNotFound: true);
         m_Player_DropItem = m_Player.FindAction("DropItem", throwIfNotFound: true);
+        m_Player_ResetScene = m_Player.FindAction("ResetScene", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -339,6 +360,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Toolbar;
     private readonly InputAction m_Player_PickUp;
     private readonly InputAction m_Player_DropItem;
+    private readonly InputAction m_Player_ResetScene;
     public struct PlayerActions
     {
         private @PlayerControls m_Wrapper;
@@ -352,6 +374,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @Toolbar => m_Wrapper.m_Player_Toolbar;
         public InputAction @PickUp => m_Wrapper.m_Player_PickUp;
         public InputAction @DropItem => m_Wrapper.m_Player_DropItem;
+        public InputAction @ResetScene => m_Wrapper.m_Player_ResetScene;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -388,6 +411,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @DropItem.started += instance.OnDropItem;
             @DropItem.performed += instance.OnDropItem;
             @DropItem.canceled += instance.OnDropItem;
+            @ResetScene.started += instance.OnResetScene;
+            @ResetScene.performed += instance.OnResetScene;
+            @ResetScene.canceled += instance.OnResetScene;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -419,6 +445,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @DropItem.started -= instance.OnDropItem;
             @DropItem.performed -= instance.OnDropItem;
             @DropItem.canceled -= instance.OnDropItem;
+            @ResetScene.started -= instance.OnResetScene;
+            @ResetScene.performed -= instance.OnResetScene;
+            @ResetScene.canceled -= instance.OnResetScene;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -447,5 +476,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnToolbar(InputAction.CallbackContext context);
         void OnPickUp(InputAction.CallbackContext context);
         void OnDropItem(InputAction.CallbackContext context);
+        void OnResetScene(InputAction.CallbackContext context);
     }
 }

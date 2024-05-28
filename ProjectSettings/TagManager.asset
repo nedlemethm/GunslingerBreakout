@@ -8,9 +8,10 @@ TagManager:
   - CanPickUp
   - Persist
   - Moving
-  - PowerChargeEMP
   - PlayerEyes
   - CanPush
+  - PowerCharge
+  - EMP
   layers:
   - Default
   - TransparentFX

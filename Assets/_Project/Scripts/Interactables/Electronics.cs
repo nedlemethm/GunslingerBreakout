@@ -2,14 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Electronics : MonoBehaviour
+public class Electronics : OnOff
 {
-    [SerializeField] private bool isOn;
+    [SerializeField] private string _powerChargeTag;
+    [SerializeField] private string _empTag;
+    [SerializeField] private bool _alreadyOn;
+    [SerializeField] private bool _alreadyOff;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        _alreadyOn = GetStatus();
+        _alreadyOff = !GetStatus();
     }
 
     // Update is called once per frame
@@ -18,19 +22,19 @@ public class Electronics : MonoBehaviour
         
     }
 
-    public void SetOn() 
+    private void OnTriggerStay(Collider other)
     {
-        isOn = true;
-        Debug.Log("Turned On");
-    }
-
-    public void SetOff()
-    {
-        isOn = false;
-    }
-
-    public bool GetStatus()
-    {
-        return isOn;
+        if (other.gameObject.CompareTag(_powerChargeTag) && !_alreadyOn) 
+        {
+            SetOn();
+            _alreadyOn = true;
+            _alreadyOff= false;
+        }
+        else if (other.gameObject.CompareTag(_empTag) && !_alreadyOff) 
+        {     
+            SetOff();
+            _alreadyOn = false;
+            _alreadyOff = true;
+        } 
     }
 }

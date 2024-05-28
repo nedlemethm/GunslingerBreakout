@@ -8,6 +8,8 @@ public class Reflective : BulletBase
 {
     [SerializeField] private Material overchargeMat;
     [SerializeField] private Material empMat;
+    [SerializeField] private string _overchargeTag;
+    [SerializeField] private string _empTag;
     private RaycastHit nextWallHit;
     private bool hitSet = false;
     private bool hasOvercharge;
@@ -93,11 +95,13 @@ public class Reflective : BulletBase
             {
                 hasOvercharge = orb.IsOverchargeMode();
                 GetComponent<MeshRenderer>().material = overchargeMat;
+                gameObject.tag = _overchargeTag;
             }
             else
             {
                 hasEmp = !orb.IsOverchargeMode();
                 GetComponent<MeshRenderer>().material = empMat;
+                gameObject.tag = _empTag;
             }
         }
     }
