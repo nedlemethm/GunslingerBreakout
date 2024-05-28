@@ -65,7 +65,7 @@ public class MovingPlatform : MovingGeometry
 
     private void OnTriggerStay(Collider other)
     {
-        if (GetMoving())
+        if (GetMoving() && !other.isTrigger)
         {
             other.transform.position += transform.position - lastPos;
         }

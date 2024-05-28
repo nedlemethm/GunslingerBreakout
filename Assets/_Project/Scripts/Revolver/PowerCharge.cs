@@ -21,11 +21,12 @@ public class PowerCharge : BulletBase
 
     protected override void OnCollisionEnter(Collision collision)
     {
+        gameObject.SetActive(false);
         //checks that what is what is hit is an electronic and if it is off
         //if (collision.collider.CompareTag(electronicTag) &&
         //    !collision.collider.GetComponent<Electronics>().GetStatus()) 
         //{
-        ContactPoint contact = collision.contacts[0];
+        ContactPoint contact = collision.GetContact(0);
         Quaternion rotation = Quaternion.FromToRotation(Vector3.up, contact.normal);
         SpawnElectricOrb(contact, rotation);
         //}
