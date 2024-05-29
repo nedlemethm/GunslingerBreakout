@@ -35,6 +35,8 @@ public class PlayerController : MonoBehaviour, IGravityTunnelable
 	[Header("Crouch")]
 	[SerializeField] private float heightMultiplier;
 	[SerializeField] private float speedMultiplier;
+	[SerializeField] private bool holdKey;
+	private bool isCrouched;
 
 	private void Awake()
 	{
@@ -53,18 +55,31 @@ public class PlayerController : MonoBehaviour, IGravityTunnelable
 
     private void DisableCrouch(InputAction.CallbackContext context)
     {
-		playerHeight /= heightMultiplier;
-		playerSpeed /= speedMultiplier;
-        transform.localScale = Vector3.one;
-		rb.position = new Vector3(transform.position.x, transform.position.y + (1 - heightMultiplier), transform.position.z);
+		if(!holdKey && isCrouched && !Physics.Raycast(transform.position, Vector3.up, playerHeight/heightMultiplier)){
+			playerHeight /= heightMultiplier;
+			playerSpeed /= speedMultiplier;
+        	transform.localScale = Vector3.one;
+			rb.position = new Vector3(transform.position.x, transform.position.y + (1 - heightMultiplier), transform.position.z);
+			isCrouched = false;
+		}
     }
 
     private void EnableCrouch(InputAction.CallbackContext context)
     {
-		playerHeight *= heightMultiplier;
-		playerSpeed *= speedMultiplier;
-		transform.localScale = new Vector3(1f, heightMultiplier, 1f);
-		rb.position = new Vector3(transform.position.x, transform.position.y - (1-heightMultiplier), transform.position.z);
+		if(holdKey && isCrouched && !Physics.Raycast(transform.position, Vector3.up, playerHeight/heightMultiplier)){
+			playerHeight /= heightMultiplier;
+			playerSpeed /= speedMultiplier;
+        	transform.localScale = Vector3.one;
+			rb.position = new Vector3(transform.position.x, transform.position.y + (1 - heightMultiplier), transform.position.z);
+			isCrouched = false;
+		}
+		else if (!isCrouched){
+			playerHeight *= heightMultiplier;
+			playerSpeed *= speedMultiplier;
+			transform.localScale = new Vector3(1f, heightMultiplier, 1f);
+			rb.position = new Vector3(transform.position.x, transform.position.y - (1-heightMultiplier), transform.position.z);
+			isCrouched = true;
+		}
     }
 
     private void OnDestroy()
@@ -100,7 +115,7 @@ public class PlayerController : MonoBehaviour, IGravityTunnelable
 
 	private void PlayerJump(InputAction.CallbackContext context)
 	{
-		if (grounded)
+		if (grounded && !isCrouched)
 		{
 			rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 			rb.AddForce(transform.up * jumpHeight, ForceMode.Impulse);
