@@ -88,8 +88,7 @@ public class PlayerController : MonoBehaviour, IGravityTunnelable
 	{
 		if (grounded)
 		{
-			rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
-			rb.AddForce(transform.up * jumpHeight, ForceMode.Impulse);
+			rb.velocity = new Vector3(rb.velocity.x, jumpHeight, rb.velocity.z);
 			readyToJump = false;
 			Invoke("ResetJump", jumpCooldown);
 		}
@@ -118,12 +117,20 @@ public class PlayerController : MonoBehaviour, IGravityTunnelable
 		playerVelocity = cameraTransform.forward * playerVelocity.z + cameraTransform.right * playerVelocity.x;
 		playerVelocity.y = temp;
 
+		if (rb.velocity.y > 0)
+		{
+			Debug.Log("1 " + rb.velocity.y);
+		}
 		if (tunnelsIn)
 		{
 			rb.velocity = gravTunnelDir;
 			playerVelocity.y = 0;
 			rb.velocity += playerVelocity * .08f;
-		}
+            if (rb.velocity.y > 0)
+            {
+                Debug.Log("2 " + rb.velocity.y);
+            }
+        }
 		else
 		{
 			//Leo Script
@@ -141,7 +148,7 @@ public class PlayerController : MonoBehaviour, IGravityTunnelable
                         rb.velocity = playerVelocity * playerSpeed;
                     }
 					*/
-                    rb.velocity = playerVelocity * playerSpeed;
+                    rb.velocity = new Vector3(playerVelocity.x, 0, playerVelocity.z) * playerSpeed + Vector3.up * playerVelocity.y;
                 }
 				else
 				{
@@ -152,10 +159,6 @@ public class PlayerController : MonoBehaviour, IGravityTunnelable
                 }
 				
 				// rb.MovePosition(playerVelocity * Time.deltaTime);
-			}
-			else if (!grounded)
-			{
-				rb.velocity += playerVelocity * airMultiplier * Time.deltaTime;
 			}
 		}
 		
@@ -194,8 +197,11 @@ public class PlayerController : MonoBehaviour, IGravityTunnelable
 
 	private void FixedUpdate()
 	{
+		Debug.Log("1 " + rb.velocity);
 		SpeedControl();
-		PlayerMovement();
+		Debug.Log("2 " + rb.velocity);
+        PlayerMovement();
+		Debug.Log("3 " + rb.velocity);
 		grounded = Physics.Raycast(rb.position, Vector3.down, playerHeight);
 
 		if (grounded)

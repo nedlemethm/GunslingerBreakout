@@ -552,9 +552,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cip: {fileID: 740923219}
   playerSpeed: 2.5
-  iceMaxSpeedMult: 2
-  iceGrip: 3
-  jumpHeight: 20
+  iceMaxSpeedMult: 0
+  iceGrip: 0
+  jumpHeight: 10
   jumpCooldown: 0
   airMultiplier: 0.5
   groundDrag: 1
