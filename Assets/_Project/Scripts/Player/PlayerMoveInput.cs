@@ -76,7 +76,7 @@ public class PlayerController : MonoBehaviour, IGravityTunnelable
 			rb.position = new Vector3(transform.position.x, transform.position.y + (1 - heightMultiplier), transform.position.z);
 			isCrouched = false;
 		}
-		else if (!isCrouched){
+		else if (!isCrouched && grounded){
 			playerHeight *= heightMultiplier;
 			playerSpeed *= speedMultiplier;
 			transform.localScale = new Vector3(1f, heightMultiplier, 1f);
@@ -178,7 +178,7 @@ public class PlayerController : MonoBehaviour, IGravityTunnelable
                         rb.velocity = playerVelocity * playerSpeed;
                     }
 					*/
-                    rb.velocity = playerVelocity * playerSpeed;
+                    rb.velocity = new Vector3(playerVelocity.x, 0, playerVelocity.z) * playerSpeed + Vector3.up * playerVelocity.y;
                 }
 				else
 				{
@@ -187,13 +187,12 @@ public class PlayerController : MonoBehaviour, IGravityTunnelable
 					float newSpeed = Mathf.Min(rb.velocity.magnitude, playerSpeed * iceMaxSpeedMult * 2.5f);
 					rb.velocity = rb.velocity.normalized * newSpeed;
                 }
-				
 				// rb.MovePosition(playerVelocity * Time.deltaTime);
-			}
+			}			
 			else if (!grounded)
 			{
-				rb.velocity += playerVelocity * airMultiplier * Time.deltaTime;
-			}
+                rb.velocity = new Vector3(playerVelocity.x, 0, playerVelocity.z) * playerSpeed * airMultiplier + Vector3.up * playerVelocity.y;
+            }
 		}
 		
 

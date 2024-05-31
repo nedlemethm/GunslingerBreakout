@@ -554,14 +554,17 @@ MonoBehaviour:
   playerSpeed: 2.5
   iceMaxSpeedMult: 2
   iceGrip: 3
-  jumpHeight: 20
+  jumpHeight: 7.5
   jumpCooldown: 0
-  airMultiplier: 0.5
+  airMultiplier: 0.78
   groundDrag: 1
   layer:
     serializedVersion: 2
     m_Bits: 1
   playerHeight: 1.25
+  heightMultiplier: 0.5
+  speedMultiplier: 0.5
+  holdKey: 0
 --- !u!143 &1133428110
 CharacterController:
   m_ObjectHideFlags: 0
