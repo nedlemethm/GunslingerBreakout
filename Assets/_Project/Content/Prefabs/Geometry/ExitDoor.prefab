@@ -1624,7 +1624,6 @@ MonoBehaviour:
   _rightDoor: {fileID: 1829593431048836666}
   _doorMoveDistance: 1
   _doorMoveSpeed: 1
-  _startOpen: 0
   _powerSources: []
 --- !u!1001 &1559771978833914731
 PrefabInstance:
@@ -1642,7 +1641,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: c1d3ac9f3ef294e4bb06562bc52a6cf4,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.01
+      value: -0.01
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c1d3ac9f3ef294e4bb06562bc52a6cf4,
         type: 3}
@@ -1662,7 +1661,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: c1d3ac9f3ef294e4bb06562bc52a6cf4,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.008726652
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c1d3ac9f3ef294e4bb06562bc52a6cf4,
         type: 3}
@@ -1672,7 +1671,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: c1d3ac9f3ef294e4bb06562bc52a6cf4,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.9999619
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c1d3ac9f3ef294e4bb06562bc52a6cf4,
         type: 3}
@@ -1687,7 +1686,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: c1d3ac9f3ef294e4bb06562bc52a6cf4,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 179
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c1d3ac9f3ef294e4bb06562bc52a6cf4,
         type: 3}
@@ -1707,7 +1706,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: c1d3ac9f3ef294e4bb06562bc52a6cf4,
         type: 3}
       propertyPath: m_Name
-      value: SM_Door_l (1)
+      value: SM_Door_r
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c1d3ac9f3ef294e4bb06562bc52a6cf4,
         type: 3}

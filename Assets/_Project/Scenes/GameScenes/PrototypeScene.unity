@@ -409,7 +409,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -813,9 +813,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 542807f742a344247b01f2dcf13985b2,
         type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 542807f742a344247b01f2dcf13985b2,
+        type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: c23af8cf9b787c54cb0839e422c94c6c, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 542807f742a344247b01f2dcf13985b2,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9e46582701f235f44bb54b90e0fc6a72, type: 2}
     - target: {fileID: 919132149155446097, guid: 542807f742a344247b01f2dcf13985b2,
         type: 3}
       propertyPath: m_Name
@@ -1646,7 +1656,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -1672,7 +1682,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 9e46582701f235f44bb54b90e0fc6a72, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3618,27 +3628,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8543658690209373390, guid: 58abd49a924bd444f8f97563bf996cfd,
         type: 3}
-      propertyPath: m_Enabled
-      value: 1
+      propertyPath: m_Size.x
+      value: 151.66
       objectReference: {fileID: 0}
-    - target: {fileID: 8980603662610377042, guid: 58abd49a924bd444f8f97563bf996cfd,
+    - target: {fileID: 8543658690209373390, guid: 58abd49a924bd444f8f97563bf996cfd,
         type: 3}
-      propertyPath: m_UseGravity
-      value: 1
+      propertyPath: m_Size.y
+      value: 94.7
       objectReference: {fileID: 0}
-    - target: {fileID: 8980603662610377042, guid: 58abd49a924bd444f8f97563bf996cfd,
+    - target: {fileID: 8543658690209373390, guid: 58abd49a924bd444f8f97563bf996cfd,
         type: 3}
-      propertyPath: m_Constraints
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8980603662610377042, guid: 58abd49a924bd444f8f97563bf996cfd,
-        type: 3}
-      propertyPath: m_IsKinematic
-      value: 1
+      propertyPath: m_Size.z
+      value: 126
       objectReference: {fileID: 0}
     - target: {fileID: 8982557150261524384, guid: 58abd49a924bd444f8f97563bf996cfd,
         type: 3}
-      propertyPath: m_LayerOverridePriority
+      propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -3654,6 +3659,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 52720439080344478, guid: 9be9d24f977eb0745b867402a8db5c87,
+        type: 3}
+      propertyPath: _powerSources.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 52720439080344478, guid: 9be9d24f977eb0745b867402a8db5c87,
         type: 3}
       propertyPath: _powerSources.Array.data[0]

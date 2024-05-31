@@ -75,6 +75,7 @@ public class Reflective : BulletBase
 
     private void OnTriggerEnter(Collider other)
     {
+        /*
         OverchargeOrb orb;
         if (other.gameObject.layer == LayerMask.NameToLayer("Reflective"))
         {
@@ -104,12 +105,30 @@ public class Reflective : BulletBase
                 gameObject.tag = _empTag;
             }
         }
+        */
     }
 
     protected override void OnCollisionEnter(Collision collision)
     {
-        TryElectronicsStuff(collision.gameObject);
-        base.OnCollisionEnter(collision);
+        //OverchargeOrb orb;
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Reflective"))
+        {
+            if (!hitSet)
+            {
+                Destroy(gameObject);
+                return;
+            }
+            rb.velocity = ReflectOnPlane(rb.velocity, nextWallHit.normal, nextWallHit.transform.up);
+            SetDirection(rb.velocity);
+            transform.rotation = Quaternion.LookRotation(rb.velocity);
+            transform.Rotate(Vector3.right, 90f);
+            TryElectronicsStuff(collision.gameObject);
+        }
+        else
+        {
+            base.OnCollisionEnter(collision);
+        }
+
     }
 
     private void TryElectronicsStuff(GameObject go)

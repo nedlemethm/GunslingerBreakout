@@ -46,4 +46,21 @@ public class OverchargeOrb : Activation
     {
         return overchargeMode;
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.GetComponent<Reflective>() != null)
+        {
+            if (overchargeMode)
+            {
+                //other.gameObject.GetComponent<MeshRenderer>().material.SetColor("_Color", powerChargeColor);
+                other.gameObject.tag = _overchargeTag;
+            }
+            else
+            {
+                //other.gameObject.GetComponent<MeshRenderer>().material.SetColor("Emission", powerChargeEmission * intensity);
+                other.gameObject.tag = _empTag;
+            }
+        }
+    }
 }
