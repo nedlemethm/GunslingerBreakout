@@ -32,6 +32,12 @@ public class PlayerController : MonoBehaviour, IGravityTunnelable
 	private Transform cameraTransform;
 	private Vector3 playerVelocity;
 
+	[Header("Crouch")]
+	[SerializeField] private float heightMultiplier;
+	[SerializeField] private float speedMultiplier;
+	[SerializeField] private bool holdKey;
+	private bool isCrouched;
+
 	private void Awake()
 	{
 		playerControls = new();
@@ -39,13 +45,44 @@ public class PlayerController : MonoBehaviour, IGravityTunnelable
 		playerControls.Player.Movement.performed += HandleMove;
 		playerControls.Player.Movement.started += HandleMove;
 		playerControls.Player.Movement.canceled += HandleMove;
+		playerControls.Player.Crouch.started += EnableCrouch;
+		playerControls.Player.Crouch.canceled += DisableCrouch;
 		playerControls.Enable();
 		
 		GameSignals.TOOLBAR_ENABLED.AddListener(DisableControls);
 		GameSignals.TOOLBAR_DISABLED.AddListener(EnableControls);
 	}
-	
-	private void OnDestroy()
+
+    private void DisableCrouch(InputAction.CallbackContext context)
+    {
+		if(!holdKey && isCrouched && !Physics.Raycast(transform.position, Vector3.up, playerHeight/heightMultiplier)){
+			playerHeight /= heightMultiplier;
+			playerSpeed /= speedMultiplier;
+        	transform.localScale = Vector3.one;
+			rb.position = new Vector3(transform.position.x, transform.position.y + (1 - heightMultiplier), transform.position.z);
+			isCrouched = false;
+		}
+    }
+
+    private void EnableCrouch(InputAction.CallbackContext context)
+    {
+		if(holdKey && isCrouched && !Physics.Raycast(transform.position, Vector3.up, playerHeight/heightMultiplier)){
+			playerHeight /= heightMultiplier;
+			playerSpeed /= speedMultiplier;
+        	transform.localScale = Vector3.one;
+			rb.position = new Vector3(transform.position.x, transform.position.y + (1 - heightMultiplier), transform.position.z);
+			isCrouched = false;
+		}
+		else if (!isCrouched){
+			playerHeight *= heightMultiplier;
+			playerSpeed *= speedMultiplier;
+			transform.localScale = new Vector3(1f, heightMultiplier, 1f);
+			rb.position = new Vector3(transform.position.x, transform.position.y - (1-heightMultiplier), transform.position.z);
+			isCrouched = true;
+		}
+    }
+
+    private void OnDestroy()
 	{
 		GameSignals.TOOLBAR_ENABLED.RemoveListener(DisableControls);
 		GameSignals.TOOLBAR_DISABLED.RemoveListener(EnableControls);
@@ -78,7 +115,7 @@ public class PlayerController : MonoBehaviour, IGravityTunnelable
 
 	private void PlayerJump(InputAction.CallbackContext context)
 	{
-		if (grounded)
+		if (grounded && !isCrouched)
 		{
 			rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 			rb.AddForce(transform.up * jumpHeight, ForceMode.Impulse);
