@@ -55,7 +55,7 @@ public class PlayerController : MonoBehaviour, IGravityTunnelable
 
     private void DisableCrouch(InputAction.CallbackContext context)
     {
-		if(!holdKey && isCrouched && !Physics.Raycast(transform.position, Vector3.up, playerHeight/heightMultiplier)){
+		if(holdKey && isCrouched && !Physics.Raycast(transform.position, Vector3.up, playerHeight/heightMultiplier)){
 			playerHeight /= heightMultiplier;
 			playerSpeed /= speedMultiplier;
         	transform.localScale = Vector3.one;
@@ -66,7 +66,7 @@ public class PlayerController : MonoBehaviour, IGravityTunnelable
 
     private void EnableCrouch(InputAction.CallbackContext context)
     {
-		if(holdKey && isCrouched && !Physics.Raycast(transform.position, Vector3.up, playerHeight/heightMultiplier)){
+		if(!holdKey && isCrouched && !Physics.Raycast(transform.position, Vector3.up, playerHeight/heightMultiplier)){
 			playerHeight /= heightMultiplier;
 			playerSpeed /= speedMultiplier;
         	transform.localScale = Vector3.one;
