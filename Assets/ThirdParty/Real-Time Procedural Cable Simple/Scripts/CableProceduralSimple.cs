@@ -62,7 +62,8 @@ public class CableProceduralSimple : MonoBehaviour
 	void Update () 
 	{
 		Draw();
-	}
+        vectorFromStartToEnd = endPointTransform.position - transform.position;
+    }
 
 
 
