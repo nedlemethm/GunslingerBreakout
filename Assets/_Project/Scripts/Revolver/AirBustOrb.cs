@@ -10,6 +10,8 @@ public class AirBustOrb : Activation
 
     [SerializeField] Animator animator;
 
+    [SerializeField] SphereCollider sphereCollider;
+
     public override void ToggleActivation()
     {
         Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius);
@@ -31,6 +33,8 @@ public class AirBustOrb : Activation
     IEnumerator Explode()
     {
         animator.SetTrigger("Explode");
+
+        sphereCollider.enabled = false;
 
         yield return new WaitForSeconds(2);
 

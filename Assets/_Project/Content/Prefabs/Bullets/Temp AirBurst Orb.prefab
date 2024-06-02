@@ -123,6 +123,7 @@ MonoBehaviour:
   explosionRadius: 20
   upwardMod: 0
   animator: {fileID: 5413874408941362456}
+  sphereCollider: {fileID: 8888675502302845786}
 --- !u!1001 &650387286796556585
 PrefabInstance:
   m_ObjectHideFlags: 0
