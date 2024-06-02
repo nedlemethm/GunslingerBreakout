@@ -12,6 +12,7 @@ TagManager:
   - CanPush
   - PowerCharge
   - EMP
+  - Ricochet
   layers:
   - Default
   - TransparentFX

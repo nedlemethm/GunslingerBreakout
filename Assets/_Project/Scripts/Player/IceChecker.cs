@@ -6,7 +6,7 @@ public class IceChecker : MonoBehaviour
 {
     private int iceCount = 0;
     [SerializeField] private PlayerController playerController;
-    [SerializeField] private CapsuleCollider playerCollider;
+    [SerializeField] private Collider playerCollider;
     [SerializeField] private PhysicMaterial icyMat;
     [SerializeField] private PhysicMaterial defaultMat;
 

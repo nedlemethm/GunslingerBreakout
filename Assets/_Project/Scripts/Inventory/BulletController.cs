@@ -8,7 +8,8 @@ using UnityEngine.InputSystem;
 public class BulletController : MonoBehaviour
 {
 	[SerializeField] private Transform _bulletPoint;
-	[SerializeField] private Camera _revolverCam;
+    [SerializeField] private Transform _revolver;
+    [SerializeField] private Camera _revolverCam;
 	[SerializeField] private LineRenderer _laser;
 	[SerializeField] private string _activationLayer;
 

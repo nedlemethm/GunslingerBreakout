@@ -25,7 +25,9 @@ public class PlayerController : MonoBehaviour, IGravityTunnelable
 
 	[Header("Groud Check")]
 	[SerializeField] private float playerHeight;
-	private bool grounded;
+	[SerializeField] private GameObject groundCheck;
+    [SerializeField] private float groundCheckRadius;
+    private bool grounded;
 	private bool _moving;
 	private bool inIce;
 	private Vector2 _moveDirection;
@@ -155,7 +157,7 @@ public class PlayerController : MonoBehaviour, IGravityTunnelable
 		playerVelocity = cameraTransform.forward * playerVelocity.z + cameraTransform.right * playerVelocity.x;
 		playerVelocity.y = temp;
 
-		if (tunnelsIn)
+		if (tunnelsIn && !_moving)
 		{
 			rb.velocity = gravTunnelDir;
 			playerVelocity.y = 0;
@@ -232,7 +234,9 @@ public class PlayerController : MonoBehaviour, IGravityTunnelable
 	{
 		SpeedControl();
 		PlayerMovement();
-		grounded = Physics.Raycast(rb.position, Vector3.down, playerHeight);
+		RaycastHit hit;
+		//grounded = Physics.Raycast(rb.position, Vector3.down, playerHeight);
+		grounded = Physics.SphereCast(rb.position, groundCheckRadius + .2f, Vector3.down, out hit, playerHeight);
 
 		if (grounded)
 		{

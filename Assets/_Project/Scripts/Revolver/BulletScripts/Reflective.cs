@@ -121,7 +121,7 @@ public class Reflective : BulletBase
             rb.velocity = ReflectOnPlane(rb.velocity, nextWallHit.normal, nextWallHit.transform.up);
             SetDirection(rb.velocity);
             transform.rotation = Quaternion.LookRotation(rb.velocity);
-            transform.Rotate(Vector3.right, 90f);
+            transform.Rotate(Vector3.right, 180f);
             TryElectronicsStuff(collision.gameObject);
         }
         else
