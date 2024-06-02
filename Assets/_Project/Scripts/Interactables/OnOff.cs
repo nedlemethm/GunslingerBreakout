@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class OnOff : MonoBehaviour
 {
-    private bool _isOn;
+    [SerializeField] protected bool _isOn;
     // Start is called before the first frame update
     void Start()
     {

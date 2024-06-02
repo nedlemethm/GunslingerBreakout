@@ -9,11 +9,12 @@ public class RestartLevel : MonoBehaviour
     [SerializeField] private string playerScene, uiScene;
     [SerializeField] private int _numOfRestarts = 0;
     [SerializeField] private float _timer = 0;
-    public RestartLevel instance;
+    public static RestartLevel instance;
+    private static int numOfInstances = 0;
     [SerializeField] private bool _isRunning;
 
     private PlayerControls _playerInput;
-    private bool _controlsMade = false;
+    private static bool _controlsMade;
 
     private void Awake()
     {
@@ -26,6 +27,7 @@ public class RestartLevel : MonoBehaviour
             instance = this;
         }
         DontDestroyOnLoad(gameObject);
+        numOfInstances++;
 
         if (!_controlsMade) 
         {
@@ -38,10 +40,22 @@ public class RestartLevel : MonoBehaviour
         }
     }
 
+    private void OnDestroy()
+    {
+        numOfInstances -= 1;
+        if (numOfInstances <= 0)
+        {
+            Destroy(instance);
+            _playerInput.Dispose();
+            _controlsMade = false;
+            _isRunning = false;
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
