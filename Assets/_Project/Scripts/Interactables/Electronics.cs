@@ -6,8 +6,8 @@ public class Electronics : OnOff
 {
     [SerializeField] private string _powerChargeTag;
     [SerializeField] private string _empTag;
-    [SerializeField] private bool _alreadyOn;
-    [SerializeField] private bool _alreadyOff;
+    private bool _alreadyOn;
+    private bool _alreadyOff;
 
     // Start is called before the first frame update
     void Start()

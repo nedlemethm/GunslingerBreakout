@@ -66,9 +66,9 @@ public class MovingPlatform : MovingGeometry
 
     private void OnTriggerStay(Collider other)
     {
-        if (GetMoving() && !other.isTrigger)
+        if (GetMoving())
         {
-            other.transform.SetParent(transform, true);           
+            other.transform.SetParent(transform, true);  
             //other.transform.position += transform.position - lastPos;
         }
     }
