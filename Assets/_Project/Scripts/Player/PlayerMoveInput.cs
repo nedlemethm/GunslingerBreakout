@@ -12,7 +12,9 @@ public class PlayerController : MonoBehaviour, IGravityTunnelable
 	[SerializeField] private CinemachineInputProvider _cip;
 	[Header("Movement")]
 	[SerializeField] private float playerSpeed;
-	[SerializeField] private float jumpHeight;
+	[SerializeField] private float iceMaxSpeedMult;
+	[SerializeField] private float iceGrip;
+    [SerializeField] private float jumpHeight;
 	[SerializeField] private float jumpCooldown;
 	[SerializeField] private float airMultiplier;
 	[SerializeField] private float groundDrag;
@@ -23,8 +25,11 @@ public class PlayerController : MonoBehaviour, IGravityTunnelable
 
 	[Header("Groud Check")]
 	[SerializeField] private float playerHeight;
-	private bool grounded;
+	[SerializeField] private GameObject groundCheck;
+    [SerializeField] private float groundCheckRadius;
+    private bool grounded;
 	private bool _moving;
+	private bool inIce;
 	private Vector2 _moveDirection;
 
 	private PlayerControls playerControls;
@@ -55,7 +60,7 @@ public class PlayerController : MonoBehaviour, IGravityTunnelable
 
     private void DisableCrouch(InputAction.CallbackContext context)
     {
-		if(!holdKey && isCrouched && !Physics.Raycast(transform.position, Vector3.up, playerHeight/heightMultiplier)){
+		if(holdKey && isCrouched && !Physics.Raycast(transform.position, Vector3.up, playerHeight/heightMultiplier)){
 			playerHeight /= heightMultiplier;
 			playerSpeed /= speedMultiplier;
         	transform.localScale = Vector3.one;
@@ -66,14 +71,14 @@ public class PlayerController : MonoBehaviour, IGravityTunnelable
 
     private void EnableCrouch(InputAction.CallbackContext context)
     {
-		if(holdKey && isCrouched && !Physics.Raycast(transform.position, Vector3.up, playerHeight/heightMultiplier)){
+		if(!holdKey && isCrouched && !Physics.Raycast(transform.position, Vector3.up, playerHeight/heightMultiplier)){
 			playerHeight /= heightMultiplier;
 			playerSpeed /= speedMultiplier;
         	transform.localScale = Vector3.one;
 			rb.position = new Vector3(transform.position.x, transform.position.y + (1 - heightMultiplier), transform.position.z);
 			isCrouched = false;
 		}
-		else if (!isCrouched){
+		else if (!isCrouched && grounded){
 			playerHeight *= heightMultiplier;
 			playerSpeed *= speedMultiplier;
 			transform.localScale = new Vector3(1f, heightMultiplier, 1f);
@@ -91,6 +96,11 @@ public class PlayerController : MonoBehaviour, IGravityTunnelable
 	private void OnDisable()
 	{
 		playerControls.Disable();
+	}
+
+	public void SetInIce(bool inIce)
+	{
+		this.inIce = inIce;
 	}
 	
 	private void EnableControls(ISignalParameters parameters)
@@ -147,7 +157,7 @@ public class PlayerController : MonoBehaviour, IGravityTunnelable
 		playerVelocity = cameraTransform.forward * playerVelocity.z + cameraTransform.right * playerVelocity.x;
 		playerVelocity.y = temp;
 
-		if (tunnelsIn)
+		if (tunnelsIn && !_moving)
 		{
 			rb.velocity = gravTunnelDir;
 			playerVelocity.y = 0;
@@ -158,21 +168,33 @@ public class PlayerController : MonoBehaviour, IGravityTunnelable
 			//Leo Script
 			if (grounded)
 			{
-				if(!_moving)
+				if (!inIce)
 				{
-					rb.velocity = playerVelocity * Time.deltaTime * playerSpeed;
-				}
+                    /*
+                    if (!_moving)
+                    {
+                        rb.velocity = playerVelocity * playerSpeed;
+                    }
+                    else
+                    {
+                        rb.velocity = playerVelocity * playerSpeed;
+                    }
+					*/
+                    rb.velocity = new Vector3(playerVelocity.x, 0, playerVelocity.z) * playerSpeed + Vector3.up * playerVelocity.y;
+                }
 				else
 				{
-					rb.velocity = playerVelocity * Time.deltaTime * playerSpeed;
-				}
-				
+					playerVelocity.y = 0;
+                    rb.velocity += playerVelocity * iceGrip * Time.deltaTime;
+					float newSpeed = Mathf.Min(rb.velocity.magnitude, playerSpeed * iceMaxSpeedMult * 2.5f);
+					rb.velocity = rb.velocity.normalized * newSpeed;
+                }
 				// rb.MovePosition(playerVelocity * Time.deltaTime);
-			}
+			}			
 			else if (!grounded)
 			{
-				rb.velocity += playerVelocity * airMultiplier * Time.deltaTime;
-			}
+                rb.velocity = new Vector3(playerVelocity.x, 0, playerVelocity.z) * playerSpeed * airMultiplier + Vector3.up * playerVelocity.y;
+            }
 		}
 		
 
@@ -195,25 +217,37 @@ public class PlayerController : MonoBehaviour, IGravityTunnelable
 
 	private void SpeedControl()
 	{
-		Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+		if (!inIce)
+        {
+            Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 
-		//limit velocity if needed
-		if (flatVel.magnitude > playerSpeed)
-		{
-			Vector3 limitedVel = flatVel.normalized * playerSpeed;
-			rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
-		}
+            //limit velocity if needed
+            if (flatVel.magnitude > playerSpeed)
+            {
+                Vector3 limitedVel = flatVel.normalized * playerSpeed;
+                rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
+            }
+        }
 	}
 
 	private void FixedUpdate()
 	{
 		SpeedControl();
 		PlayerMovement();
-		grounded = Physics.Raycast(rb.position, Vector3.down, playerHeight);
+		RaycastHit hit;
+		//grounded = Physics.Raycast(rb.position, Vector3.down, playerHeight);
+		grounded = Physics.SphereCast(rb.position, groundCheckRadius + .2f, Vector3.down, out hit, playerHeight);
 
 		if (grounded)
 		{
-			rb.drag = groundDrag;
+			if (!inIce)
+            {
+                rb.drag = groundDrag;
+            }
+			else
+			{
+				rb.drag = 0f;
+			}
 			readyToJump = true;
 		}
 		else

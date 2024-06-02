@@ -9,11 +9,11 @@ public class RestartLevel : MonoBehaviour
     [SerializeField] private string playerScene, uiScene;
     [SerializeField] private int _numOfRestarts = 0;
     [SerializeField] private float _timer = 0;
-    public static RestartLevel instance;
+    public RestartLevel instance;
     [SerializeField] private bool _isRunning;
 
     private PlayerControls _playerInput;
-    private static bool _controlsMade = false;
+    private bool _controlsMade = false;
 
     private void Awake()
     {
