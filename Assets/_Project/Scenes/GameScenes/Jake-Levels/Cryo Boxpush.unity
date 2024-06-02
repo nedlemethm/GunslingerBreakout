@@ -5462,6 +5462,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Push_Pull Cube
       objectReference: {fileID: 0}
+    - target: {fileID: 5689761202786638753, guid: 227bd6420cf097346b2c57d15ef83eef,
+        type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5689761202786638753, guid: 227bd6420cf097346b2c57d15ef83eef,
+        type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
