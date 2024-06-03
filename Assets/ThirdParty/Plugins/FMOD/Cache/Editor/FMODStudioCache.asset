@@ -1,5 +1,26 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7872694532650426491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.strings.bank
+  m_EditorClassIdentifier: 
+  Path: C:/Users/Nikky Paragili/Documents/GitHub/GunslingerBreakout/GunslingerBreakout/Assets/ThirdParty/FMOD
+    Assets/Desktop/Master.strings.bank
+  Name: Master.strings
+  StudioPath: bank:/Master.strings
+  lastModified: 638530086364063586
+  FileSizes:
+  - Name: Desktop
+    Value: 1132
+  Exists: 1
 --- !u!114 &-7729200921553518956
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20,6 +41,87 @@ MonoBehaviour:
   - Name: 
     Value: 758
   Exists: 1
+--- !u!114 &-6559954492857522730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/AirBurstShot
+  m_EditorClassIdentifier: 
+  Path: event:/AirBurstShot
+  Guid:
+    Data1: 1997696476
+    Data2: 1272482391
+    Data3: -1924640339
+    Data4: 1352867873
+  Banks:
+  - {fileID: 2913297154754508909}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1000
+--- !u!114 &-4329329862494377274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/RicoBullet
+  m_EditorClassIdentifier: 
+  Path: event:/RicoBullet
+  Guid:
+    Data1: -595477096
+    Data2: 1155874464
+    Data3: 1667800976
+    Data4: -857401832
+  Banks:
+  - {fileID: 2913297154754508909}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2000
+--- !u!114 &-3276875734324351039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/AirBurstExplo
+  m_EditorClassIdentifier: 
+  Path: event:/AirBurstExplo
+  Guid:
+    Data1: 308371476
+    Data2: 1294927516
+    Data3: -589775448
+    Data4: 1413246304
+  Banks:
+  - {fileID: 2913297154754508909}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2000
 --- !u!114 &-1788566804158795041
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38,6 +140,33 @@ MonoBehaviour:
   lastModified: 638494076742774469
   FileSizes: []
   Exists: 1
+--- !u!114 &-1197812936449017809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/ElectricShot
+  m_EditorClassIdentifier: 
+  Path: event:/ElectricShot
+  Guid:
+    Data1: -269264547
+    Data2: 1245077023
+    Data3: 198715287
+    Data4: -101311306
+  Banks:
+  - {fileID: 2913297154754508909}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1253
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -51,17 +180,181 @@ MonoBehaviour:
   m_Name: FMODStudioCache
   m_EditorClassIdentifier: 
   EditorBanks:
-  - {fileID: -7729200921553518956}
-  - {fileID: -1788566804158795041}
+  - {fileID: -7872694532650426491}
+  - {fileID: 2913297154754508909}
   EditorEvents:
-  - {fileID: 7810001333246930435}
+  - {fileID: -3276875734324351039}
+  - {fileID: 4764144374064274975}
+  - {fileID: 6058361040067167443}
+  - {fileID: -1197812936449017809}
+  - {fileID: -4329329862494377274}
+  - {fileID: 1534416544562216175}
+  - {fileID: 3811392189778676109}
+  - {fileID: 2414301446976304231}
+  - {fileID: -6559954492857522730}
   EditorParameters: []
   MasterBanks:
-  - {fileID: -1788566804158795041}
+  - {fileID: 2913297154754508909}
   StringsBanks:
-  - {fileID: -7729200921553518956}
-  cacheTime: 638494076742784478
+  - {fileID: -7872694532650426491}
+  cacheTime: 638530086364063586
   cacheVersion: 131617
+--- !u!114 &1534416544562216175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/LevelSoundTrack
+  m_EditorClassIdentifier: 
+  Path: event:/LevelSoundTrack
+  Guid:
+    Data1: -2055680592
+    Data2: 1293189424
+    Data3: 1265396634
+    Data4: 447209657
+  Banks:
+  - {fileID: 2913297154754508909}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 86496
+--- !u!114 &2414301446976304231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/GunReload
+  m_EditorClassIdentifier: 
+  Path: event:/GunReload
+  Guid:
+    Data1: -2112948012
+    Data2: 1181956249
+    Data3: -1528157042
+    Data4: -426537597
+  Banks:
+  - {fileID: 2913297154754508909}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1306
+--- !u!114 &2913297154754508909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: C:/Users/Nikky Paragili/Documents/GitHub/GunslingerBreakout/GunslingerBreakout/Assets/ThirdParty/FMOD
+    Assets/Desktop/Master.bank
+  Name: Master
+  StudioPath: bank:/Master
+  lastModified: 638530086364043571
+  FileSizes:
+  - Name: Desktop
+    Value: 1572000
+  Exists: 1
+--- !u!114 &3811392189778676109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/ElectricRicoBullet
+  m_EditorClassIdentifier: 
+  Path: event:/ElectricRicoBullet
+  Guid:
+    Data1: -1718987831
+    Data2: 1139165858
+    Data3: -1080118887
+    Data4: 1183576907
+  Banks:
+  - {fileID: 2913297154754508909}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1071
+--- !u!114 &4764144374064274975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/basicGunShot
+  m_EditorClassIdentifier: 
+  Path: event:/basicGunShot
+  Guid:
+    Data1: 486167584
+    Data2: 1130394559
+    Data3: 962022809
+    Data4: 1639013160
+  Banks:
+  - {fileID: 2913297154754508909}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1000
+--- !u!114 &6058361040067167443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/MainMenuTheme
+  m_EditorClassIdentifier: 
+  Path: event:/MainMenuTheme
+  Guid:
+    Data1: 1964058667
+    Data2: 1210037724
+    Data3: -1584450890
+    Data4: -1013211346
+  Banks:
+  - {fileID: 2913297154754508909}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 29356
 --- !u!114 &7810001333246930435
 MonoBehaviour:
   m_ObjectHideFlags: 0

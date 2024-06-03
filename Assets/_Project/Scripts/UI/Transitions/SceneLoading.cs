@@ -18,10 +18,7 @@ public class SceneLoading : MonoBehaviour
         }
         else
         {
-            if (FindAnyObjectByType(typeof(RestartLevel)) != null)
-            {
-                Destroy(FindAnyObjectByType(typeof(RestartLevel)));
-            }
+            Destroy(GameObject.Find("GameManager"));
             SceneManager.LoadScene(mainScene);
         }
     }
