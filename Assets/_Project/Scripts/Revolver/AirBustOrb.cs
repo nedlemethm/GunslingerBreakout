@@ -9,6 +9,9 @@ public class AirBustOrb : Activation
     [SerializeField] private float upwardMod;
 
     [SerializeField] Animator animator;
+    [SerializeField]
+    FMODUnity.EventReference AirBurstExplo;
+
 
     [SerializeField] SphereCollider sphereCollider;
 
@@ -33,6 +36,8 @@ public class AirBustOrb : Activation
     IEnumerator Explode()
     {
         animator.SetTrigger("Explode");
+
+        FMODUnity.RuntimeManager.PlayOneShot(AirBurstExplo);
 
         sphereCollider.enabled = false;
 

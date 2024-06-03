@@ -123,6 +123,13 @@ MonoBehaviour:
   explosionRadius: 30
   upwardMod: 2
   animator: {fileID: 5413874408941362456}
+  AirBurstExplo:
+    Guid:
+      Data1: 308371476
+      Data2: 1294927516
+      Data3: -589775448
+      Data4: 1413246304
+    Path: event:/AirBurstExplo
   sphereCollider: {fileID: 8888675502302845786}
 --- !u!1001 &650387286796556585
 PrefabInstance:
