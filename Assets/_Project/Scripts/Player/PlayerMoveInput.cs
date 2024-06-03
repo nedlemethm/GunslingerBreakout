@@ -157,11 +157,11 @@ public class PlayerController : MonoBehaviour, IGravityTunnelable
 		playerVelocity = cameraTransform.forward * playerVelocity.z + cameraTransform.right * playerVelocity.x;
 		playerVelocity.y = temp;
 
-		if (tunnelsIn && !_moving)
+		if (tunnelsIn)
 		{
-			rb.velocity = gravTunnelDir;
-			playerVelocity.y = 0;
-			rb.velocity += playerVelocity * .08f;
+            playerVelocity.y = 0;
+            rb.velocity = gravTunnelDir * (playerSpeed/2);
+            rb.velocity += playerVelocity;
 		}
 		else
 		{

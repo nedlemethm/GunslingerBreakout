@@ -15,18 +15,10 @@ MonoBehaviour:
   name: Power Charge
   description: 
   artwork: {fileID: 0}
+  icon: {fileID: 21300000, guid: 51beb249738c7df4e8a4d32ecec4889f, type: 3}
   model: {fileID: 7777854130187012980, guid: b4c34d5d60037b145b4f5e1d6f52d65c, type: 3}
   color: {r: 1, g: 0.94415843, b: 0, a: 1}
   visualEffect: {fileID: 0}
   gunshotSound: {fileID: 0}
-  gunshotSoundFMOD:
-    Guid:
-      Data1: -269264547
-      Data2: 1245077023
-      Data3: 198715287
-      Data4: -101311306
-    Path: event:/ElectricShot
-  remoteSecondaryFire: 0
-  bulletSpeed: 20
-  secondaryFireActivated: 0
+  bulletSpeed: 40
   showLaser: 0

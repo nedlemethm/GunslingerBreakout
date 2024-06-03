@@ -20,5 +20,5 @@ MonoBehaviour:
   color: {r: 0.098039225, g: 0.8470589, b: 0.85098046, a: 1}
   visualEffect: {fileID: 0}
   gunshotSound: {fileID: 0}
-  bulletSpeed: 20
+  bulletSpeed: 40
   showLaser: 0

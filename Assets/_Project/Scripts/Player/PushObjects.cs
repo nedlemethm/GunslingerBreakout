@@ -38,6 +38,7 @@ public class PushObjects : MonoBehaviour
                 //Check if the object has the tag to push objects and if it has an icy physics material
                 if(target.GetComponent<Collider>().material.name == material && target.tag == pushTag)
                 {
+                    target.AddComponent<FixedJoint>();
                     target.GetComponent<FixedJoint>().connectedBody = GetComponent<Rigidbody>();
                     Physics.IgnoreCollision(target.GetComponent<Collider>(), GetComponent<Collider>(), true);
                     //Interpolation is to make the movement of the object look smooth
@@ -47,11 +48,12 @@ public class PushObjects : MonoBehaviour
             }
         }
         else{
-            target.GetComponent<FixedJoint>().connectedBody = null;
+            //target.GetComponent<FixedJoint>().connectedBody = null;
             Physics.IgnoreCollision(target.GetComponent<Collider>(), GetComponent<Collider>(), false);
             //Interpolation should get deactivated because it can be very expensive.
             target.GetComponent<Rigidbody>().interpolation = RigidbodyInterpolation.None;
             isConnected = false;
+            Destroy(target.GetComponent<FixedJoint>());
         }
     }
 }

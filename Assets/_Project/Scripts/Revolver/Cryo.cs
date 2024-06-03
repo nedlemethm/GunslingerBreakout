@@ -43,6 +43,7 @@ public class Cryo : BulletBase
         {
             collision.gameObject.GetComponent<Collider>().material = icyMaterial;
             collision.gameObject.GetComponent<Rigidbody>().isKinematic = false;
+            collision.gameObject.GetComponent<Rigidbody>().mass /= 2;
         }
         Destroy(gameObject);
     }

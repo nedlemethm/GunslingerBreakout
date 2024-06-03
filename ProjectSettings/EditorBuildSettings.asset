@@ -23,4 +23,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Project/Scenes/Game Transitions/TestResults.unity
     guid: 310fbaaccccf11442af5d8c474162728
+  - enabled: 1
+    path: Assets/_Project/Scenes/GameScenes/Jake-Levels/Cryo Boxpush.unity
+    guid: f14c479d831cbe343ab4eb283fb8fa2c
+  - enabled: 1
+    path: Assets/_Project/Scenes/GameScenes/Jake-Levels/Gravity Vert.unity
+    guid: 29e9c536f63273a4795d3e44e66d3933
+  - enabled: 1
+    path: Assets/_Project/Scenes/GameScenes/Jake-Levels/Ricochet Level.unity
+    guid: 127f4c4ab064bdb4caab69c464d3bc9a
+  - enabled: 1
+    path: Assets/_Project/Scenes/GameScenes/Leo-Levels/AllBulletsLevel.unity
+    guid: 7fdb9361a0c6c81498304d8a5e4cef54
   m_configObjects: {}

@@ -6,6 +6,7 @@ public class Electronics : OnOff
 {
     [SerializeField] private string _powerChargeTag;
     [SerializeField] private string _empTag;
+    [SerializeField] private GameObject _particleSystem;
     private bool _alreadyOn;
     private bool _alreadyOff;
 
@@ -14,6 +15,14 @@ public class Electronics : OnOff
     {
         _alreadyOn = GetStatus();
         _alreadyOff = !GetStatus();
+        if (GetStatus())
+        {
+            _particleSystem.SetActive(true);
+        }
+        else
+        {
+            _particleSystem.SetActive(false);
+        }
     }
 
     // Update is called once per frame
@@ -29,12 +38,14 @@ public class Electronics : OnOff
             SetOn();
             _alreadyOn = true;
             _alreadyOff= false;
+            _particleSystem.SetActive(true);
         }
         else if (other.gameObject.CompareTag(_empTag) && !_alreadyOff) 
         {     
             SetOff();
             _alreadyOn = false;
             _alreadyOff = true;
+            _particleSystem.SetActive(false);
         } 
     }
 }

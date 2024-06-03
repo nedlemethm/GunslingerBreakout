@@ -49,7 +49,7 @@ public class LeftHandPickUp : MonoBehaviour
     {
         if (heldObject == null){
                 RaycastHit hit;
-                if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, pickUpRange))
+                if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, pickUpRange, 11)) //add later variable for activation layer
                 {
                     if (hit.transform.gameObject.tag == objectTag)
                     {
