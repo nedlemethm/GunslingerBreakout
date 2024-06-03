@@ -19,6 +19,10 @@ public class BulletDragUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     [SerializeField] private Sprite draggedSprite;
     [SerializeField] private Vector2 draggedDimensions;
 
+    private Vector3 originalRotation;
+    private Color originalColor;
+    private string originalText;
+
     [HideInInspector] public int inventorySlotIndex;
     [HideInInspector] public int currentSlotIndex;
 
@@ -31,15 +35,23 @@ public class BulletDragUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         if (!draggable)
             return;
 
+        originalRotation = rectTransform.localEulerAngles;
+        originalColor = image.color;
+        originalText = bulletName.text;
+
         parentAfterDrag = transform.parent;
         transform.SetParent(transform.root);
         transform.SetAsLastSibling();
         image.raycastTarget = false;
 
+        bulletName.text = null;
+
         image.sprite = draggedSprite;
+        image.color = Color.white;
 
         rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, draggedDimensions.x);
         rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, draggedDimensions.y);
+        rectTransform.localEulerAngles = Vector3.zero;
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -47,7 +59,6 @@ public class BulletDragUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         if (!draggable)
             return;
         
-        bulletName.text = null;
         transform.position = Input.mousePosition;
     }
 
@@ -56,12 +67,17 @@ public class BulletDragUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         if (!draggable)
             return;
 
-        bulletName.text = bulletObject.name.ToUpper();
         transform.SetParent(parentAfterDrag);
         image.raycastTarget = true;
+        rectTransform.localScale = Vector3.one;
 
         if (!loaded)
+        {
             image.sprite = normalSprite;
+            image.color = originalColor;
+            rectTransform.localEulerAngles = originalRotation;
+            bulletName.text = originalText;
+        }
     }
 
     //Visual Functions
@@ -73,6 +89,8 @@ public class BulletDragUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         bulletObject = bulletObj;
         currentSlotIndex = index;
         inventorySlotIndex = index;
+
+        draggedSprite = bulletObject.icon;
 
         image.color = bulletObject.color;
         bulletName.text = bulletObject.name.ToUpper();

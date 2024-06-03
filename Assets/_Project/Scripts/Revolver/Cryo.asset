@@ -15,18 +15,10 @@ MonoBehaviour:
   name: Cryo
   description: 
   artwork: {fileID: 0}
+  icon: {fileID: 21300000, guid: 9dd7cd1cbe01959418abf602524bd532, type: 3}
   model: {fileID: 3958535200533589531, guid: 5908cf28327e745b99d5965efd6e7e9e, type: 3}
   color: {r: 0.098039225, g: 0.8470589, b: 0.85098046, a: 1}
   visualEffect: {fileID: 0}
   gunshotSound: {fileID: 0}
-  gunshotSoundFMOD:
-    Guid:
-      Data1: 486167584
-      Data2: 1130394559
-      Data3: 962022809
-      Data4: 1639013160
-    Path: event:/basicGunShot
-  remoteSecondaryFire: 0
   bulletSpeed: 20
-  secondaryFireActivated: 0
   showLaser: 0

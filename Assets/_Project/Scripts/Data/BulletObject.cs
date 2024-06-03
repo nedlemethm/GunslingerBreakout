@@ -12,6 +12,7 @@ public class BulletObject : ScriptableObject
     public string description;
 
     public Sprite artwork;
+    public Sprite icon;
     public GameObject model;
     public Color color;
     public VisualEffect visualEffect;

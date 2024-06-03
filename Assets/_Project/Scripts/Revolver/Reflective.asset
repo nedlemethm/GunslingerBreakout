@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Ricochet
   description: 
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: 93a3ceffcf412d94caae8fd519f36037, type: 3}
+  icon: {fileID: 21300000, guid: 2fab6889803fe7b478eeaa3b967c4413, type: 3}
   model: {fileID: 7777854130187012980, guid: d08939f55c895864a85f0887871ddd20, type: 3}
   color: {r: 0.9176471, g: 0.41960788, b: 0.45882356, a: 1}
   visualEffect: {fileID: 0}

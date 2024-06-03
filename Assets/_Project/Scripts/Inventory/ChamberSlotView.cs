@@ -15,6 +15,8 @@ public class ChamberSlotView : MonoBehaviour, IDropHandler
     private BulletDragUI bulletDragUI;
 	private BulletController _controller;
 
+    [SerializeField] public ChamberSlotAnimation anim;
+
     [SerializeField] private BulletView bulletView;
 
     private bool swapping;
@@ -27,6 +29,7 @@ public class ChamberSlotView : MonoBehaviour, IDropHandler
         //_bulletImage = GetComponent<Image>();
         //_bulletImage.color = _bulletToDisplay != null ? _bulletToDisplay.color : Color.white;
         _bulletToDisplay = bulletToDisplay;
+        anim.UpdateBullet(_bulletToDisplay);
 
         if (_bulletToDisplay == null && bulletDragUI != null) //This chamber slot has been fired
         {

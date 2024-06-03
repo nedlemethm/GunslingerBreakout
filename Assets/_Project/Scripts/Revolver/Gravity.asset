@@ -15,18 +15,10 @@ MonoBehaviour:
   name: Gravity
   description: 
   artwork: {fileID: 0}
+  icon: {fileID: 21300000, guid: f17ed3e0a813d0541b0baeb3989fd77c, type: 3}
   model: {fileID: 7777854130187012980, guid: b7f9bf62bf69bb145aec51613c7f8847, type: 3}
   color: {r: 0, g: 0.54639816, b: 1, a: 1}
   visualEffect: {fileID: 0}
   gunshotSound: {fileID: 0}
-  gunshotSoundFMOD:
-    Guid:
-      Data1: 486167584
-      Data2: 1130394559
-      Data3: 962022809
-      Data4: 1639013160
-    Path: event:/basicGunShot
-  remoteSecondaryFire: 0
   bulletSpeed: 20
-  secondaryFireActivated: 0
   showLaser: 0
