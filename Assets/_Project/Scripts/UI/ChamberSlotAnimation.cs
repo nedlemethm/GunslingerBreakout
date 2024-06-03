@@ -23,7 +23,7 @@ public class ChamberSlotAnimation : MonoBehaviour
         if (waifuRoutine != null)
             StopCoroutine(waifuRoutine);
 
-        if (flag && currentBullet != null)
+        if (flag && currentBullet != null && currentBullet.artwork != null)
         {
             waifuRoutine = StartCoroutine(EnableWaifu());
         }

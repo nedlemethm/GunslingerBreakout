@@ -19,6 +19,10 @@ public class BulletDragUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     [SerializeField] private Sprite draggedSprite;
     [SerializeField] private Vector2 draggedDimensions;
 
+    private Vector3 originalRotation;
+    private Color originalColor;
+    private string originalText;
+
     [HideInInspector] public int inventorySlotIndex;
     [HideInInspector] public int currentSlotIndex;
 
@@ -31,10 +35,16 @@ public class BulletDragUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         if (!draggable)
             return;
 
+        originalRotation = rectTransform.localEulerAngles;
+        originalColor = image.color;
+        originalText = bulletName.text;
+
         parentAfterDrag = transform.parent;
         transform.SetParent(transform.root);
         transform.SetAsLastSibling();
         image.raycastTarget = false;
+
+        bulletName.text = null;
 
         image.sprite = draggedSprite;
         image.color = Color.white;
@@ -49,7 +59,6 @@ public class BulletDragUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         if (!draggable)
             return;
         
-        bulletName.text = null;
         transform.position = Input.mousePosition;
     }
 
@@ -63,7 +72,12 @@ public class BulletDragUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         rectTransform.localScale = Vector3.one;
 
         if (!loaded)
+        {
             image.sprite = normalSprite;
+            image.color = originalColor;
+            rectTransform.localEulerAngles = originalRotation;
+            bulletName.text = originalText;
+        }
     }
 
     //Visual Functions
