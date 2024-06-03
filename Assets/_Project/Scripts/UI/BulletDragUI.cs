@@ -41,7 +41,7 @@ public class BulletDragUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
 
         rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, draggedDimensions.x);
         rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, draggedDimensions.y);
-
+        rectTransform.localEulerAngles = Vector3.zero;
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -60,6 +60,7 @@ public class BulletDragUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
 
         transform.SetParent(parentAfterDrag);
         image.raycastTarget = true;
+        rectTransform.localScale = Vector3.one;
 
         if (!loaded)
             image.sprite = normalSprite;
