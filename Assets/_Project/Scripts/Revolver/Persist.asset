@@ -15,6 +15,7 @@ MonoBehaviour:
   name: Perist
   description: It should freeze objects that it collides with
   artwork: {fileID: 0}
+  icon: {fileID: 21300000, guid: aa4a8c4f436a43f40b846266cbf65a7e, type: 3}
   model: {fileID: 3958535200533589531, guid: 5f777e3bbc2cd47f484d73df85832235, type: 3}
   color: {r: 0.4339623, g: 0.4339623, b: 0.4339623, a: 1}
   visualEffect: {fileID: 0}
