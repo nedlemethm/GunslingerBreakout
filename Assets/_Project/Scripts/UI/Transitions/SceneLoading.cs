@@ -18,6 +18,10 @@ public class SceneLoading : MonoBehaviour
         }
         else
         {
+            if (FindAnyObjectByType(typeof(RestartLevel)) != null)
+            {
+                Destroy(FindAnyObjectByType(typeof(RestartLevel)));
+            }
             SceneManager.LoadScene(mainScene);
         }
     }

@@ -27,6 +27,7 @@ public class FinishLevel : MonoBehaviour
         if (other.gameObject.tag == playerTag)
         {
             SceneManager.LoadScene(resultsScene);
+            Cursor.lockState = CursorLockMode.None;
             instance.StopTime();
         }
     }

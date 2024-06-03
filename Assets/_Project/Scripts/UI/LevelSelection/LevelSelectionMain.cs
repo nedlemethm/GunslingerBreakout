@@ -50,8 +50,8 @@ public class LevelSelectionMain : MonoBehaviour
     {
         Scene lastScene = SceneManager.GetActiveScene();
 
-        yield return StartCoroutine(LoadSceneAdd(playerScene));
         yield return StartCoroutine(LoadSceneAdd(uiScene));
+        yield return StartCoroutine(LoadSceneAdd(playerScene));
         yield return StartCoroutine(LoadSceneAdd(mainScene));
         SceneManager.SetActiveScene(SceneManager.GetSceneByName(mainScene));
 
