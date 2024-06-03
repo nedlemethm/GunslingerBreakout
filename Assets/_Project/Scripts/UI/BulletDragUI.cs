@@ -37,9 +37,11 @@ public class BulletDragUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         image.raycastTarget = false;
 
         image.sprite = draggedSprite;
+        image.color = Color.white;
 
         rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, draggedDimensions.x);
         rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, draggedDimensions.y);
+
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -56,7 +58,6 @@ public class BulletDragUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         if (!draggable)
             return;
 
-        bulletName.text = bulletObject.name.ToUpper();
         transform.SetParent(parentAfterDrag);
         image.raycastTarget = true;
 
@@ -73,6 +74,8 @@ public class BulletDragUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         bulletObject = bulletObj;
         currentSlotIndex = index;
         inventorySlotIndex = index;
+
+        draggedSprite = bulletObject.icon;
 
         image.color = bulletObject.color;
         bulletName.text = bulletObject.name.ToUpper();
