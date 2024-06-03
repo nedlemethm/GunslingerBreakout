@@ -10227,7 +10227,7 @@ MonoBehaviour:
   Event: 
   PlayEvent: 1
   StopEvent: 2
-  AllowFadeout: 1
+  AllowFadeout: 0
   TriggerOnce: 0
   Preload: 0
   AllowNonRigidbodyDoppler: 0
