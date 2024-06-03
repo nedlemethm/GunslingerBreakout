@@ -8,6 +8,10 @@ public class AirBustOrb : Activation
     [SerializeField] private float explosionRadius;
     [SerializeField] private float upwardMod;
 
+    [SerializeField] Animator animator;
+
+    [SerializeField] SphereCollider sphereCollider;
+
     public override void ToggleActivation()
     {
         Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius);
@@ -20,7 +24,20 @@ public class AirBustOrb : Activation
                 rb.AddExplosionForce(explosionForce, transform.position, explosionRadius, upwardMod);
             }
         }
-        Destroy(gameObject);
+
+        StartCoroutine(Explode());
+
         base.ToggleActivation();
+    }
+
+    IEnumerator Explode()
+    {
+        animator.SetTrigger("Explode");
+
+        sphereCollider.enabled = false;
+
+        yield return new WaitForSeconds(2);
+
+        Destroy(gameObject);
     }
 }
