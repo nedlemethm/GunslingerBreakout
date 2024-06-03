@@ -19,7 +19,5 @@ MonoBehaviour:
   color: {r: 0.4339623, g: 0.4339623, b: 0.4339623, a: 1}
   visualEffect: {fileID: 0}
   gunshotSound: {fileID: 0}
-  remoteSecondaryFire: 0
-  bulletSpeed: 80
-  secondaryFireActivated: 0
+  bulletSpeed: 100
   showLaser: 0

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class MovingPlatform : MovingGeometry
@@ -67,7 +68,13 @@ public class MovingPlatform : MovingGeometry
     {
         if (GetMoving() && !other.isTrigger)
         {
-            other.transform.position += transform.position - lastPos;
+            other.transform.SetParent(transform, true);           
+            //other.transform.position += transform.position - lastPos;
         }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        other.transform.SetParent(null);
     }
 }

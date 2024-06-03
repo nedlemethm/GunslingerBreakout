@@ -8,7 +8,8 @@ using UnityEngine.InputSystem;
 public class BulletController : MonoBehaviour
 {
 	[SerializeField] private Transform _bulletPoint;
-	[SerializeField] private Camera _revolverCam;
+    [SerializeField] private Transform _revolver;
+    [SerializeField] private Camera _revolverCam;
 	[SerializeField] private LineRenderer _laser;
 	[SerializeField] private string _activationLayer;
 
@@ -78,8 +79,9 @@ public class BulletController : MonoBehaviour
 		{
             if (_bulletModel.BulletToShoot.showLaser)
             {
-				Debug.Log("i love life");
-                Ray ray = _revolverCam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+				//Debug.Log("i love life");
+				//Ray ray = _revolverCam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+				Ray ray = new Ray(_bulletPoint.position, CalcDirection());
                 RaycastHit hit;
 
                 //check if ray hits something
