@@ -117,18 +117,14 @@ public class BulletView : MonoBehaviour
 
 	public void UpdateWaifu(int chamberIndex)
 	{
-		if (_chamberBullets[chamberIndex] != null)
-		{
-			if (_chamberBullets[chamberIndex].artwork == null)
-				return;
+        for (int i = 0; i < _chamberBullets.Length; i++)
+        {
+            ChamberSlotView view = _chamberSlots.ElementAt(i);
 
-            waifuImage.sprite = _chamberBullets[chamberIndex].artwork;
-            bulletViewAnimation.ToggleWaifu(true);
-		}
-		else
-		{
-            bulletViewAnimation.ToggleWaifu(false);
-            //waifuImage.sprite = null;
+            if (i == chamberIndex)
+                view.anim.ToggleWaifu(true);
+			else
+                view.anim.ToggleWaifu(false);
         }
-	}
+    }
 }
