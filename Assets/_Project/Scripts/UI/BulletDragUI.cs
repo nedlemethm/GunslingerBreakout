@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using TMPro;
 using UnityEngine.UI;
 
 public class BulletDragUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
@@ -13,6 +14,7 @@ public class BulletDragUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     [SerializeField] private RectTransform rectTransform;
     [SerializeField] private Image image;
     [SerializeField] private Sprite normalSprite;
+    [SerializeField] private TextMeshProUGUI bulletName;
 
     [SerializeField] private Sprite draggedSprite;
     [SerializeField] private Vector2 draggedDimensions;
@@ -44,7 +46,8 @@ public class BulletDragUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     {
         if (!draggable)
             return;
-
+        
+        bulletName.text = null;
         transform.position = Input.mousePosition;
     }
 
@@ -53,17 +56,18 @@ public class BulletDragUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         if (!draggable)
             return;
 
+        bulletName.text = bulletObject.name.ToUpper();
         transform.SetParent(parentAfterDrag);
         image.raycastTarget = true;
 
         if (!loaded)
-            image.sprite = null;
+            image.sprite = normalSprite;
     }
 
     //Visual Functions
     public void Setup(BulletObject bulletObj, int index)
     {
-        draggable = true;
+        draggable = true;   
         loaded = false;
 
         bulletObject = bulletObj;
@@ -71,6 +75,7 @@ public class BulletDragUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         inventorySlotIndex = index;
 
         image.color = bulletObject.color;
+        bulletName.text = bulletObject.name.ToUpper();
     }
 
     public void AddedToChamber(ChamberSlotView chamber)

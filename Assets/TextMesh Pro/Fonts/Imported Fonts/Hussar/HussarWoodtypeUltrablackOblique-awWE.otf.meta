@@ -11,12 +11,20 @@ TrueTypeFontImporter:
   fontNames:
   - Hussar Woodtype
   fallbackFontReferences:
-  - {fileID: 12800000, guid: 45439674ff97b0545bf0c907feba66ca, type: 3}
-  - {fileID: 12800000, guid: 82855afe4bb60b54cae0d794af015ede, type: 3}
+  - {fileID: 12800000, guid: 8fa7411ae296464408ba00cc15f0ec95, type: 3}
   - {fileID: 12800000, guid: f4311ade4839bac4d963ac222608c19e, type: 3}
+  - {fileID: 12800000, guid: 431dbf1bd474ffe4eaf049a765c0c6e5, type: 3}
   - {fileID: 12800000, guid: 2194739ba1ef1d24cb8278173e6cac24, type: 3}
-  - {fileID: 12800000, guid: c2ef0add6f17ce245a4a4404179f37ac, type: 3}
+  - {fileID: 12800000, guid: 43805d18573b9994388f5db8700e2c54, type: 3}
+  - {fileID: 12800000, guid: 4699995b09f693e48afb32302036e624, type: 3}
   - {fileID: 12800000, guid: 7362f017fc960214eb420a5503e832f7, type: 3}
+  - {fileID: 12800000, guid: 45439674ff97b0545bf0c907feba66ca, type: 3}
+  - {fileID: 12800000, guid: 690d28cac94cda74680ee89f596789ea, type: 3}
+  - {fileID: 12800000, guid: 82855afe4bb60b54cae0d794af015ede, type: 3}
+  - {fileID: 12800000, guid: 51db841bb637c524db87830f4f07a36b, type: 3}
+  - {fileID: 12800000, guid: ccc877043b8a7954e84e3959cadfa934, type: 3}
+  - {fileID: 12800000, guid: c2ef0add6f17ce245a4a4404179f37ac, type: 3}
+  - {fileID: 12800000, guid: e1e851d2aaac3b04abcb3e58cfb92fc9, type: 3}
   - {fileID: 12800000, guid: e4cfd39d07a738c49816ca00ce088a87, type: 3}
   customCharacters: 
   fontRenderingMode: 0
