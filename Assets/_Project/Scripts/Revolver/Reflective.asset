@@ -12,14 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0206e60f51b733b4abcf97d5ae42d0c2, type: 3}
   m_Name: Reflective
   m_EditorClassIdentifier: 
-  name: Power Charge
+  name: Ricochet
   description: 
   artwork: {fileID: 0}
   model: {fileID: 7777854130187012980, guid: d08939f55c895864a85f0887871ddd20, type: 3}
-  color: {r: 1, g: 0.11376842, b: 0, a: 0.83137256}
+  color: {r: 0.9176471, g: 0.41960788, b: 0.45882356, a: 1}
   visualEffect: {fileID: 0}
   gunshotSound: {fileID: 0}
-  remoteSecondaryFire: 0
   bulletSpeed: 20
-  secondaryFireActivated: 0
   showLaser: 1
