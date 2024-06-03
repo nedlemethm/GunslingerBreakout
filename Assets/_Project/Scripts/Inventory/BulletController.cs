@@ -26,6 +26,7 @@ public class BulletController : MonoBehaviour
 		_playerInput.Player.Fire.started += FireBullet;
 		_playerInput.Player.Toolbar.started += ToggleToolbar;
 		_playerInput.Player.Activation.started += Activation;
+		_playerInput.UI.Pause.started += TogglePause;
 
 		_bulletModel = new();
 		_activationLayerNum = LayerMask.NameToLayer(_activationLayer);
@@ -178,6 +179,11 @@ public class BulletController : MonoBehaviour
 			GameSignals.TOOLBAR_DISABLED.Dispatch();
             Cursor.lockState = CursorLockMode.Locked;
         }
+	}
+
+	private void TogglePause(InputAction.CallbackContext context)
+	{
+		GameSignals.PAUSE_TOGGLED.Dispatch();
 	}
 	
 	public void AddBulletToInventory(BulletObject bullet) // Used for picking up bullets and dragging bullets from chamber back into inverntory
