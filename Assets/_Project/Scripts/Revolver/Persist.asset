@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0206e60f51b733b4abcf97d5ae42d0c2, type: 3}
   m_Name: Persist
   m_EditorClassIdentifier: 
-  name: Perist
+  name: Persist
   description: It should freeze objects that it collides with
   artwork: {fileID: 0}
   icon: {fileID: 21300000, guid: aa4a8c4f436a43f40b846266cbf65a7e, type: 3}
