@@ -11,13 +11,16 @@ public class PauseMenu : MonoBehaviour
 
     private void Awake()
     {
+        Debug.LogWarning("YERRRR");
         GameSignals.PAUSE_TOGGLED.AddListener(ToggleMenu);
     }
 
     private void ToggleMenu(ISignalParameters parameters)
     {
         isActive = !isActive;
-        pauseMenu.SetActive(isActive);
+
+        if (pauseMenu != null)
+            pauseMenu.SetActive(isActive);
 
         if (isActive)
         {
