@@ -11,7 +11,6 @@ public class PauseMenu : MonoBehaviour
 
     private void Awake()
     {
-        Debug.LogWarning("YERRRR");
         GameSignals.PAUSE_TOGGLED.AddListener(ToggleMenu);
     }
 
@@ -30,5 +29,10 @@ public class PauseMenu : MonoBehaviour
         {
             Cursor.lockState = CursorLockMode.Locked;
         }
+    }
+
+    private void OnDestroy()
+    {
+        GameSignals.PAUSE_TOGGLED.RemoveListener(ToggleMenu);
     }
 }

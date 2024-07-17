@@ -24,6 +24,7 @@ public class SceneLoading : MonoBehaviour
 
     private IEnumerator LoadLevel()
     {
+        Time.timeScale = 1f;
         Scene lastScene = SceneManager.GetActiveScene();
 
         yield return StartCoroutine(LoadSceneAdd(playerScene));

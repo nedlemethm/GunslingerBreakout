@@ -45,7 +45,9 @@ public class PlayerController : MonoBehaviour, IGravityTunnelable
 
 	private void Awake()
 	{
-		playerControls = new();
+        Time.timeScale = 1f;
+
+        playerControls = new();
 		playerControls.Player.Jump.started += PlayerJump;
 		playerControls.Player.Movement.performed += HandleMove;
 		playerControls.Player.Movement.started += HandleMove;
