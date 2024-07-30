@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f1ca63a91b17724bbd99c8fa67e0180, type: 3}
+  m_Name: GunslingerLevelMats
+  m_EditorClassIdentifier: 
+  array:
+  - {fileID: 2100000, guid: dcde58bf73d84c54dba4ffb0c5399f9e, type: 2}
+  - {fileID: 2100000, guid: c73b913494397604db7b6d0e318296cf, type: 2}
+  - {fileID: 2100000, guid: 0bfc892039c87874590e6dd840d84047, type: 2}
+  - {fileID: 2100000, guid: 333d33c27cd70e14eaf5f9347dae4292, type: 2}
+  - {fileID: 2100000, guid: 5ff092ccd43950c44a7493516a68d109, type: 2}
+  - {fileID: 2100000, guid: b3a2c3b3bd3e3b74fa0bf22a36cef549, type: 2}
+  - {fileID: 2100000, guid: b19ed1ef55d264244bd7cc1c755ec6d1, type: 2}
+  - {fileID: 2100000, guid: 905007693d8d73547901cc37619c0619, type: 2}
+  - {fileID: 2100000, guid: 730195e3091cfdc4e8b6ae062a87bf7e, type: 2}
+  - {fileID: 0}

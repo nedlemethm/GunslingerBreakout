@@ -7,6 +7,12 @@ TagManager:
   - Electronic
   - CanPickUp
   - Persist
+  - Moving
+  - PlayerEyes
+  - CanPush
+  - PowerCharge
+  - EMP
+  - Ricochet
   layers:
   - Default
   - TransparentFX
@@ -18,9 +24,9 @@ TagManager:
   - 
   - HoldObjects
   - Reflective
-  - 
-  - 
-  - 
+  - Persist
+  - Activation
+  - IceFloor
   - 
   - 
   - 

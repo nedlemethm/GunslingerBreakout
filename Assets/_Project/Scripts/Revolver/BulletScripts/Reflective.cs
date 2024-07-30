@@ -8,6 +8,8 @@ public class Reflective : BulletBase
 {
     [SerializeField] private Material overchargeMat;
     [SerializeField] private Material empMat;
+    [SerializeField] private string _overchargeTag;
+    [SerializeField] private string _empTag;
     private RaycastHit nextWallHit;
     private bool hitSet = false;
     private bool hasOvercharge;
@@ -21,9 +23,10 @@ public class Reflective : BulletBase
     public void SetDirection(Vector3 dir)
     {
         RaycastHit hit;
-        bool didHit = Physics.Raycast(transform.position, dir, out hit, Mathf.Infinity, LayerMask.GetMask("Reflective"), QueryTriggerInteraction.Collide);
+        bool didHit = Physics.Raycast(transform.position + .1f * dir.normalized, dir, out hit, Mathf.Infinity, LayerMask.GetMask("Reflective"), QueryTriggerInteraction.Collide);
         if (didHit)
         {
+            Debug.Log("hit a wall " + hit.normal + " " + hit.collider.gameObject.name);
             nextWallHit = hit;
         }
         hitSet = didHit;
@@ -72,6 +75,7 @@ public class Reflective : BulletBase
 
     private void OnTriggerEnter(Collider other)
     {
+        /*
         OverchargeOrb orb;
         if (other.gameObject.layer == LayerMask.NameToLayer("Reflective"))
         {
@@ -82,6 +86,8 @@ public class Reflective : BulletBase
             }
             rb.velocity = ReflectOnPlane(rb.velocity, nextWallHit.normal, nextWallHit.transform.up);
             SetDirection(rb.velocity);
+            transform.rotation = Quaternion.LookRotation(rb.velocity);
+            transform.Rotate(Vector3.right, 90f);
             TryElectronicsStuff(other.gameObject);
         }
         else if ((orb = other.gameObject.GetComponent<OverchargeOrb>()) != null)
@@ -90,19 +96,39 @@ public class Reflective : BulletBase
             {
                 hasOvercharge = orb.IsOverchargeMode();
                 GetComponent<MeshRenderer>().material = overchargeMat;
+                gameObject.tag = _overchargeTag;
             }
             else
             {
                 hasEmp = !orb.IsOverchargeMode();
                 GetComponent<MeshRenderer>().material = empMat;
+                gameObject.tag = _empTag;
             }
         }
+        */
     }
 
     protected override void OnCollisionEnter(Collision collision)
     {
-        TryElectronicsStuff(collision.gameObject);
-        base.OnCollisionEnter(collision);
+        //OverchargeOrb orb;
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Reflective"))
+        {
+            if (!hitSet)
+            {
+                Destroy(gameObject);
+                return;
+            }
+            rb.velocity = ReflectOnPlane(rb.velocity, nextWallHit.normal, nextWallHit.transform.up);
+            SetDirection(rb.velocity);
+            transform.rotation = Quaternion.LookRotation(rb.velocity);
+            transform.Rotate(Vector3.right, 180f);
+            TryElectronicsStuff(collision.gameObject);
+        }
+        else
+        {
+            base.OnCollisionEnter(collision);
+        }
+
     }
 
     private void TryElectronicsStuff(GameObject go)

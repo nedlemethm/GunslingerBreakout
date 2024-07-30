@@ -102,6 +102,7 @@ public class Shooting : MonoBehaviour
 
         //add forces to bullet
         currentBullet.OnShoot(direction.normalized, loadedBullet.bulletSpeed);
+        
 
         if (shotDelay)
         {
@@ -118,7 +119,7 @@ public class Shooting : MonoBehaviour
 
     private BulletBase SpawnBullet()
     {
-        currentBullet = Instantiate(loadedBullet.model, revolverBarrel.position, revolverBarrel.rotation * loadedBullet.model.transform.rotation, null).GetComponent<BulletBase>();
+        currentBullet = Instantiate(loadedBullet.model, revolverBarrel.position, loadedBullet.model.transform.rotation).GetComponent<BulletBase>();
         return currentBullet;
     }
 }

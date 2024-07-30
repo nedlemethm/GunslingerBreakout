@@ -6,7 +6,14 @@ public class PersistActivation : MonoBehaviour
 {
     [SerializeField] private Camera cam;
     [SerializeField] private KeyCode activatePersist = KeyCode.Mouse1;
-    [SerializeField] private string persistTag;
+    [SerializeField] private string movingGeoTag;
+    [SerializeField] private string persistLayer;
+    private int LayerNum;
+
+    private void Start()
+    {
+        LayerNum = LayerMask.NameToLayer(persistLayer);
+    }
 
     void Update()
     {
@@ -14,7 +21,7 @@ public class PersistActivation : MonoBehaviour
         {
             Ray ray = cam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
             RaycastHit hit;
-            if(Physics.Raycast(ray, out hit) && hit.collider.gameObject.tag == persistTag)
+            if(Physics.Raycast(ray, out hit) && hit.collider.gameObject.layer == LayerNum)
             {
                 Debug.Log(hit.collider.gameObject);
                 Activate(hit.collider.gameObject);
@@ -24,8 +31,14 @@ public class PersistActivation : MonoBehaviour
 
     private void Activate(GameObject target)
     {
-        target.tag = "Untagged";
-        target.GetComponent<Rigidbody>().isKinematic = false;
-        //target.GetComponent<MovingPlatform>().StartMoving = false;
+        target.layer = 0;
+        if (target.tag == movingGeoTag)
+        {
+            target.GetComponent<MovingGeometry>().SetMoving();
+        }
+        else
+        {
+            target.GetComponent<Rigidbody>().isKinematic = false;
+        }
     }
 }

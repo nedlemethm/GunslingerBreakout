@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BulletView : MonoBehaviour
 {
@@ -12,6 +13,10 @@ public class BulletView : MonoBehaviour
 	private BulletObject[] _chamberBullets;
 	private BulletObject[] _inventoryBullets;
 	private BulletController _controller;
+
+	[SerializeField] private BulletViewAnimation bulletViewAnimation;
+	[SerializeField] private Image waifuImage;
+
 	
 	private void Awake()
 	{
@@ -88,13 +93,13 @@ public class BulletView : MonoBehaviour
 	
 	private void OnUiEnable(ISignalParameters parameters)
 	{
-		LoopThroughChildElements(true);
-	}
+		bulletViewAnimation.OnUiEnable();
+    }
 	
 	private void OnUiDisable(ISignalParameters parameters)
 	{
-		LoopThroughChildElements(false);
-	}
+        bulletViewAnimation.OnUiDisable();
+    }
 	
 	private void LoopThroughChildElements(bool enabled)
 	{
@@ -103,5 +108,27 @@ public class BulletView : MonoBehaviour
 			Transform childTransform = transform.GetChild(i);
 			childTransform.gameObject.SetActive(enabled);
 		}
+	}
+
+	public void RotateChamber(int chamberIndex)
+	{
+		bulletViewAnimation.RotateChamber(chamberIndex);
+    }
+
+	public void UpdateWaifu(int chamberIndex)
+	{
+		if (_chamberBullets[chamberIndex] != null)
+		{
+			if (_chamberBullets[chamberIndex].artwork == null)
+				return;
+
+            waifuImage.sprite = _chamberBullets[chamberIndex].artwork;
+            bulletViewAnimation.ToggleWaifu(true);
+		}
+		else
+		{
+            bulletViewAnimation.ToggleWaifu(false);
+            //waifuImage.sprite = null;
+        }
 	}
 }
