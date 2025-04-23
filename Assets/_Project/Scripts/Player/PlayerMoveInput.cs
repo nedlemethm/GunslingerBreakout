@@ -193,7 +193,7 @@ public class PlayerController : MonoBehaviour, IGravityTunnelable
 			}			
 			else if (!grounded)
 			{
-                rb.velocity = new Vector3(playerVelocity.x, 0, playerVelocity.z) * playerSpeed * airMultiplier + Vector3.up * playerVelocity.y;
+                rb.velocity = (new Vector3(playerVelocity.x, 0, playerVelocity.z) * playerSpeed * airMultiplier) + Vector3.up * playerVelocity.y;
             }
 		}
 		
